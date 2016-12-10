@@ -54,11 +54,14 @@ print_title "System apps"
 sudo apt install -y nvidia-370 nvidia-settings nvidia-prime ntfs-config mint-meta-codecs encfs ttf-mscorefonts-installer fonts-droid-fallback nodejs
 
 print_title "Other apps"
-sudo apt install -y wine1.8 pan gpodder steam qbittorrent hwinfo font-manager oracle-java8-installer oracle-java8-set-defaultvirtualbox-5.1
+sudo apt install -y wine1.8 pan gpodder steam qbittorrent hwinfo font-manager oracle-java8-installer oracle-java8-set-default virtualbox-5.1
 sudo apt install -y adobe-flashplugin grub-customizer polly plank pypar2 gparted curl deja-dup chromium-browser conky-all sublime-text-installer
-sudo apt install -y jq keepassx p7zip-full hexchat lynx inkscape xsltproc menulibre build-essential python-software-properties g++ git gitg
+sudo apt install -y jq keepassx p7zip-full hexchat lynx inkscape xsltproc menulibre 
 # backintime-qt4 gnome-encfs-manager nemo-dropbox stellarium
 
+print_title "Development apps"
+sudo apt install -y python-requests python-requests-oauthlib python-oauthlib build-essential python-software-properties g++ git gitg
+	
 #print_title "Latex apps"
 #sudo apt install -y texlive-full texstudio
 
