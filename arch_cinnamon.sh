@@ -115,7 +115,7 @@ if is_package_installed "net-tools"; then
     pause_function
 
     print_title "Install AUR apps"
-    pacaur -S pan rar gpodder3 kalu jdk megasync nemo-megasync polly pypar2 sublime-text-dev grub-customizer menulibre plex-media-server
+    pacaur -S pan rar gpodder3 kalu jdk megasync nemo-megasync polly pypar2 sublime-text-dev grub-customizer menulibre plex-media-server google-cloud-sdk
     # compiz enpass-bin ntfs-config gnome-encfs-manager google-chrome dropbox nemo-dropbox
     
     print_title "Enable and start plex"
