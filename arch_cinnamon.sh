@@ -1,4 +1,5 @@
-#!/bin/bash
+
++#!/bin/bash
 
 Bold=$(tput bold)
 Reset=$(tput sgr0)
@@ -96,7 +97,7 @@ if is_package_installed "net-tools"; then
     pause_function
 
     print_title "Install apps"
-    sudo pacman -S firefox wine plank gimp deja-dup vlc steam evince thunderbird keepass hexchat gitg qbittorrent eog nodejs flashplugin banshee
+    sudo pacman -S firefox chromium wine deja-dup plank gimp deja-dup vlc steam evince thunderbird keepass hexchat gitg qbittorrent eog nodejs flashplugin banshee
     pause_function
 
     print_title "Install VirtualBox"
@@ -114,8 +115,8 @@ if is_package_installed "net-tools"; then
     pause_function
 
     print_title "Install AUR apps"
-    pacaur -S pan rar dropbox nemo-dropbox gpodder3 google-chrome kalu jdk polly pypar2 sublime-text-dev grub-customizer menulibre plex-media-server gnome-encfs-manager
-    # corebird compiz enpass-bin ntfs-config
+    pacaur -S pan rar gpodder3 kalu jdk megasync nemo-megasync polly pypar2 sublime-text-dev grub-customizer menulibre plex-media-server
+    # compiz enpass-bin ntfs-config gnome-encfs-manager google-chrome dropbox nemo-dropbox
     
     print_title "Enable and start plex"
     sudo systemctl enable plexmediaserver.service
