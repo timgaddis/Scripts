@@ -96,7 +96,7 @@ if is_package_installed "net-tools"; then
     pause_function
 
     print_title "Install apps"
-    sudo pacman -S firefox chromium wine plank gimp deja-dup vlc steam evince thunderbird keepass hexchat gitg qbittorrent eog nodejs flashplugin
+    sudo pacman -S firefox chromium wine plank gimp deja-dup vlc steam evince thunderbird keepass hexchat qbittorrent eog flashplugin
     pause_function
 
     print_title "Install VirtualBox"
@@ -114,9 +114,13 @@ if is_package_installed "net-tools"; then
     pause_function
 
     print_title "Install AUR apps"
-    pacaur -S pan rar gpodder3 kalu jdk megasync nemo-megasync polly pypar2 sublime-text-dev grub-customizer menulibre plex-media-server google-cloud-sdk
+    pacaur -S pan rar gpodder3 kalu megasync nemo-megasync polly pypar2 sublime-text-dev grub-customizer menulibre plex-media-server
     # compiz enpass-bin ntfs-config gnome-encfs-manager google-chrome dropbox nemo-dropbox
-    
+
+    print_title "Install programming apps"
+	pacaur -S ncurses5-compat-libs google-cloud-sdk gitg jdk nodejs
+	pause_function
+	
     print_title "Enable and start plex"
     sudo systemctl enable plexmediaserver.service
     sudo systemctl start plexmediaserver.service
