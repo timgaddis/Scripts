@@ -50,7 +50,7 @@ if is_package_installed "net-tools"; then
     pause_function
 
     print_title "Install system apps"
-    sudo pacman -S gedit p7zip encfs gparted conky curl jq gksu gnome-font-viewer lynx gtk-engine-murrine libmtp gvfs-mtp galculator gnome-screenshot ntfs-3g gnome-terminal ntp gnome-keyring openvpn networkmanager-openvpn sqlitebrowser gconf-editor
+    sudo pacman -S gedit p7zip encfs gparted conky curl jq gksu gnome-font-viewer lynx python-lxml gtk-engine-murrine libmtp gvfs-mtp galculator gnome-screenshot ntfs-3g gnome-terminal ntp gnome-keyring openvpn networkmanager-openvpn sqlitebrowser gconf-editor
     # gnome-tweak-tool
 
     print_title "Install and update ClamAV"
@@ -144,7 +144,7 @@ if is_package_installed "net-tools"; then
     sudo mkdir /media/Backup
     sudo bash -c 'echo "/dev/sdb1       /media/Storage      ntfs-3g     defaults    0  0" >> /etc/fstab'
     sudo bash -c 'echo "/dev/sdc1       /media/Backup      ntfs-3g     defaults    0  0" >> /etc/fstab'
-    pause_function
+    #pause_function
 	
 	print_title "Android Studio fix"
 	sudo bash -c 'echo "fs.inotify.max_user_watches = 524288" >> /etc/sysctl.d/60-jetbrains.conf'
