@@ -1,5 +1,4 @@
-
-+#!/bin/bash
+#!/bin/bash
 
 Bold=$(tput bold)
 Reset=$(tput sgr0)
@@ -97,7 +96,7 @@ if is_package_installed "net-tools"; then
     pause_function
 
     print_title "Install apps"
-    sudo pacman -S firefox chromium wine deja-dup plank gimp deja-dup vlc steam evince thunderbird keepass hexchat gitg qbittorrent eog nodejs flashplugin banshee
+    sudo pacman -S firefox chromium wine plank gimp deja-dup vlc steam evince thunderbird keepass hexchat gitg qbittorrent eog nodejs flashplugin
     pause_function
 
     print_title "Install VirtualBox"
@@ -145,8 +144,11 @@ if is_package_installed "net-tools"; then
     sudo mkdir /media/Backup
     sudo bash -c 'echo "/dev/sdb1       /media/Storage      ntfs-3g     defaults    0  0" >> /etc/fstab'
     sudo bash -c 'echo "/dev/sdc1       /media/Backup      ntfs-3g     defaults    0  0" >> /etc/fstab'
-    # pause_function
-
+    pause_function
+	
+	print_title "Android Studio fix"
+	sudo bash -c 'echo "fs.inotify.max_user_watches = 524288" >> /etc/sysctl.d/60-jetbrains.conf'
+	
 else
     print_title "net-tools not installed"
     
