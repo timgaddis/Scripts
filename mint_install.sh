@@ -1,6 +1,6 @@
 #!/bin/sh
 ##############################################
-##       Linux Mint 18 install script       ##
+##      Linux Mint 18.1 install script      ##
 ##############################################
 
 print_title() {
@@ -39,6 +39,7 @@ sudo apt add-repository -y ppa:qbittorrent-team/qbittorrent-stable      # qBitto
 sudo apt add-repository -y ppa:inkscape.dev/stable                      # Inkscape
 sudo apt add-repository -y ppa:moka/stable                              # Moka
 sudo apt add-repository -y ppa:duplicity-team/ppa                       # Duplicity
+sudo apt add-repository -y ppa:otto-kesselgulasch/gimp					# Gimp
 #sudo add-apt-repository -y ppa:stellarium/stellarium-releases           # Stellarium
 
 print_title "Arc and Vertex themes"
@@ -56,7 +57,7 @@ sudo apt install -y nvidia-375 nvidia-settings nvidia-prime ntfs-config mint-met
 print_title "Other apps"
 sudo apt install -y wine1.8 pan gpodder steam qbittorrent hwinfo font-manager oracle-java8-installer oracle-java8-set-default virtualbox-5.1
 sudo apt install -y adobe-flashplugin grub-customizer polly plank pypar2 gparted curl deja-dup chromium-browser conky-all sublime-text-installer
-sudo apt install -y jq keepassx p7zip-full hexchat lynx inkscape xsltproc menulibre 
+sudo apt install -y jq keepassx p7zip-full hexchat lynx inkscape xsltproc menulibre gimp-plugin-registry gimp-gmic gimp
 # backintime-qt4 gnome-encfs-manager nemo-dropbox stellarium
 
 print_title "Development apps"
