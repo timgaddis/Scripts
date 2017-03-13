@@ -33,7 +33,7 @@ sudo apt add-repository -y ppa:menulibre-dev/daily                      # Menu L
 sudo apt add-repository -y ppa:gwendal-lebihan-dev/hexchat-stable       # HexChat IRC client
 sudo apt add-repository -y ppa:webupd8team/java                         # Java 6/7/8/9
 #sudo apt add-repository -y ppa:gencfsm/ppa                              # GNOME Encfs Manager
-sudo apt add-repository -y ppa:libreoffice/libreoffice-5-2              # LibreOffice 5.2.X
+sudo apt add-repository -y ppa:libreoffice/ppa			                # LibreOffice 5.3.X
 sudo apt add-repository -y ppa:webupd8team/sublime-text-3               # Sublime Text 3
 sudo apt add-repository -y ppa:qbittorrent-team/qbittorrent-stable      # qBittorrent
 sudo apt add-repository -y ppa:inkscape.dev/stable                      # Inkscape
@@ -52,7 +52,7 @@ sudo apt update
 sudo apt upgrade -y
 
 print_title "System apps"
-sudo apt install -y nvidia-375 nvidia-settings nvidia-prime ntfs-config mint-meta-codecs encfs ttf-mscorefonts-installer fonts-droid-fallback nodejs
+sudo apt install -y nvidia-378 nvidia-settings nvidia-prime ntfs-config mint-meta-codecs encfs ttf-mscorefonts-installer fonts-droid-fallback nodejs
 
 print_title "Other apps"
 sudo apt install -y wine1.8 pan gpodder steam qbittorrent hwinfo font-manager oracle-java8-installer oracle-java8-set-default virtualbox-5.1

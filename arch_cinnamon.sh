@@ -53,19 +53,19 @@ if is_package_installed "net-tools"; then
     sudo pacman -S gedit p7zip encfs gparted conky curl jq gksu gnome-font-viewer lynx python-lxml gtk-engine-murrine libmtp gvfs-mtp galculator gnome-screenshot ntfs-3g gnome-terminal ntp gnome-keyring openvpn networkmanager-openvpn sqlitebrowser gconf-editor
     # gnome-tweak-tool
 
-    print_title "Install and update ClamAV"
-    sudo pacman -S clamav
-    sudo freshclam
-    sudo systemctl enable clamd.service
-    sudo systemctl start clamd.service
-    sudo systemctl enable freshclamd.service
-    sudo systemctl start freshclamd.service
-    wget -O- http://www.eicar.org/download/eicar.com.txt | clamscan -
+    #print_title "Install and update ClamAV"
+    #sudo pacman -S clamav
+    #sudo freshclam
+    #sudo systemctl enable clamd.service
+    #sudo systemctl start clamd.service
+    #sudo systemctl enable freshclamd.service
+    #sudo systemctl start freshclamd.service
+    #wget -O- http://www.eicar.org/download/eicar.com.txt | clamscan -
     # stdin: Eicar-Test-Signature FOUND
-    pause_function
+    #pause_function
 
     print_title "Install and start mouse driver"
-    gpg --recv-keys 5FB027474203454C
+    gpg --receive-keys 5FB027474203454C
     sudo pacaur -S razercfg python-pyside
     sudo systemctl enable razerd.service
     pause_function
@@ -92,15 +92,15 @@ if is_package_installed "net-tools"; then
     pause_function
 
     print_title "Install codecs"
-    sudo pacman -S a52dec faac faad2 flac jasper lame libdca libdv libmad libmpeg2 libtheora libvorbis libxv wavpack x264 xvidcore gstreamer0.10-plugins gst-plugins-base gst-plugins-base-libs gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-libav
+    sudo pacman -S a52dec faac faad2 flac jasper lame libdca libdv libmad libmpeg2 libtheora libvorbis libxv wavpack x264 xvidcore gst-plugins-base gst-plugins-base-libs gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-libav
     pause_function
 
     print_title "Install apps"
-    sudo pacman -S firefox chromium wine plank gimp deja-dup vlc steam evince thunderbird keepass hexchat qbittorrent eog flashplugin
+    sudo pacman -S firefox chromium wine plank gimp deja-dup vlc steam evince thunderbird keepass hexchat qbittorrent eog flashplugin pan
     pause_function
 
     print_title "Install VirtualBox"
-    sudo pacman -S virtualbox dkms virtualbox-guest-iso linux-headers qt4
+    sudo pacman -S virtualbox dkms virtualbox-guest-iso linux-headers qt4 virtualbox-host-dkms
     sudo bash -c 'echo "vboxdrv" >> /etc/modules-load.d/virtualbox.conf'
     sudo gpasswd -a tgaddis vboxusers
     pause_function
@@ -114,7 +114,7 @@ if is_package_installed "net-tools"; then
     pause_function
 
     print_title "Install AUR apps"
-    pacaur -S pan rar gpodder3 kalu megasync nemo-megasync polly pypar2 sublime-text-dev grub-customizer menulibre plex-media-server
+    pacaur -S rar gpodder3 kalu megasync nemo-megasync polly pypar2 sublime-text-dev grub-customizer menulibre plex-media-server pepper-flash
     # compiz enpass-bin ntfs-config gnome-encfs-manager google-chrome dropbox nemo-dropbox
 
     print_title "Install programming apps"

@@ -53,7 +53,7 @@ pacman -Syu
 pause_function
 
 print_title "Install Xorg"
-pacman -S xorg-server xorg-xinit xorg-utils xorg-server-utils mesa
+pacman -S xorg-server xorg-xinit xorg-utils xorg-server-utils mesa xorg-apps
 pacman -S bash-completion xorg-twm xterm xorg-xclock
 pause_function
 
