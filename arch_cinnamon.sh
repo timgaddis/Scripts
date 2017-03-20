@@ -151,7 +151,7 @@ if is_package_installed "net-tools"; then
     #pause_function
 	
 	print_title "Android Studio fix"
-	sudo bash -c 'echo "fs.inotify.max_user_watches = 524288" >> /etc/sysctl.d/60-jetbrains.conf'
+	sudo bash -c 'echo "fs.inotify.max_user_watches = 524288" >> /etc/sysctl.d/60-sysctl.conf'
 	
 else
     print_title "net-tools not installed"
