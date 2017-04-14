@@ -24,7 +24,6 @@ print_title "PPA install"
 #sudo apt add-repository -y ppa:graphics-drivers/ppa                     # Nvidia graphic drivers
 #sudo add-apt-repository -y ppa:bit-team/stable                          # Back in Time
 sudo apt add-repository -y ppa:thp/gpodder                              # gPodder
-#sudo apt add-repository -y ppa:numix/ppa                                # Numix GTK themes
 sudo apt add-repository -y ppa:ricotz/docky                             # Plank dock
 sudo apt add-repository -y ppa:ubuntu-wine/ppa                          # Wine
 sudo apt add-repository -y ppa:danielrichter2007/grub-customizer        # Grub Customizer
@@ -37,12 +36,14 @@ sudo apt add-repository -y ppa:libreoffice/libreoffice-5-3              # LibreO
 sudo apt add-repository -y ppa:webupd8team/sublime-text-3               # Sublime Text 3
 sudo apt add-repository -y ppa:qbittorrent-team/qbittorrent-stable      # qBittorrent
 sudo apt add-repository -y ppa:inkscape.dev/stable                      # Inkscape
-sudo apt add-repository -y ppa:moka/stable                              # Moka
 sudo apt add-repository -y ppa:duplicity-team/ppa                       # Duplicity
 sudo apt add-repository -y ppa:otto-kesselgulasch/gimp					# Gimp
 #sudo add-apt-repository -y ppa:stellarium/stellarium-releases           # Stellarium
 
-print_title "Arc and Vertex themes"
+print_title "Desktop and icon themes PPA"
+sudo apt add-repository -y ppa:numix/ppa                                # Numix GTK themes
+sudo apt add-repository -y ppa:moka/stable                              # Moka
+sudo apt add-repository -y ppa:papirus/papirus                          # Papirus theme
 sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /' >> /etc/apt/sources.list.d/arc-theme.list"
 wget http://download.opensuse.org/repositories/home:Horst3180/xUbuntu_16.04/Release.key
 sudo apt-key add - < Release.key
@@ -60,15 +61,16 @@ sudo apt install -y wine1.8 pan gpodder steam qbittorrent hwinfo font-manager or
 # backintime-qt4 gnome-encfs-manager nemo-dropbox stellarium
 
 print_title "Development apps"
-sudo apt install -y build-essential python-software-properties g++ git gitg
+sudo apt install -y build-essential python-software-properties g++ git gitg sqlitebrowser
 # python-requests python-requests-oauthlib python-oauthlib
 
 #print_title "Latex apps"
 #sudo apt install -y texlive-full texstudio
 
 print_title "Themes"
-#sudo apt install -y numix-gtk-theme numix-icon-theme numix-icon-theme-circle
+sudo apt install -y numix-gtk-theme papirus-icon-theme libreoffice-style-papirus
 sudo apt install -y moka-icon-theme faba-icon-theme moka-gnome-shell-theme moka-gtk-theme gtk2-engines-murrine vertex-theme arc-theme
+# numix-icon-theme numix-icon-theme-circle
 
 # Add user to vboxusers group
 sudo usermod -a -G vboxusers tgaddis

@@ -1,62 +1,81 @@
-#!/bin/bash
+#!/bin/sh
 ##############################################
-##       Ubuntu 16.04 install script        ##
+##       Ubuntu 17.04 install script        ##
 ##############################################
 
-# Google Chrome
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+print_title() {
+    #clear
+    echo ""
+    echo "******************************"
+    echo "#  ${Bold}$1${Reset}"
+    echo "******************************"
+}
 
-# VirtualBox 4.x.x
-wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -
-sudo sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian trusty contrib" >> /etc/apt/sources.list.d/virtualbox-offical-source.list'
+print_title "VirtualBox"
+sudo sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian zesty contrib" >> /etc/apt/sources.list.d/virtualbox-offical-source.list'
+wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
 
-# Opera browser
-#wget -O - http://deb.opera.com/archive.key | sudo apt-key add -
-#sudo sh -c 'echo "deb http://deb.opera.com/opera/ stable non-free" > /etc/apt/sources.list.d/opera.list'
+#print_title "GetDeb"
+#wget -q -O - http://archive.getdeb.net/getdeb-archive.key | sudo apt-key add -
+#sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu xenial-getdeb apps" >> /etc/apt/sources.list.d/getdeb.list'
 
-# PPA install
-sudo add-apt-repository -y ppa:xorg-edgers/ppa                          # Xorg graphic drivers
-sudo add-apt-repository -y ppa:thp/gpodder                              # gPodder
-sudo add-apt-repository -y ppa:numix/ppa                                # Numix GTK themes
-sudo add-apt-repository -y ppa:ricotz/docky                             # Plank dock
-sudo add-apt-repository -y ppa:ubuntu-wine/ppa                          # Wine
-sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer        # Grub Customizer
-sudo add-apt-repository -y ppa:conscioususer/polly-daily                # Polly twitter client
-sudo add-apt-repository -y ppa:gwendal-lebihan-dev/hexchat-stable       # HexChat IRC client
-sudo add-apt-repository -y ppa:webupd8team/java                         # Java 7/8/9
-sudo add-apt-repository -y ppa:gencfsm/ppa                              # GNOME Encfs Manager
-#sudo add-apt-repository -y ppa:libreoffice/libreoffice-4-4              # LibreOffice 4.4.X
-sudo add-apt-repository -y ppa:webupd8team/sublime-text-3			    # Sublime Text 3
-sudo add-apt-repository -y ppa:qbittorrent-team/qbittorrent-stable      # qBittorrent
-sudo add-apt-repository -y ppa:inkscape.dev/stable                      # Inkscape
-sudo add-apt-repository -y ppa:moka/stable                              # Moka
-sudo add-apt-repository -y ppa:nilarimogard/webupd8						# Razer mouse config
+print_title "PPA install"
+#sudo apt add-repository -y ppa:graphics-drivers/ppa                     # Nvidia graphic drivers
+#sudo add-apt-repository -y ppa:bit-team/stable                          # Back in Time
+sudo apt add-repository -y ppa:thp/gpodder                              # gPodder
+sudo apt add-repository -y ppa:ricotz/docky                             # Plank dock
+#sudo apt add-repository -y ppa:ubuntu-wine/ppa                          # Wine
+#sudo apt add-repository -y ppa:danielrichter2007/grub-customizer        # Grub Customizer
+sudo apt add-repository -y ppa:menulibre-dev/daily                      # Menu Libre
+#sudo apt add-repository -y ppa:gwendal-lebihan-dev/hexchat-stable       # HexChat IRC client
+sudo apt add-repository -y ppa:webupd8team/java                         # Java 7/8/9
+#sudo apt add-repository -y ppa:gencfsm/ppa                              # GNOME Encfs Manager
+sudo apt add-repository -y ppa:libreoffice/libreoffice-5-3              # LibreOffice 5.3.X
+sudo apt add-repository -y ppa:webupd8team/sublime-text-3               # Sublime Text 3
+sudo apt add-repository -y ppa:qbittorrent-team/qbittorrent-stable      # qBittorrent
+sudo apt add-repository -y ppa:inkscape.dev/stable                      # Inkscape
+sudo apt add-repository -y ppa:duplicity-team/ppa                       # Duplicity
+#sudo apt add-repository -y ppa:otto-kesselgulasch/gimp					# Gimp
+#sudo add-apt-repository -y ppa:stellarium/stellarium-releases          # Stellarium
+sudo add-apt-repository -y ppa:terrz/razerutils                         # Razer mouse drivers
+sudo add-apt-repository -y ppa:lah7/polychromatic                       # Razer mouse tray app
 
-#Vertex theme
-sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_14.04/ /' >> /etc/apt/sources.list.d/vertex-theme.list"
-wget http://download.opensuse.org/repositories/home:Horst3180/xUbuntu_14.04/Release.key
-sudo apt-key add - < Release.key
+print_title "Desktop and icon themes PPA"
+sudo apt add-repository -y ppa:numix/ppa                                # Numix GTK themes
+sudo apt add-repository -y ppa:papirus/papirus                          # Papirus theme
+#sudo apt add-repository -y ppa:moka/stable                              # Moka
+#sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /' >> /etc/apt/sources.list.d/arc-theme.list"
+#wget http://download.opensuse.org/repositories/home:Horst3180/xUbuntu_16.04/Release.key
+#sudo apt-key add - < Release.key
+#rm Release.key
 
-sudo apt-get update
+sudo apt update
+sudo apt upgrade -y
 
-sudo apt-get -y install wine1.7 pan nemo-dropbox gpodder steam-launcher
-sudo apt-get -y install google-chrome-stable qbittorrent razercfg
-sudo apt-get -y install oracle-java8-installer virtualbox-5.0 deja-dup
-sudo apt-get -y install grub-customizer polly plank pypar2
-sudo apt-get -y install conky-all encfs sublime-text-installer gnome-encfs-manager
-sudo apt-get -y install numix-gtk-theme numix-icon-theme
-sudo apt-get -y install numix-icon-theme-circle gparted curl xsltproc alacarte
-sudo apt-get -y install keepassx p7zip-full hexchat lynx inkscape
-sudo apt-get -y install build-essential python-software-properties g++ git gitg
-sudo apt-get -y install vertex-theme moka-icon-theme moka-cinnamon-theme plank-theme-moka
+print_title "System apps"
+sudo apt install -y ntfs-config ubuntu-restricted-extras encfs ttf-mscorefonts-installer fonts-droid-fallback nodejs
+# nvidia-378 nvidia-settings nvidia-prime libcuda1-378 nvidia-opencl-icd-378
 
-# Update LibreOffice
-#sudo apt-get -y dist-upgrade
+print_title "Razer mouse drivers"
+sudo apt install python3-razer razer-kernel-modules-dkms razer-daemon razer-doc polychromatic
+sudo modprobe razerkbd
 
-# NTFS-config: edit file with "sudo gedit /etc/fstab"
-#sudo apt-get -y install ntfs-config
-#sudo mkdir -p /etc/hal/fdi/policy
+print_title "Other apps"
+sudo apt install -y wine1.8 pan gpodder steam qbittorrent hwinfo font-manager oracle-java8-installer oracle-java8-set-default virtualbox-5.1 adobe-flashplugin grub-customizer plank pypar2 gparted curl deja-dup chromium-browser conky-all sublime-text-installer jq keepassx p7zip-full hexchat lynx inkscape xsltproc menulibre gimp-plugin-registry gimp-gmic gimp corebird
+# backintime-qt4 gnome-encfs-manager nemo-dropbox stellarium polly
+
+print_title "Development apps"
+sudo apt install -y build-essential python-software-properties g++ git gitg sqlitebrowser
+# python-requests python-requests-oauthlib python-oauthlib
+
+#print_title "Latex apps"
+#sudo apt install -y texlive-full texstudio
+
+print_title "Themes"
+#sudo apt install -y numix-gtk-theme numix-icon-theme numix-icon-theme-circle
+# moka-icon-theme faba-icon-theme moka-gnome-shell-theme moka-gtk-theme gtk2-engines-murrine
+sudo apt install -y vertex-theme arc-theme papirus-icon-theme libreoffice-style-papirus
 
 # Add user to vboxusers group
 sudo usermod -a -G vboxusers tgaddis
@@ -66,5 +85,8 @@ sudo mkdir /media/Storage
 sudo mkdir /media/Backup
 sudo bash -c 'echo "/dev/sdb1       /media/Storage      ntfs-3g     defaults    0  0" >> /etc/fstab'
 sudo bash -c 'echo "/dev/sdc1       /media/Backup      ntfs-3g     defaults    0  0" >> /etc/fstab'
+
+# Android Studio fix
+sudo bash -c 'echo "fs.inotify.max_user_watches = 524288" >> /etc/sysctl.d/60-jetbrains.conf'
 
 echo "Done!!"
