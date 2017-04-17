@@ -20,6 +20,13 @@ wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key a
 #wget -q -O - http://archive.getdeb.net/getdeb-archive.key | sudo apt-key add -
 #sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu xenial-getdeb apps" >> /etc/apt/sources.list.d/getdeb.list'
 
+print_title "Wine"
+sudo dpkg --add-architecture i386
+wget https://dl.winehq.org/wine-builds/Release.key
+sudo apt-key add Release.key
+sudo apt-add-repository deb https://dl.winehq.org/wine-builds/ubuntu/ zesty main
+rm Release.key
+
 print_title "PPA install"
 #sudo apt add-repository -y ppa:graphics-drivers/ppa                     # Nvidia graphic drivers
 #sudo add-apt-repository -y ppa:bit-team/stable                          # Back in Time
@@ -61,9 +68,12 @@ print_title "Razer mouse drivers"
 sudo apt install python3-razer razer-kernel-modules-dkms razer-daemon razer-doc polychromatic
 sudo modprobe razerkbd
 
+print_title "Wine"
+sudo apt-get install -y --install-recommends winehq-stable
+	
 print_title "Other apps"
-sudo apt install -y wine1.8 pan gpodder steam qbittorrent hwinfo font-manager oracle-java8-installer oracle-java8-set-default virtualbox-5.1 adobe-flashplugin grub-customizer plank pypar2 gparted curl deja-dup chromium-browser conky-all sublime-text-installer jq keepassx p7zip-full hexchat lynx inkscape xsltproc menulibre gimp-plugin-registry gimp-gmic gimp corebird
-# backintime-qt4 gnome-encfs-manager nemo-dropbox stellarium polly
+sudo apt install -y pan gpodder steam qbittorrent hwinfo font-manager oracle-java8-installer oracle-java8-set-default virtualbox-5.1 adobe-flashplugin grub-customizer plank pypar2 gparted curl deja-dup chromium-browser conky-all sublime-text-installer jq keepassx p7zip-full hexchat lynx inkscape xsltproc menulibre gimp-plugin-registry gimp-gmic gimp corebird
+# backintime-qt4 gnome-encfs-manager nemo-dropbox stellarium polly wine1.8
 
 print_title "Development apps"
 sudo apt install -y build-essential python-software-properties g++ git gitg sqlitebrowser
