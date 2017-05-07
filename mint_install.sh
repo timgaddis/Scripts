@@ -24,7 +24,7 @@ print_title "Wine"
 sudo dpkg --add-architecture i386
 wget https://dl.winehq.org/wine-builds/Release.key
 sudo apt-key add Release.key
-sudo apt-add-repository deb https://dl.winehq.org/wine-builds/ubuntu/ xenial main
+sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ xenial main'
 rm Release.key
 
 print_title "PPA install"
@@ -77,7 +77,7 @@ sudo apt install -y pan gpodder steam qbittorrent hwinfo font-manager oracle-jav
 
 print_title "Development apps"
 sudo apt install -y build-essential python-software-properties g++ git gitg sqlitebrowser
-# python-requests python-requests-oauthlib python-oauthlib
+# python-requests python-requests-oauthlib python-oauthlib android-tools-adb android-tools-fastboot
 
 #print_title "Latex apps"
 #sudo apt install -y texlive-full texstudio
