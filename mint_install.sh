@@ -47,6 +47,7 @@ sudo apt-add-repository -y ppa:otto-kesselgulasch/gimp					# Gimp
 #sudo add-apt-repository -y ppa:stellarium/stellarium-releases           # Stellarium
 sudo add-apt-repository -y ppa:terrz/razerutils                         # Razer mouse drivers
 sudo add-apt-repository -y ppa:lah7/polychromatic                       # Razer mouse tray app
+sudo add-apt-repository -y ppa:ubuntu-mozilla-security/ppa              # Thunderbird
 
 print_title "Desktop and icon themes PPA"
 sudo apt-add-repository -y ppa:numix/ppa                                # Numix GTK themes
@@ -76,7 +77,7 @@ sudo apt install -y pan gpodder steam qbittorrent hwinfo font-manager oracle-jav
 # backintime-qt4 gnome-encfs-manager nemo-dropbox stellarium inkscape hexchat gimp menulibre
 
 print_title "Development apps"
-sudo apt install -y build-essential python-software-properties g++ git gitg sqlitebrowser
+sudo apt install -y build-essential python-software-properties g++ git gitg sqlitebrowser oracle-java8-unlimited-jce-policy
 # python-requests python-requests-oauthlib python-oauthlib android-tools-adb android-tools-fastboot
 
 #print_title "Latex apps"
