@@ -77,8 +77,12 @@ sudo apt install -y pan gpodder steam qbittorrent hwinfo font-manager oracle-jav
 # backintime-qt4 gnome-encfs-manager nemo-dropbox stellarium inkscape hexchat gimp menulibre
 
 print_title "Development apps"
-sudo apt install -y build-essential python-software-properties g++ git gitg sqlitebrowser oracle-java8-unlimited-jce-policy
-# python-requests python-requests-oauthlib python-oauthlib android-tools-adb android-tools-fastboot
+sudo apt install -y build-essential python-software-properties g++ git gitg sqlitebrowser oracle-java8-unlimited-jce-policy android-tools-adb
+# python-requests python-requests-oauthlib python-oauthlib android-tools-fastboot
+
+print_title "KVM install"
+sudo apt install -y qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils virt-manager
+sudo adduser `id -un` libvirtd
 
 #print_title "Latex apps"
 #sudo apt install -y texlive-full texstudio
