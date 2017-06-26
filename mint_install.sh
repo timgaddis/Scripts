@@ -27,6 +27,12 @@ sudo apt-key add Release.key
 sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ xenial main'
 rm Release.key
 
+print_title "Google Chrome"
+sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+wget https://dl.google.com/linux/linux_signing_key.pub
+sudo apt-key add linux_signing_key.pub
+rm linux_signing_key.pub
+
 print_title "PPA install"
 sudo apt-add-repository -y ppa:graphics-drivers/ppa                     # Nvidia graphic drivers
 #sudo add-apt-repository -y ppa:bit-team/stable                          # Back in Time
@@ -62,7 +68,7 @@ sudo apt update
 sudo apt upgrade -y
 
 print_title "System apps"
-sudo apt install -y nvidia-378 nvidia-settings ntfs-config mint-meta-codecs encfs ttf-mscorefonts-installer fonts-droid-fallback nodejs
+sudo apt install -y nvidia-381 nvidia-settings ntfs-config mint-meta-codecs encfs ttf-mscorefonts-installer fonts-droid-fallback nodejs
 # nvidia-prime libcuda1-378 nvidia-opencl-icd-378
 
 print_title "Razer mouse drivers"
@@ -73,8 +79,9 @@ print_title "Wine"
 sudo apt-get install -y --install-recommends winehq-stable
 
 print_title "Other apps"
-sudo apt install -y pan gpodder steam qbittorrent hwinfo font-manager oracle-java8-installer oracle-java8-set-default virtualbox-5.1 adobe-flashplugin grub-customizer polly plank pypar2 gparted curl deja-dup chromium-browser conky-all sublime-text-installer jq keepassx p7zip-full lynx xsltproc gimp-plugin-registry gimp-gmic
-# backintime-qt4 gnome-encfs-manager nemo-dropbox stellarium inkscape hexchat gimp menulibre
+sudo apt install -y pan gpodder steam qbittorrent hwinfo font-manager oracle-java8-installer oracle-java8-set-default virtualbox-5.1 adobe-flashplugin grub-customizer polly plank pypar2 gparted curl deja-dup conky-all sublime-text-installer jq keepassx p7zip-full lynx xsltproc gimp-plugin-registry gimp-gmic
+# backintime-qt4 gnome-encfs-manager nemo-dropbox stellarium 
+# inkscape hexchat gimp menulibre chromium-browser
 
 print_title "Development apps"
 sudo apt install -y build-essential python-software-properties g++ git gitg sqlitebrowser oracle-java8-unlimited-jce-policy android-tools-adb
