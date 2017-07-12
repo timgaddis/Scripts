@@ -1,6 +1,6 @@
 #!/bin/sh
 ##############################################
-##      Linux Mint 18.1 install script      ##
+##      Linux Mint 18.2 install script      ##
 ##############################################
 
 print_title() {
@@ -33,6 +33,10 @@ wget https://dl.google.com/linux/linux_signing_key.pub
 sudo apt-key add linux_signing_key.pub
 rm linux_signing_key.pub
 
+print_title "Plex Media Server"
+sudo sh -c 'echo "deb https://downloads.plex.tv/repo/deb public main" >> /etc/apt/sources.list.d/plexmediaserver.list'
+sudo curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add -
+
 print_title "PPA install"
 sudo apt-add-repository -y ppa:graphics-drivers/ppa                     # Nvidia graphic drivers
 #sudo add-apt-repository -y ppa:bit-team/stable                          # Back in Time
@@ -40,7 +44,6 @@ sudo apt-add-repository -y ppa:thp/gpodder                              # gPodde
 sudo apt-add-repository -y ppa:ricotz/docky                             # Plank dock
 sudo apt-add-repository -y ppa:danielrichter2007/grub-customizer        # Grub Customizer
 #sudo apt add-repository -y ppa:conscioususer/polly-daily                # Polly twitter client
-#sudo apt-add-repository -y ppa:menulibre-dev/daily                      # Menu Libre
 sudo apt-add-repository -y ppa:gwendal-lebihan-dev/hexchat-stable       # HexChat IRC client
 sudo apt-add-repository -y ppa:webupd8team/java                         # Java 7/8/9
 #sudo apt add-repository -y ppa:gencfsm/ppa                              # GNOME Encfs Manager
@@ -59,17 +62,15 @@ print_title "Desktop and icon themes PPA"
 sudo apt-add-repository -y ppa:numix/ppa                                # Numix GTK themes
 sudo apt-add-repository -y ppa:moka/stable                              # Moka
 sudo apt-add-repository -y ppa:papirus/papirus                          # Papirus theme
-sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /' >> /etc/apt/sources.list.d/arc-theme.list"
-wget http://download.opensuse.org/repositories/home:Horst3180/xUbuntu_16.04/Release.key
-sudo apt-key add - < Release.key
-rm Release.key
+#sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /' >> /etc/apt/sources.list.d/arc-theme.list"
+#sudo curl http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/Release.key | sudo apt-key add -
 
 sudo apt update
 sudo apt upgrade -y
 
 print_title "System apps"
-sudo apt install -y nvidia-381 nvidia-settings ntfs-config mint-meta-codecs encfs ttf-mscorefonts-installer fonts-droid-fallback nodejs
-# nvidia-prime libcuda1-378 nvidia-opencl-icd-378
+sudo apt install -y nvidia-384 nvidia-settings ntfs-config mint-meta-codecs ttf-mscorefonts-installer fonts-droid-fallback nodejs
+# nvidia-prime libcuda1-378 nvidia-opencl-icd-378 encfs
 
 print_title "Razer mouse drivers"
 sudo apt install -y python3-razer razer-kernel-modules-dkms razer-daemon razer-doc polychromatic
@@ -79,9 +80,8 @@ print_title "Wine"
 sudo apt-get install -y --install-recommends winehq-stable
 
 print_title "Other apps"
-sudo apt install -y pan gpodder steam qbittorrent hwinfo font-manager oracle-java8-installer oracle-java8-set-default virtualbox-5.1 adobe-flashplugin grub-customizer polly plank pypar2 gparted curl deja-dup conky-all sublime-text-installer jq keepassx p7zip-full lynx xsltproc gimp-plugin-registry gimp-gmic
-# backintime-qt4 gnome-encfs-manager nemo-dropbox stellarium 
-# inkscape hexchat gimp menulibre chromium-browser
+sudo apt install -y pan gpodder steam qbittorrent hwinfo font-manager oracle-java8-installer oracle-java8-set-default virtualbox-5.1 adobe-flashplugin grub-customizer polly plank pypar2 gparted curl deja-dup conky-all sublime-text-installer jq keepassx p7zip-full lynx xsltproc gimp-plugin-registry gimp-gmic chromium-browser pepperflashplugin-nonfree google-chrome-stable plexmediaserver
+# backintime-qt4 gnome-encfs-manager nemo-dropbox stellarium inkscape hexchat gimp menulibre
 
 print_title "Development apps"
 sudo apt install -y build-essential python-software-properties g++ git gitg sqlitebrowser oracle-java8-unlimited-jce-policy android-tools-adb
@@ -95,7 +95,8 @@ sudo adduser `id -un` libvirtd
 #sudo apt install -y texlive-full texstudio
 
 print_title "Themes"
-sudo apt install -y numix-gtk-theme numix-icon-theme numix-icon-theme-circle papirus-icon-theme libreoffice-style-papirus moka-icon-theme faba-icon-theme moka-gnome-shell-theme moka-gtk-theme gtk2-engines-murrine vertex-theme arc-theme
+sudo apt install -y numix-gtk-theme numix-icon-theme numix-icon-theme-circle papirus-icon-theme libreoffice-style-papirus moka-icon-theme faba-icon-theme moka-gnome-shell-theme moka-gtk-theme gtk2-engines-murrine
+# vertex-theme system76-pop-gtk-theme system76-pop-icon-theme arc-theme
 
 # Add user to vboxusers group
 sudo usermod -a -G vboxusers tgaddis
