@@ -1,5 +1,9 @@
 #!/bin/bash
 
+##############################################
+##         Fedora 26 install script         ##
+##############################################
+
 Bold=$(tput bold)
 Reset=$(tput sgr0)
 #MOUNTPOINT="/mnt"
@@ -35,13 +39,17 @@ print_title "VirtualBox"
 sudo wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | rpm --import -
 sudo wget http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo -P /etc/yum.repos.d
 
-print_title "Gnome Encfs Manager"
-sudo wget http://download.opensuse.org/repositories/home:moritzmolch:gencfsm/Fedora_23/home:moritzmolch:gencfsm.repo -P /etc/yum.repos.d
+#print_title "Gnome Encfs Manager"
+#sudo wget http://download.opensuse.org/repositories/home:moritzmolch:gencfsm/Fedora_23/home:moritzmolch:gencfsm.repo -P /etc/yum.repos.d
 
 print_title "Themes"
 sudo wget http://download.opensuse.org/repositories/home:snwh:moka-project/Fedora_22/home:snwh:moka-project.repo -P /etc/yum.repos.d
-sudo wget http://download.opensuse.org/repositories/home:Horst3180/Fedora_23/home:Horst3180.repo -P /etc/yum.repos.d
+#sudo wget http://download.opensuse.org/repositories/home:Horst3180/Fedora_23/home:Horst3180.repo -P /etc/yum.repos.d
+# papirus
 # pause_function
+
+print_title "Razer mouse drivers"
+dnf config-manager --add-repo http://download.opensuse.org/repositories/hardware:razer/Fedora_26/hardware:razer.repo
 
 print_title "Enable RPM fusion repository"
 su -c 'dnf -y install --nogpgcheck http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm'
@@ -51,10 +59,13 @@ print_title "System update"
 sudo dnf -y check-update
 # pause_function
 
-print_title "Install Nvidia drivers"
-sudo dnf -y install akmod-nvidia "kernel-devel-uname-r == $(uname -r)"
-sudo dnf -y install xorg-x11-drv-nvidia-libs.i686
+#print_title "Install Nvidia drivers"
+#sudo dnf -y install akmod-nvidia "kernel-devel-uname-r == $(uname -r)"
+#sudo dnf -y install xorg-x11-drv-nvidia-libs.i686
 # pause_function
+
+print_title "Install Fedy"
+sudo sh -c 'curl https://www.folkswithhats.org/installer | bash'
 
 print_title "Install Software groups"
 sudo dnf group -y install "C Development Tools and Libraries" "Development Tools" "System Tools" Multimedia "Design Suite" Fonts "Printing Support"
@@ -66,7 +77,8 @@ sudo dnf -y install flash-plugin
 # pause_function
 
 print_title "Install system apps"
-sudo dnf -y install p7zip gnome-tweak-tool encfs gparted alacarte conky curl jq lynx gtk-murrine-engine pygpgme
+sudo dnf -y install p7zip gnome-tweak-tool gparted alacarte conky curl jq lynx gtk-murrine-engine pygpgme openrazer-meta kernel-devel polychromatic
+# encfs
 # pause_function
 
 print_title "Install Media Codecs"
@@ -74,13 +86,18 @@ sudo dnf -y install gstreamer-plugins-bad gstreamer-plugins-bad-free-extras gstr
 # pause_function
 
 print_title "Install apps"
-sudo dnf -y install wine plank gimp pan gpodder google-chrome-stable keepassx hexchat gitg qbittorrent deja-dup vlc gnome-encfs-manager nemo-dropbox menulibre
-# enpass
+sudo dnf -y install plank gimp pan gpodder google-chrome-stable chromium keepassx hexchat gitg qbittorrent deja-dup vlc
+# enpass gnome-encfs-manager nemo-dropbox menulibre wine
 # pause_function
 
-print_title "Install Latex"
-sudo dnf -y install texlive-scheme-small texstudio
-pause_function
+print_title "Install KVM"
+sudo dnf group install with-optional virtualization
+sudo systemctl start libvirtd
+sudo systemctl enable libvirtd
+
+#print_title "Install Latex"
+#sudo dnf -y install texlive-scheme-small texstudio
+#pause_function
 
 print_title "Install VirtualBox"
 sudo dnf -y install VirtualBox-5.0 VirtualBox-guest dkms
@@ -105,7 +122,7 @@ sudo dnf -y install steam
 # pause_function
 
 print_title "Install themes"
-sudo dnf -y install arc-theme ceti-2-theme vertex-theme moka-icon-theme plank-theme-moka moka-gnome-shell-theme
+sudo dnf -y install arc-theme ceti-2-theme vertex-theme moka-icon-theme plank-theme-moka moka-gnome-shell-theme numix-gtk-theme
 # pause_function
 
 print_title "Automount Storage and Backup"
@@ -115,3 +132,7 @@ sudo bash -c 'echo "/dev/sdb1       /media/Storage      ntfs-3g     defaults    
 sudo bash -c 'echo "/dev/sdc1       /media/Backup      ntfs-3g     defaults    0  0" >> /etc/fstab'
 # pause_function
 
+ print_title "Android Studio fix"
+sudo bash -c 'echo "fs.inotify.max_user_watches = 524288" >> /etc/sysctl.d/60-jetbrains.conf'
+
+echo "Done!!"
