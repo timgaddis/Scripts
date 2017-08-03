@@ -57,6 +57,7 @@ sudo apt-add-repository -y ppa:otto-kesselgulasch/gimp					# Gimp
 sudo add-apt-repository -y ppa:terrz/razerutils                         # Razer mouse drivers
 sudo add-apt-repository -y ppa:lah7/polychromatic                       # Razer mouse tray app
 sudo add-apt-repository -y ppa:ubuntu-mozilla-security/ppa              # Thunderbird
+#sudo add-apt-repository -y ppa:menulibre-dev/daily                      # MenuLibre
 
 print_title "Desktop and icon themes PPA"
 sudo apt-add-repository -y ppa:numix/ppa                                # Numix GTK themes
@@ -84,7 +85,7 @@ sudo apt install -y pan gpodder steam qbittorrent hwinfo font-manager oracle-jav
 # backintime-qt4 gnome-encfs-manager nemo-dropbox stellarium inkscape hexchat gimp menulibre
 
 print_title "Development apps"
-sudo apt install -y build-essential python-software-properties g++ git gitg sqlitebrowser oracle-java8-unlimited-jce-policy android-tools-adb
+sudo apt install -y build-essential python-software-properties g++ git gitg sqlitebrowser oracle-java8-unlimited-jce-policy android-tools-adb autoconf automake pkg-config libgtk-3-dev
 # python-requests python-requests-oauthlib python-oauthlib android-tools-fastboot
 
 print_title "KVM install"
@@ -96,7 +97,14 @@ sudo adduser `id -un` libvirtd
 
 print_title "Themes"
 sudo apt install -y numix-gtk-theme numix-icon-theme numix-icon-theme-circle papirus-icon-theme libreoffice-style-papirus moka-icon-theme faba-icon-theme moka-gnome-shell-theme moka-gtk-theme gtk2-engines-murrine
-# vertex-theme system76-pop-gtk-theme system76-pop-icon-theme arc-theme
+# vertex-theme system76-pop-gtk-theme system76-pop-icon-theme 
+print_title "Arc theme"
+sudo apt install -y autoconf automake pkg-config libgtk-3-dev
+git clone https://github.com/horst3180/arc-theme --depth 1 && cd arc-theme
+./autogen.sh --prefix=/usr
+sudo make install
+cd ..
+rm -r arc-theme
 
 # Add user to vboxusers group
 sudo usermod -a -G vboxusers tgaddis
