@@ -114,11 +114,11 @@ if is_package_installed "net-tools"; then
     pause_function
 
     print_title "Install AUR apps"
-    pacaur -S rar gpodder3 kalu megasync nemo-megasync polly pypar2 sublime-text-dev grub-customizer menulibre plex-media-server pepper-flash
-    # compiz enpass-bin ntfs-config gnome-encfs-manager google-chrome dropbox nemo-dropbox
+    pacaur -S rar gpodder3 kalu polly pypar2 spideroak-one sublime-text-dev grub-customizer menulibre plex-media-server pepper-flash
+    # compiz enpass-bin ntfs-config gnome-encfs-manager google-chrome dropbox nemo-dropbox megasync nemo-megasync
 
     print_title "Install programming apps"
-	pacaur -S ncurses5-compat-libs google-cloud-sdk gitg jdk nodejs
+	pacaur -S ncurses5-compat-libs google-cloud-sdk gitg jdk nodejs sqlitebrowser-git
 	pause_function
 	
     print_title "Enable and start plex"
@@ -136,8 +136,8 @@ if is_package_installed "net-tools"; then
     pause_function
 
     print_title "Install AUR themes"
-    pacaur -S gtk-theme-arc-git moka-icon-theme-git ceti-2-themes-git vertex-themes-git paper-gtk-theme-git paper-icon-theme-git
-    # pacaur -S plank-theme-numix numix-themes-git numix-themes-archblue-git numix-circle-icon-theme-git
+    pacaur -S gtk-theme-arc-git moka-icon-theme-git ceti-2-themes-git vertex-themes-git paper-gtk-theme-git papirus-icon-theme-git papirus-libreoffice-theme-git
+    pacaur -S plank-theme-numix numix-themes-git numix-themes-archblue-git numix-circle-icon-theme-git
     # plank-theme-moka-git moka-cinnamon-theme-git orchis-gtk-theme-git
     pause_function
 
