@@ -16,7 +16,7 @@ pause_function() {
 }
 
 print_title "Install system apps"
-sudo pacman -S pacaur gparted conky jq gksu lynx python-lxml gtk-engine-murrine galculator ntp gconf-editor x264 ttf-opensans
+sudo pacman -S pacaur gparted conky jq gksu lynx python-lxml galculator ntp gconf-editor x264 ttf-opensans
 pause_function
 
 # print_title "Install BOINC"
@@ -28,7 +28,7 @@ pause_function
 # pause_function
 
 print_title "Install apps"
-sudo pacman -S plank deja-dup vlc thunderbird keepass hexchat qbittorrent pan
+sudo pacman -S plank deja-dup vlc thunderbird keepass hexchat qbittorrent pan wine
 sudo pacman -S gimp gimp-plugin-lqr gimp-plugin-gmic gimp-plugin-fblur gimp-refocus gimp-ufraw
 pause_function
 
@@ -68,6 +68,7 @@ sudo bash -c 'echo "PASSWORD">>/etc/private-internet-access/login.conf'
 sudo chmod 0600 /etc/private-internet-access/login.conf
 sudo chown root:root /etc/private-internet-access/login.conf
 sudo pia -a
+# Replace password and run pia -a
 pause_function
 
 print_title "Install AUR themes"
@@ -84,3 +85,5 @@ sudo bash -c 'echo "/dev/sdc1       /media/Backup      ntfs-3g     defaults    0
 
 print_title "Android Studio fix"
 sudo bash -c 'echo "fs.inotify.max_user_watches = 524288" >> /etc/sysctl.d/60-sysctl.conf'
+
+echo "Done!!!"
