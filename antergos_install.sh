@@ -43,7 +43,7 @@ pause_function
 # pause_function
 
 print_title "Install AUR apps"
-pacaur -S rar gpodder3 spideroak-one polly grub-customizer menulibre plex-media-server gimp-paint-studio gimp-plugin-pandora
+pacaur -S rar gpodder3 spideroak-one polly grub-customizer menulibre plex-media-server gimp-paint-studio gimp-plugin-pandora cinnamon-sound-effects mint-sounds
 pause_function
 
 print_title "Install programming apps"
