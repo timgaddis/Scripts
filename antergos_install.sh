@@ -47,7 +47,7 @@ pacaur -S rar gpodder3 spideroak-one polly grub-customizer menulibre plex-media-
 pause_function
 
 print_title "Install programming apps"
-pacaur -S google-cloud-sdk gitg jdk8 nodejs sqlitebrowser npm sublime-text-dev
+pacaur -S google-cloud-sdk gitg jdk8 nodejs sqlitebrowser npm sublime-text-dev libvirt
 pause_function
 
 #print_title "Install Sublime Text"
