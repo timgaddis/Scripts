@@ -50,6 +50,12 @@ print_title "Install programming apps"
 pacaur -S google-cloud-sdk gitg jdk8 nodejs sqlitebrowser npm sublime-text-dev libvirt
 pause_function
 
+print_title "Android Studio fix"
+sudo bash -c 'echo "fs.inotify.max_user_watches = 524288" >> /etc/sysctl.d/60-sysctl.conf'
+gpg --recv-keys C52048C0C0748FEE227D47A2702353E0F7E48EDB
+pacaur -S ncurses5-compat-libs
+pause_function
+
 #print_title "Install Sublime Text"
 #sudo curl -O https://download.sublimetext.com/sublimehq-pub.gpg && sudo pacman-key --add sublimehq-pub.gpg && sudo pacman-key --lsign-key 8A8F901A && rm sublimehq-pub.gpg
 #sudo bash -c 'echo -e "\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64" | sudo tee -a /etc/pacman.conf'
@@ -82,8 +88,5 @@ sudo mkdir /media/Storage
 sudo mkdir /media/Backup
 sudo bash -c 'echo "/dev/sdb1       /media/Storage      ntfs-3g     defaults    0  0" >> /etc/fstab'
 sudo bash -c 'echo "/dev/sdc1       /media/Backup      ntfs-3g     defaults    0  0" >> /etc/fstab'
-
-print_title "Android Studio fix"
-sudo bash -c 'echo "fs.inotify.max_user_watches = 524288" >> /etc/sysctl.d/60-sysctl.conf'
 
 echo "Done!!!"
