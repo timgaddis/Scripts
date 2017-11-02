@@ -62,6 +62,13 @@ pause_function
 #sudo pacman -Syu sublime-text
 #pause_function
 
+print_title "Install printers"
+pacaur -S gsfonts cups ghostscript system-config-printer gutenprint gtk3-print-backends
+sudo gpasswd -a tgaddis sys
+sudo systemctl enable org.cups.cupsd.service
+sudo systemctl start org.cups.cupsd.service
+pause_function
+
 print_title "Enable and start plex"
 sudo systemctl enable plexmediaserver.service
 sudo systemctl start plexmediaserver.service
