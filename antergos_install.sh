@@ -16,7 +16,11 @@ pause_function() {
 }
 
 print_title "Install system apps"
-sudo pacman -S pacaur gparted conky jq gksu lynx python-lxml galculator ntp gconf-editor x264 ttf-opensans
+sudo pacman -S pacaur gparted conky jq gksu lynx python-lxml galculator ntp gconf-editor nvidia nvidia-utils nvidia-settings xorg-server-devel opencl-nvidia
+pause_function
+
+print_title "Install codecs"
+sudo pacman -S a52dec faac faad2 flac jasper lame libdca libdv libmad libmpeg2 libtheora libvorbis libxv wavpack x264 xvidcore gst-plugins-base gst-plugins-base-libs gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-libav lirc libva-vdpau-driver portaudio twolame projectm libgoom2 vcdimager ttf-freefont lua-socket
 pause_function
 
 # print_title "Install BOINC"
@@ -43,7 +47,7 @@ pause_function
 # pause_function
 
 print_title "Install AUR apps"
-pacaur -S rar gpodder3 spideroak-one polly grub-customizer menulibre plex-media-server gimp-paint-studio gimp-plugin-pandora cinnamon-sound-effects mint-sounds
+pacaur -S rar gpodder3 spideroak-one polly menulibre gimp-paint-studio gimp-plugin-pandora
 pause_function
 
 print_title "Install programming apps"
@@ -69,7 +73,8 @@ sudo systemctl enable org.cups.cupsd.service
 sudo systemctl start org.cups.cupsd.service
 pause_function
 
-print_title "Enable and start plex"
+print_title "Install and start plex"
+pacaur -S plex-media-server
 sudo systemctl enable plexmediaserver.service
 sudo systemctl start plexmediaserver.service
 pause_function
