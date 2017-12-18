@@ -16,7 +16,7 @@ pause_function() {
 }
 
 print_title "Install system apps"
-sudo pacman -S pacaur gparted conky jq gksu lynx python-lxml galculator ntp gconf-editor nvidia nvidia-utils nvidia-settings xorg-server-devel opencl-nvidia
+sudo pacman -S pacaur gparted conky jq gksu lynx python-lxml galculator ntp gconf-editor nvidia nvidia-utils nvidia-settings xorg-server-devel opencl-nvidia lib32-nvidia-utils
 pause_function
 
 print_title "Install codecs"
@@ -51,7 +51,7 @@ pacaur -S rar gpodder3 spideroak-one polly menulibre gimp-paint-studio gimp-plug
 pause_function
 
 print_title "Install programming apps"
-pacaur -S google-cloud-sdk gitg jdk8 nodejs sqlitebrowser npm sublime-text-dev libvirt
+pacaur -S google-cloud-sdk gitg jdk8 nodejs sqlitebrowser npm sublime-text-dev libvirt android-tools
 pause_function
 
 print_title "Android Studio fix"
@@ -71,6 +71,12 @@ pacaur -S gsfonts cups ghostscript system-config-printer gutenprint gtk3-print-b
 sudo gpasswd -a tgaddis sys
 sudo systemctl enable org.cups.cupsd.service
 sudo systemctl start org.cups.cupsd.service
+pause_function
+
+print_title "Install and start Corsair driver"
+pacaur -S ckb-next-git
+sudo systemctl enable ckb-daemon.service
+sudo systemctl start ckb-daemon.service
 pause_function
 
 print_title "Install and start plex"
