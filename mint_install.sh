@@ -1,6 +1,6 @@
 #!/bin/sh
 ##############################################
-##      Linux Mint 18.2 install script      ##
+##      Linux Mint 18.3 install script      ##
 ##############################################
 
 print_title() {
@@ -54,8 +54,8 @@ sudo apt-add-repository -y ppa:qbittorrent-team/qbittorrent-stable      # qBitto
 sudo apt-add-repository -y ppa:duplicity-team/ppa                       # Duplicity
 sudo apt-add-repository -y ppa:otto-kesselgulasch/gimp					# Gimp
 #sudo add-apt-repository -y ppa:stellarium/stellarium-releases           # Stellarium
-sudo add-apt-repository -y ppa:terrz/razerutils                         # Razer mouse drivers
-sudo add-apt-repository -y ppa:lah7/polychromatic                       # Razer mouse tray app
+#sudo add-apt-repository -y ppa:terrz/razerutils                         # Razer mouse drivers
+#sudo add-apt-repository -y ppa:lah7/polychromatic                       # Razer mouse tray app
 sudo add-apt-repository -y ppa:ubuntu-mozilla-security/ppa              # Thunderbird
 #sudo add-apt-repository -y ppa:menulibre-dev/daily                      # MenuLibre
 
@@ -73,9 +73,9 @@ print_title "System apps"
 sudo apt install -y nvidia-384 nvidia-settings ntfs-config mint-meta-codecs ttf-mscorefonts-installer fonts-droid-fallback nodejs
 # nvidia-prime libcuda1-378 nvidia-opencl-icd-378 encfs
 
-print_title "Razer mouse drivers"
-sudo apt install -y python3-razer razer-kernel-modules-dkms razer-daemon razer-doc polychromatic
-sudo modprobe razerkbd
+#print_title "Razer mouse drivers"
+#sudo apt install -y python3-razer razer-kernel-modules-dkms razer-daemon razer-doc polychromatic
+#sudo modprobe razerkbd
 
 print_title "Wine"
 sudo apt-get install -y --install-recommends winehq-stable

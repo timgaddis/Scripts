@@ -16,7 +16,7 @@ pause_function() {
 }
 
 print_title "Install system apps"
-sudo pacman -S pacaur gparted conky jq gksu lynx python-lxml galculator ntp gconf-editor nvidia nvidia-utils nvidia-settings xorg-server-devel opencl-nvidia lib32-nvidia-utils
+sudo pacman -S pacaur gparted conky jq gksu lynx python-lxml mate-calc ntp gconf-editor nvidia nvidia-utils nvidia-settings xorg-server-devel opencl-nvidia lib32-nvidia-utils
 pause_function
 
 print_title "Install codecs"
@@ -32,8 +32,7 @@ pause_function
 # pause_function
 
 print_title "Install apps"
-sudo pacman -S plank deja-dup vlc thunderbird keepass hexchat qbittorrent pan wine
-sudo pacman -S gimp gimp-plugin-lqr gimp-plugin-gmic gimp-plugin-fblur gimp-refocus gimp-ufraw
+sudo pacman -S plank deja-dup vlc thunderbird keepass hexchat qbittorrent pan wine gimp gimp-plugin-lqr gimp-plugin-gmic gimp-plugin-fblur gimp-refocus gimp-ufraw
 pause_function
 
 print_title "Install VirtualBox"
@@ -47,7 +46,7 @@ pause_function
 # pause_function
 
 print_title "Install AUR apps"
-pacaur -S rar gpodder3 spideroak-one polly menulibre gimp-paint-studio gimp-plugin-pandora
+pacaur -S rar vocal spideroak-one polly menulibre gimp-paint-studio gimp-plugin-pandora
 pause_function
 
 print_title "Install programming apps"
