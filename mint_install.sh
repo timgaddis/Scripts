@@ -37,51 +37,52 @@ print_title "Plex Media Server"
 sudo sh -c 'echo "deb https://downloads.plex.tv/repo/deb public main" >> /etc/apt/sources.list.d/plexmediaserver.list'
 sudo curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add -
 
+print_title "Spideroak"
+sudo sh -c 'deb http://apt.spideroak.com/ubuntu-spideroak-hardy/ release restricted" >> /etc/apt/sources.list.d/spideroak.com.sources.list'
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 573E3D1C51AE1B3D
+
 print_title "PPA install"
 sudo apt-add-repository -y ppa:graphics-drivers/ppa                     # Nvidia graphic drivers
 #sudo add-apt-repository -y ppa:bit-team/stable                          # Back in Time
-sudo apt-add-repository -y ppa:thp/gpodder                              # gPodder
+#sudo apt-add-repository -y ppa:thp/gpodder                              # gPodder
 sudo apt-add-repository -y ppa:ricotz/docky                             # Plank dock
 sudo apt-add-repository -y ppa:danielrichter2007/grub-customizer        # Grub Customizer
 #sudo apt add-repository -y ppa:conscioususer/polly-daily                # Polly twitter client
 sudo apt-add-repository -y ppa:gwendal-lebihan-dev/hexchat-stable       # HexChat IRC client
 sudo apt-add-repository -y ppa:webupd8team/java                         # Java 7/8/9
 #sudo apt add-repository -y ppa:gencfsm/ppa                              # GNOME Encfs Manager
-sudo apt-add-repository -y ppa:libreoffice/libreoffice-5-3              # LibreOffice 5.3.X
+sudo apt-add-repository -y ppa:libreoffice/libreoffice-6-0              # LibreOffice 6.0.X
 sudo apt-add-repository -y ppa:webupd8team/sublime-text-3               # Sublime Text 3
 sudo apt-add-repository -y ppa:qbittorrent-team/qbittorrent-stable      # qBittorrent
 #sudo apt add-repository -y ppa:inkscape.dev/stable                      # Inkscape
 sudo apt-add-repository -y ppa:duplicity-team/ppa                       # Duplicity
 sudo apt-add-repository -y ppa:otto-kesselgulasch/gimp					# Gimp
 #sudo add-apt-repository -y ppa:stellarium/stellarium-releases           # Stellarium
-#sudo add-apt-repository -y ppa:terrz/razerutils                         # Razer mouse drivers
-#sudo add-apt-repository -y ppa:lah7/polychromatic                       # Razer mouse tray app
 sudo add-apt-repository -y ppa:ubuntu-mozilla-security/ppa              # Thunderbird
 #sudo add-apt-repository -y ppa:menulibre-dev/daily                      # MenuLibre
+sudo add-apt-repository -y ppa:davidmeikle/ckb-next-release             # Corsair driver
 
 print_title "Desktop and icon themes PPA"
 sudo apt-add-repository -y ppa:numix/ppa                                # Numix GTK themes
 sudo apt-add-repository -y ppa:moka/stable                              # Moka
 sudo apt-add-repository -y ppa:papirus/papirus                          # Papirus theme
-#sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /' >> /etc/apt/sources.list.d/arc-theme.list"
-#sudo curl http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/Release.key | sudo apt-key add -
+sudo add-apt-repository -y ppa:fossfreedom/arc-gtk-theme-daily          # Arc theme
 
 sudo apt update
 sudo apt upgrade -y
 
 print_title "System apps"
-sudo apt install -y nvidia-384 nvidia-settings ntfs-config mint-meta-codecs ttf-mscorefonts-installer fonts-droid-fallback nodejs
+sudo apt install -y nvidia-390 nvidia-settings ntfs-config mint-meta-codecs ttf-mscorefonts-installer fonts-droid-fallback nodejs ckb-next
 # nvidia-prime libcuda1-378 nvidia-opencl-icd-378 encfs
-
-#print_title "Razer mouse drivers"
-#sudo apt install -y python3-razer razer-kernel-modules-dkms razer-daemon razer-doc polychromatic
-#sudo modprobe razerkbd
 
 print_title "Wine"
 sudo apt-get install -y --install-recommends winehq-stable
 
+print_title "Flatpak apps"
+flatpak install --from https://flathub.org/repo/appstream/com.github.needleandthread.vocal.flatpakref
+
 print_title "Other apps"
-sudo apt install -y pan gpodder steam qbittorrent hwinfo font-manager oracle-java8-installer oracle-java8-set-default virtualbox-5.1 adobe-flashplugin grub-customizer polly plank pypar2 gparted curl deja-dup conky-all sublime-text-installer jq keepassx p7zip-full lynx xsltproc gimp-plugin-registry gimp-gmic chromium-browser pepperflashplugin-nonfree google-chrome-stable plexmediaserver
+sudo apt install -y pan gpodder steam qbittorrent hwinfo font-manager oracle-java8-installer oracle-java8-set-default virtualbox-5.2 adobe-flashplugin grub-customizer polly plank pypar2 gparted curl deja-dup conky-all sublime-text-installer jq keepassx p7zip-full lynx xsltproc gimp gimp-plugin-registry gimp-gmic chromium-browser pepperflashplugin-nonfree google-chrome-stable plexmediaserver spideroakone
 # backintime-qt4 gnome-encfs-manager nemo-dropbox stellarium inkscape hexchat gimp menulibre
 
 print_title "Development apps"
@@ -96,15 +97,8 @@ sudo adduser `id -un` libvirtd
 #sudo apt install -y texlive-full texstudio
 
 print_title "Themes"
-sudo apt install -y numix-gtk-theme numix-icon-theme numix-icon-theme-circle papirus-icon-theme libreoffice-style-papirus moka-icon-theme faba-icon-theme moka-gnome-shell-theme moka-gtk-theme gtk2-engines-murrine
+sudo apt install -y numix-gtk-theme numix-icon-theme numix-icon-theme-circle papirus-icon-theme libreoffice-style-papirus moka-icon-theme faba-icon-theme moka-gnome-shell-theme moka-gtk-theme gtk2-engines-murrine arc-theme
 # vertex-theme system76-pop-gtk-theme system76-pop-icon-theme 
-print_title "Arc theme"
-sudo apt install -y autoconf automake pkg-config libgtk-3-dev
-git clone https://github.com/horst3180/arc-theme --depth 1 && cd arc-theme
-./autogen.sh --prefix=/usr
-sudo make install
-cd ..
-rm -r arc-theme
 
 # Add user to vboxusers group
 sudo usermod -a -G vboxusers tgaddis
