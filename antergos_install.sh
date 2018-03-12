@@ -32,7 +32,7 @@ pause_function
 # pause_function
 
 print_title "Install apps"
-sudo pacman -S plank deja-dup vlc thunderbird keepass hexchat qbittorrent pan wine gimp gimp-plugin-lqr gimp-plugin-gmic gimp-plugin-fblur gimp-refocus gimp-ufraw
+sudo pacman -S plank deja-dup vlc thunderbird keepass hexchat wine qbittorrent pan gimp gimp-plugin-lqr gimp-plugin-gmic gimp-plugin-fblur gimp-refocus gimp-ufraw
 pause_function
 
 print_title "Install VirtualBox"
@@ -46,7 +46,7 @@ pause_function
 # pause_function
 
 print_title "Install AUR apps"
-pacaur -S rar vocal spideroak-one polly menulibre gimp-paint-studio gimp-plugin-pandora
+pacaur -S rar vocal spideroak-one franz gimp-paint-studio gimp-plugin-pandora cinnamon-sound-effects
 pause_function
 
 print_title "Install programming apps"
@@ -95,7 +95,8 @@ sudo pia -a
 pause_function
 
 print_title "Install AUR themes"
-pacaur -S gtk-theme-arc-git moka-icon-theme-git ceti-2-themes-git vertex-themes-git paper-gtk-theme-git papirus-icon-theme-git papirus-libreoffice-theme-git
+pacaur -S moka-icon-theme-git papirus-icon-theme-git papirus-libreoffice-theme-git paper-icon-theme-git arc-icon-theme hardcode-fixer-git arc-gtk-theme
+sudo hardcode-fixer
 pause_function
 
 print_title "Automount Storage and Backup"

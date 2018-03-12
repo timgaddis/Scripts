@@ -38,7 +38,7 @@ sudo sh -c 'echo "deb https://downloads.plex.tv/repo/deb public main" >> /etc/ap
 sudo curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add -
 
 print_title "Spideroak"
-sudo sh -c 'deb http://apt.spideroak.com/ubuntu-spideroak-hardy/ release restricted" >> /etc/apt/sources.list.d/spideroak.com.sources.list'
+sudo sh -c 'echo "deb http://apt.spideroak.com/ubuntu-spideroak-hardy/ release restricted" >> /etc/apt/sources.list.d/spideroak.com.sources.list'
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 573E3D1C51AE1B3D
 
 print_title "PPA install"
@@ -48,7 +48,7 @@ sudo apt-add-repository -y ppa:graphics-drivers/ppa                     # Nvidia
 sudo apt-add-repository -y ppa:ricotz/docky                             # Plank dock
 sudo apt-add-repository -y ppa:danielrichter2007/grub-customizer        # Grub Customizer
 #sudo apt add-repository -y ppa:conscioususer/polly-daily                # Polly twitter client
-sudo apt-add-repository -y ppa:gwendal-lebihan-dev/hexchat-stable       # HexChat IRC client
+sudo apt-add-repository -y ppa:overcoder/hexchat                        # HexChat IRC client
 sudo apt-add-repository -y ppa:webupd8team/java                         # Java 7/8/9
 #sudo apt add-repository -y ppa:gencfsm/ppa                              # GNOME Encfs Manager
 sudo apt-add-repository -y ppa:libreoffice/libreoffice-6-0              # LibreOffice 6.0.X
