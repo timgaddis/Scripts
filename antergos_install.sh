@@ -32,13 +32,7 @@ pause_function
 # pause_function
 
 print_title "Install apps"
-sudo pacman -S plank deja-dup vlc thunderbird keepass hexchat wine qbittorrent pan gimp gimp-plugin-lqr gimp-plugin-gmic gimp-plugin-fblur gimp-refocus gimp-ufraw
-pause_function
-
-print_title "Install VirtualBox"
-sudo pacman -S virtualbox dkms virtualbox-guest-iso linux-headers qt4 virtualbox-host-dkms
-sudo bash -c 'echo "vboxdrv" >> /etc/modules-load.d/virtualbox.conf'
-sudo gpasswd -a tgaddis vboxusers
+sudo pacman -S plank deja-dup vlc firefox thunderbird keepass hexchat wine qbittorrent pan gimp gimp-plugin-lqr gimp-plugin-gmic gimp-plugin-fblur gimp-refocus gimp-ufraw flashplugin
 pause_function
 
 # print_title "Install Latex"
@@ -46,11 +40,11 @@ pause_function
 # pause_function
 
 print_title "Install AUR apps"
-pacaur -S rar vocal spideroak-one franz gimp-paint-studio gimp-plugin-pandora cinnamon-sound-effects
+pacaur -S rar vocal spideroak-one franz-bin polly gimp-paint-studio gimp-plugin-pandora cinnamon-sound-effects
 pause_function
 
 print_title "Install programming apps"
-pacaur -S google-cloud-sdk gitg jdk8 nodejs sqlitebrowser npm sublime-text-dev libvirt android-tools
+pacaur -S google-cloud-sdk gitg jdk8 nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 sublime-text-dev atom-editor-bin python-pip
 pause_function
 
 print_title "Android Studio fix"
@@ -74,8 +68,8 @@ pause_function
 
 print_title "Install and start Corsair driver"
 pacaur -S ckb-next-git
-sudo systemctl enable ckb-daemon.service
-sudo systemctl start ckb-daemon.service
+sudo systemctl enable ckb-next-daemon.service
+sudo systemctl start ckb-next-daemon.service
 pause_function
 
 print_title "Install and start plex"
@@ -86,12 +80,12 @@ pause_function
 
 print_title "Install and setup VPN"
 pacaur -S private-internet-access-vpn
-sudo bash -c 'echo "p9224505">>/etc/private-internet-access/login.conf'
+sudo bash -c 'echo "USERNAME">>/etc/private-internet-access/login.conf'
 sudo bash -c 'echo "PASSWORD">>/etc/private-internet-access/login.conf'
 sudo chmod 0600 /etc/private-internet-access/login.conf
 sudo chown root:root /etc/private-internet-access/login.conf
 sudo pia -a
-# Replace password and run pia -a
+# Replace username and password and run pia -a
 pause_function
 
 print_title "Install AUR themes"
