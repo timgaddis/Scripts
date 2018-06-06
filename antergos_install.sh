@@ -32,7 +32,7 @@ pause_function
 # pause_function
 
 print_title "Install apps"
-sudo pacman -S plank deja-dup vlc firefox thunderbird keepass hexchat wine qbittorrent pan gimp gimp-plugin-lqr gimp-plugin-gmic gimp-plugin-fblur gimp-refocus gimp-ufraw flashplugin
+sudo pacman -S plank deja-dup vlc firefox thunderbird keepassxc hexchat wine qbittorrent pan gimp gimp-plugin-lqr gimp-plugin-gmic gimp-plugin-fblur gimp-refocus gimp-nufraw flashplugin
 pause_function
 
 # print_title "Install Latex"
@@ -40,11 +40,11 @@ pause_function
 # pause_function
 
 print_title "Install AUR apps"
-pacaur -S rar vocal spideroak-one franz-bin polly gimp-paint-studio gimp-plugin-pandora cinnamon-sound-effects
+pacaur -S rar vocal spideroak-one franz-bin polly gimp-paint-studio gimp-plugin-pandora cinnamon-sound-effects menulibre
 pause_function
 
 print_title "Install programming apps"
-pacaur -S google-cloud-sdk gitg jdk8 nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 sublime-text-dev atom-editor-bin python-pip
+pacaur -S google-cloud-sdk gitg jdk8 nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 atom-editor-bin python-pip
 pause_function
 
 print_title "Android Studio fix"
@@ -53,11 +53,11 @@ gpg --recv-keys C52048C0C0748FEE227D47A2702353E0F7E48EDB
 pacaur -S ncurses5-compat-libs
 pause_function
 
-#print_title "Install Sublime Text"
-#sudo curl -O https://download.sublimetext.com/sublimehq-pub.gpg && sudo pacman-key --add sublimehq-pub.gpg && sudo pacman-key --lsign-key 8A8F901A && rm sublimehq-pub.gpg
-#sudo bash -c 'echo -e "\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64" | sudo tee -a /etc/pacman.conf'
-#sudo pacman -Syu sublime-text
-#pause_function
+print_title "Install Sublime Text"
+sudo curl -O https://download.sublimetext.com/sublimehq-pub.gpg && sudo pacman-key --add sublimehq-pub.gpg && sudo pacman-key --lsign-key 8A8F901A && rm sublimehq-pub.gpg
+sudo bash -c 'echo -e "\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64" | sudo tee -a /etc/pacman.conf'
+sudo pacman -Syu sublime-text
+pause_function
 
 print_title "Install printers"
 pacaur -S gsfonts cups ghostscript system-config-printer gutenprint gtk3-print-backends
