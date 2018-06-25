@@ -16,7 +16,14 @@ pause_function() {
 }
 
 print_title "Install system apps"
-sudo pacman -S pacaur gparted conky jq gksu lynx python-lxml mate-calc ntp gconf-editor nvidia nvidia-utils nvidia-settings xorg-server-devel opencl-nvidia lib32-nvidia-utils
+sudo pacman -S gparted conky jq gksu lynx python-lxml mate-calc ntp gconf-editor nvidia nvidia-utils nvidia-settings xorg-server-devel opencl-nvidia lib32-nvidia-utils
+pause_function
+
+print_title "Install trizen"
+git clone https://aur.archlinux.org/trizen.git
+cd trizen
+makepkg -si
+cd ..
 pause_function
 
 print_title "Install codecs"
@@ -40,17 +47,21 @@ pause_function
 # pause_function
 
 print_title "Install AUR apps"
-pacaur -S rar vocal spideroak-one franz-bin polly gimp-paint-studio gimp-plugin-pandora cinnamon-sound-effects menulibre
+trizen -S rar vocal spideroak-one franz-bin gimp-paint-studio gimp-plugin-pandora cinnamon-sound-effects menulibre
 pause_function
 
 print_title "Install programming apps"
-pacaur -S google-cloud-sdk gitg jdk8 nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 atom-editor-bin python-pip
+trizen -S google-cloud-sdk gitg jdk8 nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 atom-editor-bin python-pip
 pause_function
 
 print_title "Android Studio fix"
-sudo bash -c 'echo "fs.inotify.max_user_watches = 524288" >> /etc/sysctl.d/60-sysctl.conf'
-gpg --recv-keys C52048C0C0748FEE227D47A2702353E0F7E48EDB
-pacaur -S ncurses5-compat-libs
+sudo ln -sf /usr/lib/libncursesw.so.6 /usr/lib/libtinfo.so.5
+pause_function
+
+print_title "Install VirtualBox"
+sudo pacman -S virtualbox dkms virtualbox-guest-iso linux-headers qt4 virtualbox-host-dkms
+sudo bash -c 'echo "vboxdrv" >> /etc/modules-load.d/virtualbox.conf'
+sudo gpasswd -a tgaddis vboxusers
 pause_function
 
 print_title "Install Sublime Text"
@@ -60,36 +71,26 @@ sudo pacman -Syu sublime-text
 pause_function
 
 print_title "Install printers"
-pacaur -S gsfonts cups ghostscript system-config-printer gutenprint gtk3-print-backends
+trizen -S gsfonts cups ghostscript system-config-printer gutenprint gtk3-print-backends
 sudo gpasswd -a tgaddis sys
 sudo systemctl enable org.cups.cupsd.service
 sudo systemctl start org.cups.cupsd.service
 pause_function
 
 print_title "Install and start Corsair driver"
-pacaur -S ckb-next-git
+trizen -S ckb-next-git
 sudo systemctl enable ckb-next-daemon.service
 sudo systemctl start ckb-next-daemon.service
 pause_function
 
 print_title "Install and start plex"
-pacaur -S plex-media-server
+trizen -S plex-media-server
 sudo systemctl enable plexmediaserver.service
 sudo systemctl start plexmediaserver.service
 pause_function
 
-print_title "Install and setup VPN"
-pacaur -S private-internet-access-vpn
-sudo bash -c 'echo "USERNAME">>/etc/private-internet-access/login.conf'
-sudo bash -c 'echo "PASSWORD">>/etc/private-internet-access/login.conf'
-sudo chmod 0600 /etc/private-internet-access/login.conf
-sudo chown root:root /etc/private-internet-access/login.conf
-sudo pia -a
-# Replace username and password and run pia -a
-pause_function
-
 print_title "Install AUR themes"
-pacaur -S moka-icon-theme-git papirus-icon-theme-git papirus-libreoffice-theme-git paper-icon-theme-git arc-icon-theme hardcode-fixer-git arc-gtk-theme
+trizen -S moka-icon-theme-git papirus-icon-theme-git papirus-libreoffice-theme-git paper-icon-theme-git arc-icon-theme hardcode-fixer-git arc-gtk-theme
 sudo hardcode-fixer
 pause_function
 
