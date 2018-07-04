@@ -51,7 +51,7 @@ trizen -S rar vocal spideroak-one franz-bin gimp-paint-studio gimp-plugin-pandor
 pause_function
 
 print_title "Install programming apps"
-trizen -S google-cloud-sdk gitg jdk8 nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 atom-editor-bin python-pip
+trizen -S google-cloud-sdk gitg jdk8 nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 atom-editor-bin python-pip python-feedparser
 pause_function
 
 print_title "Android Studio fix"
