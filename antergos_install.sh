@@ -90,7 +90,7 @@ sudo systemctl start plexmediaserver.service
 pause_function
 
 print_title "Install AUR themes"
-trizen -S moka-icon-theme-git papirus-icon-theme-git papirus-libreoffice-theme-git paper-icon-theme-git arc-icon-theme hardcode-fixer-git arc-gtk-theme
+trizen -S papirus-icon-theme-git papirus-libreoffice-theme-git paper-icon-theme-git arc-icon-theme hardcode-fixer-git arc-gtk-theme 
 sudo hardcode-fixer
 pause_function
 
@@ -100,6 +100,6 @@ sudo mkdir media
 sudo mkdir /media/Storage
 sudo mkdir /media/Backup
 sudo bash -c 'echo "/dev/sdb1       /media/Storage      ntfs-3g     defaults    0  0" >> /etc/fstab'
-sudo bash -c 'echo "/dev/sdc1       /media/Backup      ntfs-3g     defaults    0  0" >> /etc/fstab'
+sudo bash -c 'echo "/dev/sdc1       /media/Backup       ntfs-3g     defaults    0  0" >> /etc/fstab'
 
 echo "Done!!!"
