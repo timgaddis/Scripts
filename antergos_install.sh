@@ -15,6 +15,8 @@ pause_function() {
     read -e -sn 1 -p "Press a key to continue..."
 }
 
+sudo pacman -Syy
+
 print_title "Install system apps"
 sudo pacman -S gparted conky jq gksu lynx python-lxml mate-calc ntp gconf-editor nvidia nvidia-utils nvidia-settings xorg-server-devel opencl-nvidia lib32-nvidia-utils grub-customizer
 pause_function
@@ -47,15 +49,11 @@ pause_function
 # pause_function
 
 print_title "Install AUR apps"
-trizen -S rar spideroak-one franz-bin gimp-paint-studio gimp-plugin-pandora cinnamon-sound-effects menulibre
+trizen -S spideroak-one franz-bin gimp-paint-studio gimp-plugin-pandora cinnamon-sound-effects menulibre
 pause_function
 
 print_title "Install programming apps"
 trizen -S google-cloud-sdk gitg jdk8 nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 atom-editor-bin python-pip python-feedparser
-pause_function
-
-print_title "Android Studio fix"
-sudo ln -sf /usr/lib/libncursesw.so.6 /usr/lib/libtinfo.so.5
 pause_function
 
 print_title "Install VirtualBox"
@@ -69,11 +67,6 @@ sudo curl -O https://download.sublimetext.com/sublimehq-pub.gpg && sudo pacman-k
 sudo bash -c 'echo -e "\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64" | sudo tee -a /etc/pacman.conf'
 sudo pacman -Syu sublime-text
 pause_function
-
-print_title "Install discord"
-gpg --recv-keys 474E22316ABF4785A88C6E8EA2C794A986419D8A
-gpg --recv-keys B6C8F98282B944E3B0D5C2530FC3042E345AD05D
-trizen -S discord
 
 print_title "Install printers"
 trizen -S gsfonts cups ghostscript system-config-printer gutenprint gtk3-print-backends
