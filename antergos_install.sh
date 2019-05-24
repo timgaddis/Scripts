@@ -53,11 +53,12 @@ trizen -S spideroak-one franz-bin gimp-paint-studio gimp-plugin-pandora cinnamon
 pause_function
 
 print_title "Install programming apps"
-trizen -S google-cloud-sdk gitg jdk8 nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 atom-editor-bin python-pip python-feedparser
+trizen -S google-cloud-sdk gitg nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 atom-editor-bin python-pip python-feedparser jdk8-openjdk
+# jdk8
 pause_function
 
 print_title "Install VirtualBox"
-sudo pacman -S virtualbox dkms virtualbox-guest-iso linux-headers qt4 virtualbox-host-dkms
+sudo pacman -S virtualbox dkms virtualbox-guest-iso linux-headers virtualbox-host-dkms
 sudo bash -c 'echo "vboxdrv" >> /etc/modules-load.d/virtualbox.conf'
 sudo gpasswd -a tgaddis vboxusers
 pause_function
