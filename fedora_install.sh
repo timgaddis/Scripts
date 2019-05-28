@@ -31,7 +31,7 @@ sudo dnf group -y install Standard
 pause_function
 
 print_title "Enable RPM fusion repository"
-sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf -y install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 sudo dnf -y update
 pause_function
 
@@ -50,30 +50,29 @@ sudo dnf -y groupupdate multimedia Multimedia
 sudo dnf -y install gstreamer-plugins-bad gstreamer-plugins-bad-free-extras gstreamer-plugins-bad-nonfree gstreamer-plugins-ugly gstreamer-ffmpeg gstreamer1-libav gstreamer1-plugins-bad-free-extras gstreamer1-plugins-bad-freeworld gstreamer1-plugins-base-tools gstreamer1-plugins-good-extras gstreamer1-plugins-ugly gstreamer1-plugins-bad-free gstreamer1-plugins-good gstreamer1-plugins-base gstreamer1
 pause_function
 
-#print_title "VirtualBox"
-#sudo dnf -y install @development-tools
-#sudo dnf -y install kernel-headers kernel-devel dkms elfutils-libelf-devel qt5-qtx11extras
-##sudo wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | rpm --import -
-#wget https://www.virtualbox.org/download/oracle_vbox.asc
-#sudo rpm --import oracle_vbox.asc
-#sudo wget http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo -P /etc/yum.repos.d
-#sudo dnf -y update
-#pause_function
+print_title "VirtualBox"
+sudo wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | rpm --import -
+sudo wget http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo -P /etc/yum.repos.d
+sudo dnf -y update
+sudo dnf -y install @development-tools
+sudo dnf -y install kernel-headers kernel-devel dkms elfutils-libelf-devel qt5-qtx11extras VirtualBox-6.0
+sudo gpasswd -a tgaddis vboxusers
+pause_function
 
 print_title "Install Software groups"
 sudo dnf group -y install "C Development Tools and Libraries" "System Tools"
 sudo dnf group -y install --with-optional virtualization
 sudo systemctl start libvirtd
 sudo systemctl enable libvirtd
-#"Design Suite" Fonts "Printing Support"
 pause_function
 
 print_title "Install system apps"
-sudo dnf -y install p7zip gnome-tweak-tool gparted alacarte conky curl jq lynx gtk-murrine-engine ckb-next grub-customizer
+sudo dnf -y install p7zip gnome-tweak-tool gparted alacarte conky curl jq lynx gtk-murrine-engine ckb-next grub-customizer lightdm-gtk
 pause_function
 
 print_title "Install apps"
-sudo dnf -y install plank gimp pan chromium keepassxc hexchat qbittorrent deja-dup vlc wine vocal menulibre steam
+sudo dnf -y install plank gimp pan chromium keepassxc qbittorrent deja-dup vlc wine vocal menulibre steam borgbackup
+sudo pip3 install vorta
 pause_function
 
 print_title "Install Adobe Flash Player"
@@ -88,7 +87,9 @@ pause_function
 #pause_function
 
 print_title "Install programming apps"
-sudo dnf -y install gitg nodejs sqlitebrowser npm libvirt python-beautifulsoup4 python-pip python-feedparser android-tools
+sudo rpm -v --import https://download.sublimetext.com/sublimehq-rpm-pub.gpg
+sudo dnf config-manager --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
+sudo dnf -y install gitg nodejs sqlitebrowser npm libvirt python-beautifulsoup4 python-pip python-feedparser android-tools java-1.8.0-openjdk sublime-text
 pause_function
 
 print_title "Google cloud SDK"
@@ -103,18 +104,17 @@ gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg
        https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
 EOM
 sudo dnf -y update
-sudo dnf -y install google-cloud-sdk
+sudo dnf -y install kubectl google-cloud-sdk google-cloud-sdk-app-engine-python google-cloud-sdk-datastore-emulator google-cloud-sdk-app-engine-python-extras
 pause_function
 
 print_title "Install themes"
 sudo dnf -y copr enable dirkdavidis/papirus-icon-theme
-sudo dnf -y copr enable dirkdavidis/papirus-libreoffice-theme
-sudo dnf -y install arc-theme arc-theme-plank papirus-icon-theme papirus-libreoffice-theme
+sudo dnf -y install arc-theme arc-theme-plank papirus-icon-theme materia-theme
+wget -qO- https://raw.githubusercontent.com/PapirusDevelopmentTeam/thunderbird-theme-papirus/master/install.sh | env CUSTOM_COLOR=444444 sh
 pause_function
 
 print_title "Mount hard drives"
 cd /
-sudo mkdir media
 sudo mkdir /media/Storage
 sudo mkdir /media/Backup
 sudo mkdir /media/Games
