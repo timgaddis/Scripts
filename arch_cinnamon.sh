@@ -32,46 +32,25 @@ if is_package_installed "net-tools"; then
     echo "keyring /etc/pacman.d/gnupg/pubring.gpg" >> ~/.gnupg/gpg.conf
     pause_function
 
-    print_title "Download and install cower"
-    mkdir ~/.AUR
-    cd .AUR
-    wget https://aur.archlinux.org/cgit/aur.git/snapshot/cower.tar.gz
-    tar zxvf cower.tar.gz
-    cd cower
+    print_title "Install trizen"
+    git clone https://aur.archlinux.org/trizen.git
+    cd trizen
     makepkg -si
     cd ..
     pause_function
 
-    print_title "Download and install pacaur"
-    wget https://aur.archlinux.org/cgit/aur.git/snapshot/pacaur.tar.gz
-    tar zxvf pacaur.tar.gz
-    cd pacaur
-    makepkg -si
-    pause_function
-
     print_title "Install system apps"
-    sudo pacman -S gedit p7zip encfs gparted conky curl jq gksu gnome-font-viewer lynx python-lxml gtk-engine-murrine libmtp gvfs-mtp galculator gnome-screenshot ntfs-3g gnome-terminal ntp gnome-keyring openvpn networkmanager-openvpn sqlitebrowser gconf-editor
+    sudo pacman -S gedit p7zip gparted conky curl jq gksu gnome-font-viewer lynx python-lxml libmtp gvfs-mtp mate-calc gnome-screenshot ntfs-3g gnome-terminal ntp gnome-keyring openvpn networkmanager-openvpn gconf-editor grub-customizer
     # gnome-tweak-tool
 
-    #print_title "Install and update ClamAV"
-    #sudo pacman -S clamav
-    #sudo freshclam
-    #sudo systemctl enable clamd.service
-    #sudo systemctl start clamd.service
-    #sudo systemctl enable freshclamd.service
-    #sudo systemctl start freshclamd.service
-    #wget -O- http://www.eicar.org/download/eicar.com.txt | clamscan -
-    # stdin: Eicar-Test-Signature FOUND
-    #pause_function
-
-    print_title "Install and start mouse driver"
-    gpg --receive-keys 5FB027474203454C
-    sudo pacaur -S razercfg python-pyside
-    sudo systemctl enable razerd.service
+    print_title "Install and start Corsair driver"
+    trizen -S ckb-next-git
+    sudo systemctl enable ckb-next-daemon.service
+    sudo systemctl start ckb-next-daemon.service
     pause_function
     
     print_title "Install printers"
-    sudo pacman -S gsfonts cups ghostscript system-config-printer gutenprint
+    trizen -S gsfonts cups ghostscript system-config-printer gutenprint gtk3-print-backends
     sudo gpasswd -a tgaddis sys
     sudo systemctl enable org.cups.cupsd.service
     sudo systemctl start org.cups.cupsd.service
@@ -92,15 +71,22 @@ if is_package_installed "net-tools"; then
     pause_function
 
     print_title "Install codecs"
-    sudo pacman -S a52dec faac faad2 flac jasper lame libdca libdv libmad libmpeg2 libtheora libvorbis libxv wavpack x264 xvidcore gst-plugins-base gst-plugins-base-libs gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-libav
+    sudo pacman -S a52dec faac faad2 flac jasper lame libdca libdv libmad libmpeg2 libtheora libvorbis libxv wavpack x264 xvidcore gst-plugins-base gst-plugins-base-libs gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-libav lirc libva-vdpau-driver portaudio twolame projectm libgoom2 vcdimager ttf-freefont lua-socket
     pause_function
 
     print_title "Install apps"
-    sudo pacman -S firefox chromium wine plank gimp deja-dup vlc steam evince thunderbird keepass hexchat qbittorrent eog flashplugin pan
+    sudo pacman -S firefox chromium wine plank gimp deja-dup vlc steam evince thunderbird keepassxc hexchat qbittorrent eog flashplugin pan vocal inkscape
+    # gimp-plugin-lqr gimp-plugin-gmic gimp-plugin-fblur gimp-refocus gimp-nufraw
+    pause_function
+
+    print_title "Install and start plex"
+    trizen -S plex-media-server
+    sudo systemctl enable plexmediaserver.service
+    sudo systemctl start plexmediaserver.service
     pause_function
 
     print_title "Install VirtualBox"
-    sudo pacman -S virtualbox dkms virtualbox-guest-iso linux-headers qt4 virtualbox-host-dkms
+    sudo pacman -S virtualbox dkms virtualbox-guest-iso linux-headers virtualbox-host-dkms
     sudo bash -c 'echo "vboxdrv" >> /etc/modules-load.d/virtualbox.conf'
     sudo gpasswd -a tgaddis vboxusers
     pause_function
@@ -113,46 +99,38 @@ if is_package_installed "net-tools"; then
     sudo pacman -S libreoffice
     pause_function
 
+    print_title "Install Sublime Text"
+    sudo curl -O https://download.sublimetext.com/sublimehq-pub.gpg && sudo pacman-key --add sublimehq-pub.gpg && sudo pacman-key --lsign-key 8A8F901A && rm sublimehq-pub.gpg
+    sudo bash -c 'echo -e "\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64" | sudo tee -a /etc/pacman.conf'
+    sudo pacman -Syu sublime-text
+    pause_function
+
     print_title "Install AUR apps"
-    pacaur -S rar gpodder3 kalu polly pypar2 spideroak-one sublime-text-dev grub-customizer menulibre plex-media-server pepper-flash
-    # compiz enpass-bin ntfs-config gnome-encfs-manager google-chrome dropbox nemo-dropbox megasync nemo-megasync
+    trizen -S pamac-aur pepper-flash spideroak-one franz-bin gimp-paint-studio gimp-plugin-pandora cinnamon-sound-effects menulibre
+    # compiz enpass-bin ntfs-config gnome-encfs-manager google-chrome dropbox nemo-dropbox megasync nemo-megasync kalu
 
     print_title "Install programming apps"
-	pacaur -S ncurses5-compat-libs google-cloud-sdk gitg jdk nodejs sqlitebrowser-git
+	trizen -S google-cloud-sdk gitg nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 atom-editor-bin python-pip python-feedparser jdk8-openjdk
 	pause_function
 	
-    print_title "Enable and start plex"
-    sudo systemctl enable plexmediaserver.service
-    sudo systemctl start plexmediaserver.service
-    pause_function
-
-    print_title "Install and setup VPN"
-    pacaur -S private-internet-access-vpn
-    sudo bash -c 'echo "p9224505">>/etc/private-internet-access/login.conf'
-    sudo bash -c 'echo "PASSWORD">>/etc/private-internet-access/login.conf'
-    sudo chmod 0600 /etc/private-internet-access/login.conf
-    sudo chown root:root /etc/private-internet-access/login.conf
-    sudo pia -a
-    pause_function
-
     print_title "Install AUR themes"
-    pacaur -S gtk-theme-arc-git moka-icon-theme-git ceti-2-themes-git vertex-themes-git paper-gtk-theme-git papirus-icon-theme-git papirus-libreoffice-theme-git
-    pacaur -S plank-theme-numix numix-themes-git numix-themes-archblue-git numix-circle-icon-theme-git
-    # plank-theme-moka-git moka-cinnamon-theme-git orchis-gtk-theme-git
+    trizen -S papirus-icon-theme-git papirus-libreoffice-theme-git paper-icon-theme-git arc-icon-theme hardcode-fixer-git arc-gtk-theme 
+    sudo hardcode-fixer
     pause_function
 
-    print_title "Automount Storage and Backup"
+    print_title "Mount hard drives"
     cd /
     sudo mkdir media
     sudo mkdir /media/Storage
     sudo mkdir /media/Backup
+    sudo mkdir /media/Games
+    sudo mkdir /media/Pictures
     sudo bash -c 'echo "/dev/sdb1       /media/Storage      ntfs-3g     defaults    0  0" >> /etc/fstab'
-    sudo bash -c 'echo "/dev/sdc1       /media/Backup      ntfs-3g     defaults    0  0" >> /etc/fstab'
-    #pause_function
+    sudo bash -c 'echo "/dev/sdd1       /media/Backup       ntfs-3g     defaults    0  0" >> /etc/fstab'
+    sudo bash -c 'echo "/dev/sdc1       /media/Pictures     ntfs-3g     defaults    0  0" >> /etc/fstab'
+    sudo bash -c 'echo "/dev/nvme0n1p1  /media/Games        ntfs-3g     defaults    0  0" >> /etc/fstab'
 	
-	print_title "Android Studio fix"
-	sudo bash -c 'echo "fs.inotify.max_user_watches = 524288" >> /etc/sysctl.d/60-sysctl.conf'
-	
+    echo "Done!!!"
 else
     print_title "net-tools not installed"
     

@@ -62,7 +62,7 @@ pause_function
 #pause_function
 
 print_title "Install Nvidia drivers"
-pacman -S nvidia nvidia-utils
+pacman -S nvidia nvidia-utils nvidia-settings
 # nvidia-xconfig
 pause_function
 

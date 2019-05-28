@@ -33,9 +33,9 @@ pause_function
 
 print_title "Install arch-install-scripts"
 pacman -Syy
-wget https://git.archlinux.org/arch-install-scripts.git/snapshot/arch-install-scripts-18.tar.gz
-tar zxvf arch-install-scripts-18.tar.gz
-cd arch-install-scripts-18
+wget https://git.archlinux.org/arch-install-scripts.git/snapshot/arch-install-scripts-21.tar.gz
+tar zxvf arch-install-scripts-21.tar.gz
+cd arch-install-scripts-21
 pause_function
 
 print_title "Load partitions"
@@ -114,7 +114,9 @@ arch_chroot "pacman -S grub os-prober wget"
 
 print_title "Install bootloader"
 # Install the bootloader
-arch_chroot "grub-install --recheck /dev/sda"
+lsblk
+read -p "Enter the boot partition: " BOOT
+arch_chroot "grub-install --recheck /dev/$BOOT"
 
 print_title "Generate grub.cfg"
 # Generate grub.cfg
