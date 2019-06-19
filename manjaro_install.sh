@@ -54,7 +54,7 @@ pause_function
 print_title "Install VirtualBox"
 pamac install virtualbox $(pacman -Qsq "^linux" | grep "^linux[0-9]*[-rt]*$" | awk '{print $1"-virtualbox-host-modules"}' ORS=' ')
 sudo vboxreload
-trizen -S virtualbox-ext-oracle
+trizen -S virtualbox-ext-oracle virtualbox-guest-iso
 sudo gpasswd -a tgaddis vboxusers
 pause_function
 

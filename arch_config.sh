@@ -78,7 +78,12 @@ print_title "Install Cinnamon"
 pacman -S cinnamon nemo-fileroller
 pause_function
 
-print_title "Install and start GDM"
-pacman -S gdm
-systemctl enable gdm
-systemctl start gdm
+print_title "Install and enable LightDM"
+pacman -S lightdm lightdm-gtk-greeter
+systemctl enable lightdm.service
+pause_function
+
+#print_title "Install and start GDM"
+#pacman -S gdm
+#systemctl enable gdm
+#systemctl start gdm

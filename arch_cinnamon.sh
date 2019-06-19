@@ -26,11 +26,11 @@ is_package_installed() {
 if is_package_installed "net-tools"; then
     print_title "net-tools installed"
 
-    print_title "Install dependencies"
-    sudo pacman -Sy expac yajl bash-completion gnupg
-    gpg --list-keys
-    echo "keyring /etc/pacman.d/gnupg/pubring.gpg" >> ~/.gnupg/gpg.conf
-    pause_function
+#    print_title "Install dependencies"
+#    sudo pacman -Sy expac yajl bash-completion gnupg
+#    gpg --list-keys
+#    echo "keyring /etc/pacman.d/gnupg/pubring.gpg" >> ~/.gnupg/gpg.conf
+#    pause_function
 
     print_title "Install trizen"
     git clone https://aur.archlinux.org/trizen.git
@@ -75,7 +75,7 @@ if is_package_installed "net-tools"; then
     pause_function
 
     print_title "Install apps"
-    sudo pacman -S firefox chromium wine plank gimp deja-dup vlc steam evince thunderbird keepassxc hexchat qbittorrent eog flashplugin pan vocal inkscape
+    sudo pacman -S firefox chromium wine plank gimp deja-dup vlc steam evince thunderbird keepassxc hexchat qbittorrent eog flashplugin pan vocal inkscape gnome-mpv
     # gimp-plugin-lqr gimp-plugin-gmic gimp-plugin-fblur gimp-refocus gimp-nufraw
     pause_function
 
@@ -85,11 +85,19 @@ if is_package_installed "net-tools"; then
     sudo systemctl start plexmediaserver.service
     pause_function
 
-    print_title "Install VirtualBox"
-    sudo pacman -S virtualbox dkms virtualbox-guest-iso linux-headers virtualbox-host-dkms
-    sudo bash -c 'echo "vboxdrv" >> /etc/modules-load.d/virtualbox.conf'
-    sudo gpasswd -a tgaddis vboxusers
-    pause_function
+#    print_title "Install VirtualBox"
+#    sudo pacman -S virtualbox dkms virtualbox-guest-iso linux-headers virtualbox-host-dkms
+#    sudo bash -c 'echo "vboxdrv" >> /etc/modules-load.d/virtualbox.conf'
+#    sudo gpasswd -a tgaddis vboxusers
+#    pause_function
+
+	print_title "Install VirtualBox"
+	pamac install virtualbox $(pacman -Qsq "^linux" | grep "^linux[0-9]*[-rt]*$" | awk '{print $1"-virtualbox-host-modules"}' ORS=' ')
+	sudo vboxreload
+	trizen -S virtualbox-ext-oracle virtualbox-guest-iso
+	sudo gpasswd -a tgaddis vboxusers
+	pause_function
+
 
     # print_title "Install Latex"
     # sudo pacman -S texlive-most texstudio
