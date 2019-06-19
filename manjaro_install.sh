@@ -84,7 +84,7 @@ sudo systemctl start plexmediaserver.service
 pause_function
 
 print_title "Install AUR themes"
-trizen -S papirus-icon-theme-git papirus-libreoffice-theme-git paper-icon-theme-git arc-icon-theme hardcode-fixer-git arc-gtk-theme 
+trizen -S papirus-libreoffice-theme-git paper-icon-theme-git arc-icon-theme hardcode-fixer-git arc-gtk-theme 
 sudo hardcode-fixer
 pause_function
 
