@@ -20,6 +20,10 @@ arch_chroot() {
     arch-chroot $MOUNTPOINT /bin/bash -c "${1}"
 }
 
+print_title "Update the system clock"
+timedatectl set-ntp true
+pause_function
+
 print_title "Test internet connection"
 # Test internet connection
 ping -c 3 www.google.com
