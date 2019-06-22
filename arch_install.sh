@@ -120,6 +120,7 @@ print_title "Install bootloader"
 # Install the bootloader
 lsblk
 read -p "Enter the boot partition: " BOOT
+mkdir /boot/efi
 mount /dev/$BOOT /boot/efi
 arch_chroot "grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Arch --recheck"
 
