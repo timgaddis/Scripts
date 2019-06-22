@@ -118,11 +118,9 @@ arch_chroot "pacman -S grub os-prober wget efibootmgr"
 
 print_title "Install bootloader"
 # Install the bootloader
-lsblk
-read -p "Enter the boot partition: " BOOT
-mkdir /boot/efi
-mount /dev/$BOOT /boot/efi
-arch_chroot "grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Arch --recheck"
+mkdir /boot/EFI
+mount /dev/sda2 /boot/EFI
+arch_chroot "grub-install --target=x86_64-efi --efi-directory=/boot/EFI --bootloader-id=Arch --recheck"
 
 print_title "Generate grub.cfg"
 # Generate grub.cfg
