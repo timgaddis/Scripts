@@ -26,11 +26,11 @@ is_package_installed() {
 if is_package_installed "net-tools"; then
     print_title "net-tools installed"
 
-#    print_title "Install dependencies"
-#    sudo pacman -Sy expac yajl bash-completion gnupg
-#    gpg --list-keys
-#    echo "keyring /etc/pacman.d/gnupg/pubring.gpg" >> ~/.gnupg/gpg.conf
-#    pause_function
+    print_title "Install dependencies"
+    sudo pacman -Sy expac yajl bash-completion gnupg git
+    gpg --list-keys
+    echo "keyring /etc/pacman.d/gnupg/pubring.gpg" >> ~/.gnupg/gpg.conf
+    pause_function
 
     print_title "Install trizen"
     git clone https://aur.archlinux.org/trizen.git
@@ -40,8 +40,7 @@ if is_package_installed "net-tools"; then
     pause_function
 
     print_title "Install system apps"
-    sudo pacman -S gedit p7zip gparted conky curl jq gksu gnome-font-viewer lynx python-lxml libmtp gvfs-mtp mate-calc gnome-screenshot ntfs-3g gnome-terminal ntp gnome-keyring openvpn networkmanager-openvpn gconf-editor grub-customizer
-    # gnome-tweak-tool
+    sudo pacman -S gedit p7zip gparted conky curl jq gnome-font-viewer lynx python-lxml libmtp gvfs-mtp mate-calc gnome-screenshot ntfs-3g gnome-terminal ntp gnome-keyring openvpn networkmanager-openvpn gconf-editor grub-customizer
 
     print_title "Install and start Corsair driver"
     trizen -S ckb-next-git
@@ -50,7 +49,7 @@ if is_package_installed "net-tools"; then
     pause_function
     
     print_title "Install printers"
-    trizen -S gsfonts cups ghostscript system-config-printer gutenprint gtk3-print-backends
+    sudo pacman -S gsfonts cups ghostscript system-config-printer gutenprint gtk3-print-backends
     sudo gpasswd -a tgaddis sys
     sudo systemctl enable org.cups.cupsd.service
     sudo systemctl start org.cups.cupsd.service
@@ -75,7 +74,7 @@ if is_package_installed "net-tools"; then
     pause_function
 
     print_title "Install apps"
-    sudo pacman -S firefox chromium wine plank gimp deja-dup vlc steam evince thunderbird keepassxc hexchat qbittorrent eog flashplugin pan vocal inkscape gnome-mpv
+    sudo pacman -S firefox chromium wine plank gimp deja-dup vlc steam evince thunderbird keepassxc hexchat qbittorrent eog flashplugin pan vocal inkscape gnome-mpv pepper-flash
     # gimp-plugin-lqr gimp-plugin-gmic gimp-plugin-fblur gimp-refocus gimp-nufraw
     pause_function
 
@@ -85,19 +84,12 @@ if is_package_installed "net-tools"; then
     sudo systemctl start plexmediaserver.service
     pause_function
 
-#    print_title "Install VirtualBox"
-#    sudo pacman -S virtualbox dkms virtualbox-guest-iso linux-headers virtualbox-host-dkms
-#    sudo bash -c 'echo "vboxdrv" >> /etc/modules-load.d/virtualbox.conf'
-#    sudo gpasswd -a tgaddis vboxusers
-#    pause_function
-
 	print_title "Install VirtualBox"
-	pamac install virtualbox $(pacman -Qsq "^linux" | grep "^linux[0-9]*[-rt]*$" | awk '{print $1"-virtualbox-host-modules"}' ORS=' ')
-	sudo vboxreload
-	trizen -S virtualbox-ext-oracle virtualbox-guest-iso
+	sudo pacman -S virtualbox dkms virtualbox-guest-iso linux-headers virtualbox-host-dkms
+	trizen -S virtualbox-ext-oracle
+	sudo bash -c 'echo "vboxdrv" >> /etc/modules-load.d/virtualbox.conf'
 	sudo gpasswd -a tgaddis vboxusers
 	pause_function
-
 
     # print_title "Install Latex"
     # sudo pacman -S texlive-most texstudio
@@ -114,15 +106,16 @@ if is_package_installed "net-tools"; then
     pause_function
 
     print_title "Install AUR apps"
-    trizen -S pamac-aur pepper-flash spideroak-one franz-bin gimp-paint-studio gimp-plugin-pandora cinnamon-sound-effects menulibre
-    # compiz enpass-bin ntfs-config gnome-encfs-manager google-chrome dropbox nemo-dropbox megasync nemo-megasync kalu
+    trizen -S kalu spideroak-one franz-bin gimp-paint-studio gimp-plugin-pandora cinnamon-sound-effects menulibre qdirstat
 
     print_title "Install programming apps"
-	trizen -S google-cloud-sdk gitg nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 atom-editor-bin python-pip python-feedparser jdk8-openjdk
+	sudo pacman -S gitg nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-pip python-feedparser jdk8-openjdk
+    trizen -S google-cloud-sdk atom-editor-bin
 	pause_function
 	
     print_title "Install AUR themes"
-    trizen -S papirus-icon-theme-git papirus-libreoffice-theme-git paper-icon-theme-git arc-icon-theme hardcode-fixer-git arc-gtk-theme 
+    sudo pacman -S arc-icon-theme arc-gtk-theme
+    trizen -S papirus-icon-theme-git papirus-libreoffice-theme-git paper-icon-theme-git hardcode-fixer-git
     sudo hardcode-fixer
     pause_function
 
@@ -138,6 +131,11 @@ if is_package_installed "net-tools"; then
     sudo bash -c 'echo "/dev/sdc1       /media/Pictures     ntfs-3g     defaults    0  0" >> /etc/fstab'
     sudo bash -c 'echo "/dev/nvme0n1p1  /media/Games        ntfs-3g     defaults    0  0" >> /etc/fstab'
 	
+	print_title "HiDPI fix for GDM"
+	sudo bash -c 'echo "[org.gnome.desktop.interface]" >> /usr/share/glib-2.0/schemas/93_hidpi.gschema.override'
+	sudo bash -c 'echo "scaling-factor=2" >> /usr/share/glib-2.0/schemas/93_hidpi.gschema.override'
+	sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+
     echo "Done!!!"
 else
     print_title "net-tools not installed"

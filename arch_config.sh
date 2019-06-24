@@ -53,8 +53,7 @@ pacman -Syu
 pause_function
 
 print_title "Install Xorg"
-pacman -S xorg-server xorg-xinit xorg-utils xorg-server-utils mesa xorg-apps
-pacman -S bash-completion xorg-twm xterm xorg-xclock
+pacman -S bash-completion mesa xorg-twm xterm xorg xorg-apps xorg-xinit
 pause_function
 
 #print_title "Install Nouveau drivers"
@@ -63,7 +62,6 @@ pause_function
 
 print_title "Install Nvidia drivers"
 pacman -S nvidia nvidia-utils nvidia-settings
-# nvidia-xconfig
 pause_function
 
 # print_title "Virtualbox drivers"
@@ -78,12 +76,12 @@ print_title "Install Cinnamon"
 pacman -S cinnamon nemo-fileroller
 pause_function
 
-print_title "Install and enable LightDM"
-pacman -S lightdm lightdm-gtk-greeter
-systemctl enable lightdm.service
-pause_function
+#print_title "Install and enable LightDM"
+#pacman -S lightdm lightdm-gtk-greeter
+#systemctl enable lightdm.service
+#pause_function
 
-#print_title "Install and start GDM"
-#pacman -S gdm
-#systemctl enable gdm
-#systemctl start gdm
+print_title "Install and start GDM"
+pacman -S gdm
+systemctl enable gdm
+systemctl start gdm
