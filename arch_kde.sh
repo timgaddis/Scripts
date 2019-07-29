@@ -40,7 +40,9 @@ if is_package_installed "net-tools"; then
     pause_function
 
     print_title "Install system apps"
-    sudo pacman -S --noconfirm gedit p7zip gparted conky curl jq gnome-font-viewer lynx python-lxml libmtp gvfs-mtp mate-calc gnome-screenshot ntfs-3g gnome-terminal ntp gnome-keyring openvpn networkmanager-openvpn gconf-editor grub-customizer neofetch
+    sudo pacman -S --noconfirm gedit p7zip gparted conky curl jq lynx python-lxml libmtp gvfs-mtp ntfs-3g ntp openvpn networkmanager-openvpn grub-customizer neofetch
+    sudo pacman -S --noconfirm kde-applications
+    pause_function
 
     print_title "Install and start Corsair driver"
     trizen -S --noconfirm ckb-next-git
@@ -63,18 +65,18 @@ if is_package_installed "net-tools"; then
     # sudo chmod 640 /var/lib/boinc/gui_rpc_auth.cfg
     # pause_function
 
-    print_title "Configure gnome terminal"
-    sudo bash -c 'echo "LANG=\"en_US.UTF-8\"" >> /etc/locale.conf'
-    print_title "Enable ntp"
-    sudo systemctl enable ntpd.service
-    pause_function
+    #print_title "Configure gnome terminal"
+    #sudo bash -c 'echo "LANG=\"en_US.UTF-8\"" >> /etc/locale.conf'
+    #print_title "Enable ntp"
+    #sudo systemctl enable ntpd.service
+    #pause_function
 
     print_title "Install codecs"
-    sudo pacman -S --noconfirm a52dec faac faad2 flac jasper lame libdca libdv libmad libmpeg2 libtheora libvorbis libxv wavpack x264 xvidcore gst-plugins-base gst-plugins-base-libs gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-libav lirc libva-vdpau-driver portaudio twolame projectm libgoom2 vcdimager lua-socket
+    sudo pacman -S --noconfirm a52dec faac faad2 flac jasper lame libdca libdv libmad libmpeg2 libtheora libvorbis libxv wavpack x264 xvidcore gst-plugins-base gst-plugins-base-libs gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-libav lirc libva-vdpau-driver portaudio twolame projectm libgoom2 vcdimager ttf-freefont lua-socket
     pause_function
 
     print_title "Install apps"
-    sudo pacman -S --noconfirm firefox chromium wine plank gimp deja-dup vlc steam evince thunderbird keepassxc hexchat qbittorrent eog flashplugin pan vocal inkscape gnome-mpv pepper-flash
+    sudo pacman -S --noconfirm firefox chromium wine plank gimp deja-dup vlc steam evince thunderbird keepassxc hexchat qbittorrent flashplugin pan vocal inkscape pepper-flash
     # gimp-plugin-lqr gimp-plugin-gmic gimp-plugin-fblur gimp-refocus gimp-nufraw
     pause_function
 
@@ -84,12 +86,12 @@ if is_package_installed "net-tools"; then
     sudo systemctl start plexmediaserver.service
     pause_function
 
-    print_title "Install VirtualBox"
-    sudo pacman -S --noconfirm virtualbox dkms virtualbox-guest-iso linux-headers virtualbox-host-dkms
-    trizen -S --noconfirm virtualbox-ext-oracle
-    sudo bash -c 'echo "vboxdrv" >> /etc/modules-load.d/virtualbox.conf'
-    sudo gpasswd -a tgaddis vboxusers
-    pause_function
+	print_title "Install VirtualBox"
+	sudo pacman -S --noconfirm virtualbox dkms virtualbox-guest-iso linux-headers virtualbox-host-dkms
+	trizen -S virtualbox-ext-oracle
+	sudo bash -c 'echo "vboxdrv" >> /etc/modules-load.d/virtualbox.conf'
+	sudo gpasswd -a tgaddis vboxusers
+	pause_function
 
     # print_title "Install Latex"
     # sudo pacman -S texlive-most texstudio
@@ -106,16 +108,18 @@ if is_package_installed "net-tools"; then
     pause_function
 
     print_title "Install AUR apps"
-    trizen -S --noconfirm kalu spideroak-one franz-bin gimp-paint-studio gimp-plugin-pandora cinnamon-sound-effects menulibre qdirstat vorta
-
-    print_title "Install programming apps"
-    sudo pacman -S --noconfirm gitg nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-pip python-feedparser jdk8-openjdk
-    trizen -S --noconfirm google-cloud-sdk
+    trizen -S --noconfirm kalu spideroak-one franz-bin gimp-paint-studio gimp-plugin-pandora menulibre qdirstat vorta
     pause_function
+    
+    print_title "Install programming apps"
+	sudo pacman -S --noconfirm gitg nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-pip python-feedparser jdk8-openjdk
+    trizen -S --noconfirm google-cloud-sdk
+	pause_function
 	
     print_title "Install AUR themes"
-    sudo pacman -S --noconfirm arc-icon-theme arc-gtk-theme
-    trizen -S --noconfirm papirus-icon-theme-git papirus-libreoffice-theme-git paper-icon-theme-git hardcode-fixer-git
+    sudo pacman -S --noconfirm arc-kde kvantum-theme-arc
+    # sudo pacman -S arc-icon-theme arc-gtk-theme
+    trizen -S --noconfirm papirus-icon-theme-git papirus-libreoffice-theme-git paper-icon-theme-git vlc-arc-dark-git hardcode-fixer-git
     sudo hardcode-fixer
     pause_function
 
@@ -131,10 +135,10 @@ if is_package_installed "net-tools"; then
     sudo bash -c 'echo "/dev/sdc1       /media/Pictures     ntfs-3g     defaults    0  0" >> /etc/fstab'
     sudo bash -c 'echo "/dev/nvme0n1p1  /media/Games        ntfs-3g     defaults    0  0" >> /etc/fstab'
 	
-    print_title "HiDPI fix for GDM"
-    sudo bash -c 'echo "[org.gnome.desktop.interface]" >> /usr/share/glib-2.0/schemas/93_hidpi.gschema.override'
-    sudo bash -c 'echo "scaling-factor=2" >> /usr/share/glib-2.0/schemas/93_hidpi.gschema.override'
-    sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+	# print_title "HiDPI fix for GDM"
+	# sudo bash -c 'echo "[org.gnome.desktop.interface]" >> /usr/share/glib-2.0/schemas/93_hidpi.gschema.override'
+	# sudo bash -c 'echo "scaling-factor=2" >> /usr/share/glib-2.0/schemas/93_hidpi.gschema.override'
+	# sudo glib-compile-schemas /usr/share/glib-2.0/schemas
 
     echo "Done!!!"
 else

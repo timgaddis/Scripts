@@ -25,7 +25,7 @@ pacman -Syu
 pause_function
 
 print_title "Install audio"
-pacman -S alsa-utils
+pacman -S --noconfirm alsa-utils
 amixer sset Master unmute
 pause_function
 
@@ -53,7 +53,7 @@ pacman -Syu
 pause_function
 
 print_title "Install Xorg"
-pacman -S bash-completion mesa xorg-twm xterm xorg xorg-apps xorg-xinit
+pacman -S --noconfirm bash-completion mesa xorg-twm xterm xorg xorg-apps xorg-xinit
 pause_function
 
 #print_title "Install Nouveau drivers"
@@ -61,7 +61,7 @@ pause_function
 #pause_function
 
 print_title "Install Nvidia drivers"
-pacman -S nvidia nvidia-utils nvidia-settings
+pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
 pause_function
 
 # print_title "Virtualbox drivers"
@@ -72,8 +72,14 @@ print_title "Test Xorg server"
 startx
 pause_function
 
+#print_title "Install KDE"
+#pacman -S --noconfirm plasma
+#systemctl enable sddm.service
+#systemctl start sddm.service
+#pause_function
+
 print_title "Install Cinnamon"
-pacman -S cinnamon nemo-fileroller
+pacman -S --noconfirm cinnamon nemo-fileroller
 pause_function
 
 #print_title "Install and enable LightDM"
@@ -82,6 +88,7 @@ pause_function
 #pause_function
 
 print_title "Install and start GDM"
-pacman -S gdm
+pacman -S --noconfirm gdm
 systemctl enable gdm
 systemctl start gdm
+
