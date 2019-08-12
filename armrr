@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Download pacman ranked mirrorlist
 
 countries=(AT AU BE BG BR BY CA CH CL CN CO CZ DE DK EE ES FI FR GB GR HU IE IL IN IT JP KR KZ LK LU LV MK NC NL NO NZ PL PT RO RS RU SE SG SK TR TW UA US UZ VN ZA)

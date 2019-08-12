@@ -32,18 +32,19 @@ if is_package_installed "net-tools"; then
     echo "keyring /etc/pacman.d/gnupg/pubring.gpg" >> ~/.gnupg/gpg.conf
     pause_function
 
-    print_title "Install trizen"
-    git clone https://aur.archlinux.org/trizen.git
-    cd trizen
+    print_title "Install yay"
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
     makepkg -si
     cd ..
     pause_function
 
     print_title "Install system apps"
     sudo pacman -S --noconfirm gedit p7zip gparted conky curl jq gnome-font-viewer lynx python-lxml libmtp gvfs-mtp mate-calc gnome-screenshot ntfs-3g gnome-terminal ntp gnome-keyring openvpn networkmanager-openvpn gconf-editor grub-customizer neofetch
+    pause_function
 
     print_title "Install and start Corsair driver"
-    trizen -S --noconfirm ckb-next-git
+    yay -S --noconfirm ckb-next-git
     sudo systemctl enable ckb-next-daemon.service
     sudo systemctl start ckb-next-daemon.service
     pause_function
@@ -79,14 +80,14 @@ if is_package_installed "net-tools"; then
     pause_function
 
     print_title "Install and start plex"
-    trizen -S --noconfirm plex-media-server
+    yay -S --noconfirm plex-media-server
     sudo systemctl enable plexmediaserver.service
     sudo systemctl start plexmediaserver.service
     pause_function
 
     print_title "Install VirtualBox"
     sudo pacman -S --noconfirm virtualbox dkms virtualbox-guest-iso linux-headers virtualbox-host-dkms
-    trizen -S --noconfirm virtualbox-ext-oracle
+    yay -S --noconfirm virtualbox-ext-oracle
     sudo bash -c 'echo "vboxdrv" >> /etc/modules-load.d/virtualbox.conf'
     sudo gpasswd -a tgaddis vboxusers
     pause_function
@@ -106,16 +107,17 @@ if is_package_installed "net-tools"; then
     pause_function
 
     print_title "Install AUR apps"
-    trizen -S --noconfirm kalu spideroak-one franz-bin gimp-paint-studio gimp-plugin-pandora cinnamon-sound-effects menulibre qdirstat vorta
+    yay -S --noconfirm kalu spideroak-one franz-bin gimp-paint-studio gimp-plugin-pandora cinnamon-sound-effects menulibre qdirstat vorta
+    pause_function
 
     print_title "Install programming apps"
     sudo pacman -S --noconfirm gitg nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-pip python-feedparser jdk8-openjdk
-    trizen -S --noconfirm google-cloud-sdk
+    yay -S --noconfirm google-cloud-sdk
     pause_function
 	
     print_title "Install AUR themes"
     sudo pacman -S --noconfirm arc-icon-theme arc-gtk-theme
-    trizen -S --noconfirm papirus-icon-theme-git papirus-libreoffice-theme-git paper-icon-theme-git hardcode-fixer-git
+    yay -S --noconfirm papirus-icon-theme-git papirus-libreoffice-theme-git paper-icon-theme-git hardcode-fixer-git
     sudo hardcode-fixer
     pause_function
 
