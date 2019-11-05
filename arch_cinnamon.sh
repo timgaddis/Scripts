@@ -40,7 +40,7 @@ if is_package_installed "net-tools"; then
     pause_function
 
     print_title "Install system apps"
-    sudo pacman -S --noconfirm gedit p7zip gparted conky curl jq gnome-font-viewer lynx python-lxml libmtp gvfs-mtp mate-calc gnome-screenshot ntfs-3g gnome-terminal ntp gnome-keyring openvpn networkmanager-openvpn gconf-editor grub-customizer neofetch
+    sudo pacman -S --noconfirm gedit p7zip gparted conky curl jq gnome-font-viewer lynx python-lxml libmtp gvfs-mtp mate-calc gnome-screenshot ntfs-3g gnome-terminal ntp gnome-keyring openvpn networkmanager-openvpn gconf-editor grub-customizer neofetch r8168
     pause_function
 
     print_title "Install and start Corsair driver"
@@ -75,7 +75,7 @@ if is_package_installed "net-tools"; then
     pause_function
 
     print_title "Install apps"
-    sudo pacman -S --noconfirm firefox chromium wine plank gimp deja-dup vlc steam evince thunderbird keepassxc hexchat qbittorrent eog flashplugin pan vocal inkscape gnome-mpv pepper-flash
+    sudo pacman -S --noconfirm firefox chromium wine plank gimp deja-dup vlc steam evince thunderbird keepassxc hexchat qbittorrent eog flashplugin pan vocal inkscape pepper-flash
     # gimp-plugin-lqr gimp-plugin-gmic gimp-plugin-fblur gimp-refocus gimp-nufraw
     pause_function
 
@@ -129,8 +129,8 @@ if is_package_installed "net-tools"; then
     sudo mkdir /media/Games
     sudo mkdir /media/Pictures
     sudo bash -c 'echo "/dev/sdb1       /media/Storage      ntfs-3g     defaults    0  0" >> /etc/fstab'
-    sudo bash -c 'echo "/dev/sdd1       /media/Backup       ntfs-3g     defaults    0  0" >> /etc/fstab'
-    sudo bash -c 'echo "/dev/sdc1       /media/Pictures     ntfs-3g     defaults    0  0" >> /etc/fstab'
+    sudo bash -c 'echo "/dev/sdc1       /media/Backup       ntfs-3g     defaults    0  0" >> /etc/fstab'
+    sudo bash -c 'echo "/dev/sdd1       /media/Pictures     ntfs-3g     defaults    0  0" >> /etc/fstab'
     sudo bash -c 'echo "/dev/nvme0n1p1  /media/Games        ntfs-3g     defaults    0  0" >> /etc/fstab'
 	
     print_title "HiDPI fix for GDM"
