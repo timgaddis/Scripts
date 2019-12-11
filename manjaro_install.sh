@@ -21,7 +21,6 @@ sudo pacman -Syy
 
 print_title "Install system apps"
 sudo pacman -S --noconfirm conky jq gksu lynx python-lxml mate-calc gconf-editor grub-customizer gedit neofetch cmake eog eog-plugins evince
-sudo pacman -S r8168
 pause_function
 
 print_title "Install codecs"
@@ -59,7 +58,7 @@ pause_function
 # pause_function
 
 print_title "Install AUR apps"
-yay -S --noconfirm spideroak-one franz-bin gimp-paint-studio gimp-plugin-pandora qdirstat vorta
+yay -S --noconfirm franz-bin gimp-paint-studio gimp-plugin-pandora qdirstat vorta megasync nemo-megasync
 pause_function
 
 print_title "Install and enable ntp"

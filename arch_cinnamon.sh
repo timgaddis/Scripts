@@ -37,17 +37,18 @@ if is_package_installed "net-tools"; then
     cd yay
     makepkg -si
     cd ..
+    rm -rf yay
     pause_function
 
     print_title "Install system apps"
-    sudo pacman -S --noconfirm gedit p7zip gparted conky curl jq gnome-font-viewer lynx python-lxml libmtp gvfs-mtp mate-calc gnome-screenshot ntfs-3g gnome-terminal ntp gnome-keyring openvpn networkmanager-openvpn gconf-editor grub-customizer neofetch r8168
+    sudo pacman -S --noconfirm gedit p7zip gparted conky curl jq gnome-font-viewer lynx python-lxml libmtp gvfs-mtp mate-calc gnome-screenshot ntfs-3g gnome-terminal gnome-keyring openvpn networkmanager-openvpn gconf-editor grub-customizer neofetch
     pause_function
 
-    print_title "Install and start Corsair driver"
-    yay -S --noconfirm ckb-next-git
-    sudo systemctl enable ckb-next-daemon.service
-    sudo systemctl start ckb-next-daemon.service
-    pause_function
+#    print_title "Install and start Corsair driver"
+#    yay -S --noconfirm ckb-next-git
+#    sudo systemctl enable ckb-next-daemon.service
+#    sudo systemctl start ckb-next-daemon.service
+#    pause_function
     
     print_title "Install printers"
     sudo pacman -S --noconfirm gsfonts cups ghostscript system-config-printer gutenprint gtk3-print-backends
@@ -70,12 +71,17 @@ if is_package_installed "net-tools"; then
     sudo systemctl enable ntpd.service
     pause_function
 
+    print_title "Install and enable ntp"
+    sudo pacman -S --noconfirm ntp
+    sudo systemctl enable ntpd.service
+    pause_function
+
     print_title "Install codecs"
     sudo pacman -S --noconfirm a52dec faac faad2 flac jasper lame libdca libdv libmad libmpeg2 libtheora libvorbis libxv wavpack x264 xvidcore gst-plugins-base gst-plugins-base-libs gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-libav lirc libva-vdpau-driver portaudio twolame projectm libgoom2 vcdimager lua-socket
     pause_function
 
     print_title "Install apps"
-    sudo pacman -S --noconfirm firefox chromium wine plank gimp deja-dup vlc steam evince thunderbird keepassxc hexchat qbittorrent eog flashplugin pan vocal inkscape pepper-flash
+    sudo pacman -S --noconfirm firefox chromium wine plank gimp deja-dup vlc steam evince thunderbird keepassxc hexchat qbittorrent eog eog-plugins flashplugin pan vocal inkscape pepper-flash borg
     # gimp-plugin-lqr gimp-plugin-gmic gimp-plugin-fblur gimp-refocus gimp-nufraw
     pause_function
 
@@ -84,9 +90,10 @@ if is_package_installed "net-tools"; then
     sudo systemctl enable plexmediaserver.service
     sudo systemctl start plexmediaserver.service
     pause_function
-
+    
     print_title "Install VirtualBox"
-    sudo pacman -S --noconfirm virtualbox dkms virtualbox-guest-iso linux-headers virtualbox-host-dkms
+    sudo pacman -S linux-headers
+    sudo pacman -S --noconfirm virtualbox dkms virtualbox-guest-iso virtualbox-host-dkms
     yay -S --noconfirm virtualbox-ext-oracle
     sudo bash -c 'echo "vboxdrv" >> /etc/modules-load.d/virtualbox.conf'
     sudo gpasswd -a tgaddis vboxusers
@@ -107,7 +114,7 @@ if is_package_installed "net-tools"; then
     pause_function
 
     print_title "Install AUR apps"
-    yay -S --noconfirm kalu spideroak-one franz-bin gimp-paint-studio gimp-plugin-pandora cinnamon-sound-effects menulibre qdirstat vorta
+    yay -S --noconfirm kalu franz-bin gimp-paint-studio gimp-plugin-pandora cinnamon-sound-effects menulibre qdirstat vorta megasync nemo-megasync
     pause_function
 
     print_title "Install programming apps"
@@ -116,8 +123,8 @@ if is_package_installed "net-tools"; then
     pause_function
 	
     print_title "Install AUR themes"
-    sudo pacman -S --noconfirm arc-icon-theme arc-gtk-theme
-    yay -S --noconfirm papirus-icon-theme-git papirus-libreoffice-theme-git paper-icon-theme-git hardcode-fixer-git
+    sudo pacman -S --noconfirm arc-icon-theme arc-gtk-theme gtk-engine-murrine elementary-icon-theme arc-themes-maia gtk-engine-murrine arc-maia-icon-theme paper-icon-theme-git
+    yay -S --noconfirm papirus-libreoffice-theme-git hardcode-fixer-git
     sudo hardcode-fixer
     pause_function
 
@@ -128,8 +135,8 @@ if is_package_installed "net-tools"; then
     sudo mkdir /media/Backup
     sudo mkdir /media/Games
     sudo mkdir /media/Pictures
-    sudo bash -c 'echo "/dev/sdb1       /media/Storage      ntfs-3g     defaults    0  0" >> /etc/fstab'
-    sudo bash -c 'echo "/dev/sdc1       /media/Backup       ntfs-3g     defaults    0  0" >> /etc/fstab'
+    sudo bash -c 'echo "/dev/sdb1       /media/Backup       ntfs-3g     defaults    0  0" >> /etc/fstab'
+    sudo bash -c 'echo "/dev/sdc1       /media/Storage      ntfs-3g     defaults    0  0" >> /etc/fstab'
     sudo bash -c 'echo "/dev/sdd1       /media/Pictures     ntfs-3g     defaults    0  0" >> /etc/fstab'
     sudo bash -c 'echo "/dev/nvme0n1p1  /media/Games        ntfs-3g     defaults    0  0" >> /etc/fstab'
 	

@@ -37,9 +37,9 @@ pause_function
 
 print_title "Install arch-install-scripts"
 pacman -Syy
-wget https://git.archlinux.org/arch-install-scripts.git/snapshot/arch-install-scripts-22.tar.gz
-tar zxvf arch-install-scripts-22.tar.gz
-cd arch-install-scripts-22
+wget https://git.archlinux.org/arch-install-scripts.git/snapshot/arch-install-scripts-23.tar.gz
+tar zxvf arch-install-scripts-23.tar.gz
+cd arch-install-scripts-23
 pause_function
 
 print_title "Load partitions"
