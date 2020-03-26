@@ -54,7 +54,7 @@ yay -S --noconfirm --needed franz-bin gimp-paint-studio gimp-plugin-pandora qdir
 pause_function
 
 print_title "Install programming apps"
-sudo pacman -S --noconfirm --needed gitg nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-feedparser jdk8-openjdk
+sudo pacman -S --noconfirm --needed gitg nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-feedparser python-numpy jdk8-openjdk
 yay -S --noconfirm --needed google-cloud-sdk
 pause_function
 
@@ -80,7 +80,7 @@ pause_function
 
 print_title "Install themes"
 sudo pacman -S --noconfirm --needed arc-icon-theme arc-gtk-theme gtk-engine-murrine elementary-icon-theme arc-themes-maia gtk-engine-murrine arc-maia-icon-theme paper-icon-theme-git
-yay -S --noconfirm --needed papirus-libreoffice-theme-git hardcode-fixer-git
+yay -S --noconfirm --needed papirus-libreoffice-theme hardcode-fixer-git
 sudo hardcode-fixer
 pause_function
 
