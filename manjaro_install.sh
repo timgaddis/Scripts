@@ -59,7 +59,7 @@ yay -S --noconfirm --needed google-cloud-sdk
 pause_function
 
 print_title "Install VirtualBox"
-sudo pacman -S --noconfirm --needed linux55-headers linux54-headers
+sudo pacman -S --noconfirm --needed linux55-headers linux56-headers
 sudo pacman -S --noconfirm --needed virtualbox dkms virtualbox-guest-iso virtualbox-host-dkms
 yay -S --noconfirm --needed virtualbox-ext-oracle
 sudo bash -c 'echo "vboxdrv" >> /etc/modules-load.d/virtualbox.conf'
