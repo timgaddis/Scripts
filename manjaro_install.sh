@@ -59,7 +59,7 @@ yay -S --noconfirm --needed google-cloud-sdk
 pause_function
 
 print_title "Install VirtualBox"
-sudo pacman -S --noconfirm --needed linux55-headers linux56-headers
+sudo pacman -S --noconfirm --needed linux56-headers
 sudo pacman -S --noconfirm --needed virtualbox dkms virtualbox-guest-iso virtualbox-host-dkms
 yay -S --noconfirm --needed virtualbox-ext-oracle
 sudo bash -c 'echo "vboxdrv" >> /etc/modules-load.d/virtualbox.conf'
@@ -72,16 +72,11 @@ sudo bash -c 'echo -e "\n[sublime-text]\nServer = https://download.sublimetext.c
 sudo pacman -Syu --noconfirm --needed sublime-text
 pause_function
 
-print_title "Install and start Emby"
-sudo pacman -S --noconfirm emby-server
-sudo systemctl enable emby-server.service
-sudo systemctl start emby-server.service
-
-#print_title "Install and start plex"
-#yay -S --noconfirm --needed plex-media-server
-#sudo systemctl enable plexmediaserver.service
-#sudo systemctl start plexmediaserver.service
-#pause_function
+print_title "Install and start plex"
+yay -S --noconfirm --needed plex-media-server
+sudo systemctl enable plexmediaserver.service
+sudo systemctl start plexmediaserver.service
+pause_function
 
 print_title "Install themes"
 sudo pacman -S --noconfirm --needed arc-icon-theme arc-gtk-theme gtk-engine-murrine elementary-icon-theme arc-themes-maia gtk-engine-murrine arc-maia-icon-theme paper-icon-theme-git
