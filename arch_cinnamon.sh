@@ -23,11 +23,23 @@ is_package_installed() {
     return 1
 }
 
-if is_package_installed "net-tools"; then
-    print_title "net-tools installed"
+if is_package_installed "network-manager-applet"; then
+    print_title "network-manager-applet installed"
+
+	numberofcores=$(grep -c ^processor /proc/cpuinfo)
+	if [ $numberofcores -gt 1 ]
+	then
+		    echo "You have " $numberofcores" cores."
+		    echo "Changing the makeflags for "$numberofcores" cores."
+		    sudo sed -i 's/#MAKEFLAGS="-j2"/MAKEFLAGS="-j'$(($numberofcores+1))'"/g' /etc/makepkg.conf;
+		    echo "Changing the compression settings for "$numberofcores" cores."
+		    sudo sed -i 's/COMPRESSXZ=(xz -c -z -)/COMPRESSXZ=(xz -c -T '"$numberofcores"' -z -)/g' /etc/makepkg.conf
+	else
+		    echo "No change."
+	fi
 
     print_title "Install dependencies"
-    sudo pacman -Sy --noconfirm expac yajl bash-completion gnupg git
+    sudo pacman -Sy --noconfirm --needed expac yajl bash-completion gnupg git
     gpg --list-keys
     echo "keyring /etc/pacman.d/gnupg/pubring.gpg" >> ~/.gnupg/gpg.conf
     pause_function
@@ -41,17 +53,11 @@ if is_package_installed "net-tools"; then
     pause_function
 
     print_title "Install system apps"
-    sudo pacman -S --noconfirm gedit p7zip gparted conky curl jq gnome-font-viewer lynx python-lxml libmtp gvfs-mtp mate-calc gnome-screenshot ntfs-3g gnome-terminal gnome-keyring openvpn networkmanager-openvpn gconf-editor grub-customizer neofetch
+    sudo pacman -S --noconfirm --needed gedit p7zip gparted conky curl jq gnome-font-viewer lynx python-lxml libmtp gvfs-mtp mate-calc gnome-screenshot ntfs-3g gnome-terminal gnome-keyring openvpn networkmanager-openvpn grub-customizer neofetch cmake evince unace arj
     pause_function
-
-#    print_title "Install and start Corsair driver"
-#    yay -S --noconfirm ckb-next-git
-#    sudo systemctl enable ckb-next-daemon.service
-#    sudo systemctl start ckb-next-daemon.service
-#    pause_function
     
     print_title "Install printers"
-    sudo pacman -S --noconfirm gsfonts cups ghostscript system-config-printer gutenprint gtk3-print-backends
+    sudo pacman -S --noconfirm --needed gsfonts cups ghostscript system-config-printer gutenprint gtk3-print-backends
     sudo gpasswd -a tgaddis sys
     sudo systemctl enable org.cups.cupsd.service
     sudo systemctl start org.cups.cupsd.service
@@ -67,34 +73,45 @@ if is_package_installed "net-tools"; then
 
     print_title "Configure gnome terminal"
     sudo bash -c 'echo "LANG=\"en_US.UTF-8\"" >> /etc/locale.conf'
-    print_title "Enable ntp"
-    sudo systemctl enable ntpd.service
     pause_function
 
     print_title "Install and enable ntp"
-    sudo pacman -S --noconfirm ntp
+    sudo pacman -S --noconfirm --needed ntp
     sudo systemctl enable ntpd.service
     pause_function
 
     print_title "Install codecs"
-    sudo pacman -S --noconfirm a52dec faac faad2 flac jasper lame libdca libdv libmad libmpeg2 libtheora libvorbis libxv wavpack x264 xvidcore gst-plugins-base gst-plugins-base-libs gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-libav lirc libva-vdpau-driver portaudio twolame projectm libgoom2 vcdimager lua-socket
+    sudo pacman -S --noconfirm --needed a52dec faac faad2 flac jasper lame libdca libdv libmad libmpeg2 libtheora libvorbis libxv wavpack x264 xvidcore gst-plugins-base gst-plugins-base-libs gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-libav lirc libva-vdpau-driver portaudio twolame projectm libgoom2 vcdimager ttf-freefont lua-socket alsa-firmware playerctl
     pause_function
 
+	print_title "Install fonts"
+	sudo pacman -S --noconfirm --needed --needed adobe-source-sans-pro-fonts cantarell-fonts noto-fonts ttf-bitstream-vera ttf-dejavu ttf-droid ttf-hack ttf-inconsolata ttf-liberation ttf-roboto ttf-ubuntu-font-family tamsyn-font
+	pause_function
+
     print_title "Install apps"
-    sudo pacman -S --noconfirm firefox chromium wine plank gimp deja-dup vlc steam evince thunderbird keepassxc hexchat qbittorrent eog eog-plugins flashplugin pan vocal inkscape pepper-flash borg
+    sudo pacman -S --noconfirm --needed firefox chromium wine plank gimp deja-dup vlc steam thunderbird keepassxc hexchat qbittorrent eog eog-plugins flashplugin pan vocal inkscape pepper-flash borg
     # gimp-plugin-lqr gimp-plugin-gmic gimp-plugin-fblur gimp-refocus gimp-nufraw
     pause_function
 
+    print_title "Install AUR apps"
+    yay -S --noconfirm --needed franz-bin gimp-paint-studio gimp-plugin-pandora cinnamon-sound-effects menulibre qdirstat vorta megasync nemo-megasync pamac-aur
+    pause_function
+
+    print_title "Install programming apps"
+    sudo pacman -S --noconfirm --needed gitg nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-pip python-feedparser jdk8-openjdk
+    yay -S --noconfirm --needed google-cloud-sdk
+    pause_function
+    
     print_title "Install and start plex"
-    yay -S --noconfirm plex-media-server
+    yay -S --noconfirm --needed plex-media-server
     sudo systemctl enable plexmediaserver.service
     sudo systemctl start plexmediaserver.service
     pause_function
     
     print_title "Install VirtualBox"
-    sudo pacman -S linux-headers
-    sudo pacman -S --noconfirm virtualbox dkms virtualbox-guest-iso virtualbox-host-dkms
-    yay -S --noconfirm virtualbox-ext-oracle
+    sudo pacman -S --noconfirm --needed linux-headers
+    sudo pacman -S --noconfirm --needed virtualbox dkms virtualbox-guest-iso virtualbox-host-dkms
+    yay -S --noconfirm --needed virtualbox-ext-oracle
     sudo bash -c 'echo "vboxdrv" >> /etc/modules-load.d/virtualbox.conf'
     sudo gpasswd -a tgaddis vboxusers
     pause_function
@@ -104,27 +121,18 @@ if is_package_installed "net-tools"; then
     # pause_function
 
     print_title "Install LibreOffice"
-    sudo pacman -S --noconfirm libreoffice
+    sudo pacman -S --noconfirm --needed libreoffice
     pause_function
 
     print_title "Install Sublime Text"
     sudo curl -O https://download.sublimetext.com/sublimehq-pub.gpg && sudo pacman-key --add sublimehq-pub.gpg && sudo pacman-key --lsign-key 8A8F901A && rm sublimehq-pub.gpg
     sudo bash -c 'echo -e "\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64" | sudo tee -a /etc/pacman.conf'
-    sudo pacman -Syu --noconfirm sublime-text
-    pause_function
-
-    print_title "Install AUR apps"
-    yay -S --noconfirm kalu franz-bin gimp-paint-studio gimp-plugin-pandora cinnamon-sound-effects menulibre qdirstat vorta megasync nemo-megasync
-    pause_function
-
-    print_title "Install programming apps"
-    sudo pacman -S --noconfirm gitg nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-pip python-feedparser jdk8-openjdk
-    yay -S --noconfirm google-cloud-sdk
+    sudo pacman -Syu --noconfirm --needed sublime-text
     pause_function
 	
     print_title "Install AUR themes"
-    sudo pacman -S --noconfirm arc-icon-theme arc-gtk-theme gtk-engine-murrine elementary-icon-theme arc-themes-maia gtk-engine-murrine arc-maia-icon-theme paper-icon-theme-git
-    yay -S --noconfirm papirus-libreoffice-theme-git hardcode-fixer-git
+    sudo pacman -S --noconfirm --needed arc-icon-theme arc-gtk-theme gtk-engine-murrine elementary-icon-theme gtk-engine-murrine
+    yay -S --noconfirm --needed papirus-libreoffice-theme hardcode-fixer-git paper-icon-theme-git papirus-icon-theme-git
     sudo hardcode-fixer
     pause_function
 
@@ -147,27 +155,18 @@ if is_package_installed "net-tools"; then
 
     echo "Done!!!"
 else
-    print_title "net-tools not installed"
-    
-    #print_title "Install mesa libgl drivers"
-    #sudo pacman -S mesa-libgl lib32-mesa-libgl
-    #pause_function
-    
+    print_title "network-manager-applet not installed"
+        
     print_title "Install nvidia libgl drivers"
-    sudo pacman -S --noconfirm nvidia-libgl lib32-nvidia-libgl
-    pause_function
-
-    print_title "Install net-tools"
-    sudo pacman -Sy --noconfirm net-tools
-    ifconfig
+    sudo pacman -S --noconfirm --needed nvidia-libgl lib32-nvidia-libgl
     pause_function
 
     print_title "Install Network Manager"
-    sudo pacman -S --noconfirm network-manager-applet
+    sudo pacman -S --noconfirm --needed network-manager-applet
     pause_function
 
     print_title "Disable dhcpcd service"
-    ifconfig
+    ip link
     read -p "Enter interface name: " IFACE
     sudo systemctl stop dhcpcd@$IFACE.service
     sudo systemctl disable dhcpcd@$IFACE.service

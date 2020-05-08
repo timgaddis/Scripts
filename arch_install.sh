@@ -60,7 +60,7 @@ pause_function
 
 print_title "Install the base system"
 # Install the base system
-pacstrap -i /mnt base base-devel
+pacstrap -i /mnt base base-devel linux linux-firmware
 pause_function
 
 print_title "Generate fstab"
@@ -100,6 +100,7 @@ pause_function
 
 print_title "Network interface"
 # View network interface
+arch_chroot "pacman -S dhcpcd"
 arch_chroot "ip link"
 read -p "Enter interface name: " IFACE
 echo "Enable DHCP"
@@ -114,7 +115,7 @@ pause_function
 
 print_title "Install grub and wget"
 # Install the grub package
-arch_chroot "pacman -S grub os-prober wget efibootmgr"
+arch_chroot "pacman -S grub os-prober wget efibootmgr nano"
 
 print_title "Install bootloader"
 # Install the bootloader

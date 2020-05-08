@@ -42,10 +42,7 @@ pause_function
 print_title "Enable Multilib"
 # uncomment lines
 sed -i '/\[multilib\]/s/^#//' /etc/pacman.conf
-#sed -i '/Include = \/etc\/pacman.d\/mirrorlist/s/^#//' /etc/pacman.conf
-#sed -i '93s/#\[multilib\]/\[multilib\]/' /etc/pacman.conf
 sed -i '93,96s/#Include = \/etc\/pacman.d\/mirrorlist/Include = \/etc\/pacman.d\/mirrorlist/' /etc/pacman.conf
-#nano /etc/pacman.conf
 pause_function
 
 print_title "System update"
@@ -55,10 +52,6 @@ pause_function
 print_title "Install Xorg"
 pacman -S --noconfirm bash-completion mesa xorg-twm xterm xorg xorg-apps xorg-xinit
 pause_function
-
-#print_title "Install Nouveau drivers"
-#pacman -S xf86-video-nouveau
-#pause_function
 
 print_title "Install Nvidia drivers"
 pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
@@ -71,12 +64,6 @@ pause_function
 print_title "Test Xorg server"
 startx
 pause_function
-
-#print_title "Install KDE"
-#pacman -S --noconfirm plasma
-#systemctl enable sddm.service
-#systemctl start sddm.service
-#pause_function
 
 print_title "Install Cinnamon"
 pacman -S --noconfirm cinnamon nemo-fileroller
