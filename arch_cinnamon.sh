@@ -15,28 +15,22 @@ pause_function() {
     read -e -sn 1 -p "Press a key to continue..."
 }
 
-is_package_installed() {
-    #check if a package is already installed
-    for PKG in $1; do
-      pacman -Q $PKG &> /dev/null && return 0;
-    done
-    return 1
-}
+file="/etc/first_run"
+if [ -f "$file" ]
+then
+    print_title "Second Run!!"
 
-if is_package_installed "network-manager-applet"; then
-    print_title "network-manager-applet installed"
-
-	numberofcores=$(grep -c ^processor /proc/cpuinfo)
-	if [ $numberofcores -gt 1 ]
-	then
-		    echo "You have " $numberofcores" cores."
-		    echo "Changing the makeflags for "$numberofcores" cores."
-		    sudo sed -i 's/#MAKEFLAGS="-j2"/MAKEFLAGS="-j'$(($numberofcores+1))'"/g' /etc/makepkg.conf;
-		    echo "Changing the compression settings for "$numberofcores" cores."
-		    sudo sed -i 's/COMPRESSXZ=(xz -c -z -)/COMPRESSXZ=(xz -c -T '"$numberofcores"' -z -)/g' /etc/makepkg.conf
-	else
-		    echo "No change."
-	fi
+    numberofcores=$(grep -c ^processor /proc/cpuinfo)
+    if [ $numberofcores -gt 1 ]
+    then
+        echo "You have " $numberofcores" cores."
+        echo "Changing the makeflags for "$numberofcores" cores."
+        sudo sed -i 's/#MAKEFLAGS="-j2"/MAKEFLAGS="-j'$(($numberofcores+1))'"/g' /etc/makepkg.conf;
+        echo "Changing the compression settings for "$numberofcores" cores."
+        sudo sed -i 's/COMPRESSXZ=(xz -c -z -)/COMPRESSXZ=(xz -c -T '"$numberofcores"' -z -)/g' /etc/makepkg.conf
+    else
+        echo "No change."
+    fi
 
     print_title "Install dependencies"
     sudo pacman -Sy --noconfirm --needed expac yajl bash-completion gnupg git
@@ -63,14 +57,6 @@ if is_package_installed "network-manager-applet"; then
     sudo systemctl start org.cups.cupsd.service
     pause_function
     
-    # print_title "Install BOINC"
-    # sudo pacman -S boinc
-    # sudo gpasswd -a tgaddis boinc
-    # sudo systemctl enable boinc.service
-    # sudo systemctl start boinc.service
-    # sudo chmod 640 /var/lib/boinc/gui_rpc_auth.cfg
-    # pause_function
-
     print_title "Configure gnome terminal"
     sudo bash -c 'echo "LANG=\"en_US.UTF-8\"" >> /etc/locale.conf'
     pause_function
@@ -153,16 +139,13 @@ if is_package_installed "network-manager-applet"; then
     sudo bash -c 'echo "scaling-factor=2" >> /usr/share/glib-2.0/schemas/93_hidpi.gschema.override'
     sudo glib-compile-schemas /usr/share/glib-2.0/schemas
 
+    sudo  rm /etc/first_run
     echo "Done!!!"
 else
-    print_title "network-manager-applet not installed"
+    print_title "First Run!!"
         
     print_title "Install nvidia libgl drivers"
     sudo pacman -S --noconfirm --needed nvidia-libgl lib32-nvidia-libgl
-    pause_function
-
-    print_title "Install Network Manager"
-    sudo pacman -S --noconfirm --needed network-manager-applet
     pause_function
 
     print_title "Disable dhcpcd service"
@@ -182,4 +165,6 @@ else
     print_title "Test network"
     ifconfig
     ping -c 2 www.google.com
+    
+    sudo bash -c 'echo "First Run" >> /etc/first_run'
 fi

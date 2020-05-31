@@ -44,6 +44,7 @@ pause_function
 
 print_title "Load partitions"
 lsblk
+read -p "Enter the boot partition: " BOOT
 read -p "Enter the swap partition: " SWAP
 read -p "Enter the root partition: " ROOT
 
@@ -120,7 +121,7 @@ arch_chroot "pacman -S grub os-prober wget efibootmgr nano"
 print_title "Install bootloader"
 # Install the bootloader
 arch_chroot "mkdir /boot/EFI"
-arch_chroot "mount /dev/sda2 /boot/EFI"
+arch_chroot "mount /dev/$BOOT /boot/EFI"
 arch_chroot "grub-install --target=x86_64-efi --efi-directory=/boot/EFI --bootloader-id=Arch --recheck"
 
 print_title "Generate grub.cfg"
