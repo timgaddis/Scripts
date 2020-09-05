@@ -84,7 +84,7 @@ then
     pause_function
 
     print_title "Install programming apps"
-    sudo pacman -S --noconfirm --needed gitg nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-pip python-feedparser jdk8-openjdk
+    sudo pacman -S --noconfirm --needed gitg nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-pip python-feedparser jdk8-openjdk kotlin
     yay -S --noconfirm --needed google-cloud-sdk
     pause_function
     
@@ -118,7 +118,7 @@ then
 	
     print_title "Install AUR themes"
     sudo pacman -S --noconfirm --needed arc-icon-theme arc-gtk-theme gtk-engine-murrine elementary-icon-theme gtk-engine-murrine
-    yay -S --noconfirm --needed papirus-libreoffice-theme hardcode-fixer-git paper-icon-theme-git papirus-icon-theme-git
+    yay -S --noconfirm --needed papirus-libreoffice-theme hardcode-fixer-git paper-icon-theme-git papirus-icon-theme-git plank-theme-arc
     sudo hardcode-fixer
     pause_function
 
@@ -131,7 +131,6 @@ then
     sudo mkdir /media/Pictures
     sudo bash -c 'echo "/dev/sdb1       /media/Backup       ntfs-3g     defaults    0  0" >> /etc/fstab'
     sudo bash -c 'echo "/dev/sdc1       /media/Storage      ntfs-3g     defaults    0  0" >> /etc/fstab'
-    sudo bash -c 'echo "/dev/sdd1       /media/Pictures     ntfs-3g     defaults    0  0" >> /etc/fstab'
     sudo bash -c 'echo "/dev/nvme0n1p1  /media/Games        ntfs-3g     defaults    0  0" >> /etc/fstab'
 	
     print_title "HiDPI fix for GDM"
