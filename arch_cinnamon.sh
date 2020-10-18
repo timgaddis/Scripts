@@ -80,11 +80,11 @@ then
     pause_function
 
     print_title "Install AUR apps"
-    yay -S --noconfirm --needed franz-bin gimp-paint-studio gimp-plugin-pandora cinnamon-sound-effects menulibre qdirstat vorta megasync nemo-megasync pamac-aur
+    yay -S --noconfirm --needed ferdi gimp-paint-studio gimp-plugin-pandora cinnamon-sound-effects menulibre qdirstat vorta megasync nemo-megasync pamac-aur
     pause_function
 
     print_title "Install programming apps"
-    sudo pacman -S --noconfirm --needed gitg nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-pip python-feedparser jdk8-openjdk kotlin
+    sudo pacman -S --noconfirm --needed gitg nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-pip python-feedparser jdk11-openjdk kotlin
     yay -S --noconfirm --needed google-cloud-sdk
     pause_function
     
@@ -128,7 +128,6 @@ then
     sudo mkdir /media/Storage
     sudo mkdir /media/Backup
     sudo mkdir /media/Games
-    sudo mkdir /media/Pictures
     sudo bash -c 'echo "/dev/sdb1       /media/Backup       ntfs-3g     defaults    0  0" >> /etc/fstab'
     sudo bash -c 'echo "/dev/sdc1       /media/Storage      ntfs-3g     defaults    0  0" >> /etc/fstab'
     sudo bash -c 'echo "/dev/nvme0n1p1  /media/Games        ntfs-3g     defaults    0  0" >> /etc/fstab'
