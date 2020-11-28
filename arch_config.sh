@@ -25,7 +25,7 @@ pacman -Syu
 pause_function
 
 print_title "Install audio"
-pacman -S --noconfirm alsa-utils
+pacman -S --noconfirm alsa-utils alsa-plugins alsa-firmware pulseaudio-alsa pulseaudio-equalizer pulseaudio-jack
 amixer sset Master unmute
 pause_function
 
