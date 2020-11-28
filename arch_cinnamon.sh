@@ -80,11 +80,12 @@ then
     pause_function
 
     print_title "Install AUR apps"
-    yay -S --noconfirm --needed ferdi gimp-paint-studio gimp-plugin-pandora cinnamon-sound-effects menulibre qdirstat vorta megasync nemo-megasync pamac-aur
+    yay -S --noconfirm --needed ferdi gimp-paint-studio gimp-plugin-pandora cinnamon-sound-effects menulibre qdirstat vorta megasync nemo-megasync pamac-all
     pause_function
 
     print_title "Install programming apps"
-    sudo pacman -S --noconfirm --needed gitg nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-pip python-feedparser jdk11-openjdk kotlin
+    sudo pacman -S --noconfirm --needed jre11-openjdk-headless jre11-openjdk jdk11-openjdk openjdk11-doc openjdk11-src
+    sudo pacman -S --noconfirm --needed gitg nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-pip python-feedparser kotlin
     yay -S --noconfirm --needed google-cloud-sdk
     pause_function
     
