@@ -27,13 +27,12 @@ else
         echo "No change."
 fi
 
-sudo pacman -R --noconfirm parcellite xed xviewer xviewer-plugins microsoft-office-web-jak
+#sudo pacman -R xed xreader 
 
 sudo pacman -Syy
 
 print_title "Install system apps"
-sudo pacman -S --noconfirm --needed conky jq gksu lynx python-lxml mate-calc grub-customizer gedit neofetch cmake eog eog-plugins evince unace arj gksu expac yajl
-sudo systemctl enable ntpd.service
+sudo pacman -S --noconfirm --needed conky jq lynx python-lxml mate-calc grub-customizer gedit cmake eog eog-plugins evince unace arj expac yajl p7zip gparted gnome-font-viewer
 pause_function
 
 print_title "Install codecs"
@@ -45,26 +44,32 @@ sudo pacman -S --noconfirm --needed adobe-source-sans-pro-fonts cantarell-fonts 
 pause_function
 
 print_title "Install apps"
-sudo pacman -S --noconfirm --needed plank deja-dup keepassxc wine vlc qbittorrent pan flashplugin vocal chromium pepper-flash steam gnu-netcat inkscape borg menulibre 
+sudo pacman -S --noconfirm --needed plank deja-dup keepassxc wine vlc qbittorrent pan vocal chromium steam inkscape borg thunderbird hexchat gimp
+#sudo pacman -S --noconfirm --needed gimp-plugin-lqr gimp-plugin-gmic gimp-plugin-fblur gimp-refocus gimp-nufraw
 pause_function
 
-#print_title "Install LibreOffice"
-#sudo pacman -S --noconfirm --needed libreoffice
-#pause_function
+print_title "Install and start plex"
+yay -S --noconfirm --needed plex-media-server
+sudo systemctl enable plexmediaserver.service
+sudo systemctl start plexmediaserver.service
+pause_function
+
+print_title "Install LibreOffice"
+sudo pacman -S --noconfirm --needed libreoffice-fresh
+pause_function
 
 print_title "Install AUR apps"
-yay -S --noconfirm --needed ferdi gimp-paint-studio gimp-plugin-pandora qdirstat vorta megasync nemo-megasync
+yay -S --noconfirm --needed ferdi gimp-paint-studio qdirstat vorta megasync nemo-megasync cinnamon-sound-effects menulibre pamac-all
 pause_function
 
 print_title "Install programming apps"
 sudo pacman -S --noconfirm --needed jre11-openjdk-headless jre11-openjdk jdk11-openjdk openjdk11-doc openjdk11-src
-sudo pacman -S --noconfirm --needed gitg nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-feedparser python-numpy kotlin
+sudo pacman -S --noconfirm --needed gitg sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-feedparser python-numpy
 yay -S --noconfirm --needed google-cloud-sdk
 pause_function
 
 print_title "Install VirtualBox"
-sudo pacman -S --noconfirm --needed linux59-headers
-sudo pacman -S --noconfirm --needed virtualbox dkms virtualbox-guest-iso virtualbox-host-dkms linux59-virtualbox-host-modules
+sudo pacman -S --noconfirm --needed virtualbox virtualbox-guest-iso virtualbox-host-dkms
 yay -S --noconfirm --needed virtualbox-ext-oracle
 sudo bash -c 'echo "vboxdrv" >> /etc/modules-load.d/virtualbox.conf'
 sudo gpasswd -a tgaddis vboxusers
@@ -76,18 +81,11 @@ sudo bash -c 'echo -e "\n[sublime-text]\nServer = https://download.sublimetext.c
 sudo pacman -Syu --noconfirm --needed sublime-text
 pause_function
 
-print_title "Install and start plex"
-yay -S --noconfirm --needed plex-media-server
-sudo systemctl enable plexmediaserver.service
-sudo systemctl start plexmediaserver.service
-pause_function
-
 print_title "Install themes"
-sudo pacman -S --noconfirm --needed arc-gtk-theme gtk-engine-murrine elementary-icon-theme arc-themes-maia gtk-engine-murrine arc-maia-icon-theme paper-icon-theme-git
-yay -S --noconfirm --needed papirus-libreoffice-theme plank-theme-arc hardcode-fixer-git
+sudo pacman -S --noconfirm --needed arc-icon-theme gtk-engine-murrine elementary-icon-theme gtk-engine-murrine
+yay -S --noconfirm --needed papirus-libreoffice-theme hardcode-fixer-git papirus-icon-theme-git plank-theme-arc
 sudo hardcode-fixer
 pause_function
-# arc-icon-theme
 
 print_title "Mount hard drives"
 cd /
@@ -99,4 +97,10 @@ sudo bash -c 'echo "/dev/sdb1       /media/Backup       ntfs-3g     defaults    
 sudo bash -c 'echo "/dev/sdc1       /media/Storage      ntfs-3g     defaults    0  0" >> /etc/fstab'
 sudo bash -c 'echo "/dev/nvme0n1p1  /media/Games        ntfs-3g     defaults    0  0" >> /etc/fstab'
 
+print_title "HiDPI fix for GDM"
+sudo bash -c 'echo "[org.gnome.desktop.interface]" >> /usr/share/glib-2.0/schemas/93_hidpi.gschema.override'
+sudo bash -c 'echo "scaling-factor=2" >> /usr/share/glib-2.0/schemas/93_hidpi.gschema.override'
+sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+
 echo "Done!!!"
+
