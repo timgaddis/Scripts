@@ -70,17 +70,19 @@ then
     sudo pacman -S --noconfirm --needed a52dec faac faad2 flac jasper lame libdca libdv libmad libmpeg2 libtheora libvorbis libxv wavpack x264 xvidcore gst-plugins-base gst-plugins-base-libs gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-libav lirc libva-vdpau-driver portaudio twolame projectm libgoom2 vcdimager ttf-freefont lua-socket alsa-firmware playerctl
     pause_function
 
-	print_title "Install fonts"
-	sudo pacman -S --noconfirm --needed --needed adobe-source-sans-pro-fonts cantarell-fonts noto-fonts ttf-bitstream-vera ttf-dejavu ttf-droid ttf-hack ttf-inconsolata ttf-liberation ttf-roboto ttf-ubuntu-font-family tamsyn-font
-	pause_function
+    print_title "Install fonts"
+    sudo pacman -S --noconfirm --needed --needed adobe-source-sans-pro-fonts cantarell-fonts noto-fonts ttf-bitstream-vera ttf-dejavu ttf-droid ttf-hack ttf-inconsolata ttf-liberation ttf-roboto ttf-ubuntu-font-family tamsyn-font
+    pause_function
 
     print_title "Install apps"
-    sudo pacman -S --noconfirm --needed firefox chromium wine plank gimp deja-dup vlc steam thunderbird keepassxc hexchat qbittorrent eog eog-plugins flashplugin pan vocal inkscape pepper-flash borg
+    sudo pacman -S --noconfirm --needed firefox wine plank gimp deja-dup vlc steam thunderbird keepassxc hexchat qbittorrent eog eog-plugins pan vocal inkscape borg
     # gimp-plugin-lqr gimp-plugin-gmic gimp-plugin-fblur gimp-refocus gimp-nufraw
     pause_function
 
     print_title "Install AUR apps"
-    yay -S --noconfirm --needed ferdi gimp-paint-studio gimp-plugin-pandora cinnamon-sound-effects menulibre qdirstat vorta megasync nemo-megasync pamac-all
+    yay -S --noconfirm --needed ferdi gimp-paint-studio cinnamon-sound-effects menulibre qdirstat vorta pamac-all google-chrome
+    # megasync nemo-megasync
+    # gimp-plugin-pandora
     pause_function
 
     print_title "Install programming apps"

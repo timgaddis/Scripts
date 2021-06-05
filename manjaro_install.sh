@@ -32,7 +32,7 @@ sudo pacman -R --noconfirm parcellite xed xviewer xviewer-plugins microsoft-offi
 sudo pacman -Syy
 
 print_title "Install system apps"
-sudo pacman -S --noconfirm --needed conky jq gksu lynx python-lxml mate-calc grub-customizer gedit neofetch cmake eog eog-plugins evince unace arj gksu expac yajl
+sudo pacman -S --noconfirm --needed conky jq gksu lynx python-lxml mate-calc gedit neofetch cmake eog eog-plugins evince unace arj gksu expac yajl
 sudo systemctl enable ntpd.service
 pause_function
 
@@ -45,15 +45,15 @@ sudo pacman -S --noconfirm --needed adobe-source-sans-pro-fonts cantarell-fonts 
 pause_function
 
 print_title "Install apps"
-sudo pacman -S --noconfirm --needed plank deja-dup keepassxc wine vlc qbittorrent pan vocal chromium steam gnu-netcat inkscape borg menulibre 
+sudo pacman -S --noconfirm --needed plank deja-dup keepassxc wine vlc qbittorrent pan vocal steam gnu-netcat inkscape borg menulibre ferdi
 pause_function
 
-#print_title "Install LibreOffice"
-#sudo pacman -S --noconfirm --needed libreoffice
-#pause_function
-
 print_title "Install AUR apps"
-yay -S --noconfirm --needed ferdi gimp-paint-studio gimp-plugin-pandora qdirstat vorta megasync nemo-megasync
+yay -S --noconfirm --needed gimp-paint-studio gimp-plugin-pandora qdirstat vorta icu68 megasync nemo-megasync google-chrome
+pause_function
+
+print_title "Install LibreOffice"
+sudo pacman -S --noconfirm --needed libreoffice-fresh
 pause_function
 
 print_title "Install programming apps"
@@ -64,8 +64,8 @@ sudo archlinux-java set java-11-openjdk
 pause_function
 
 print_title "Install VirtualBox"
-sudo pacman -S --noconfirm --needed linux59-headers linux510-headers
-sudo pacman -S --noconfirm --needed virtualbox dkms virtualbox-guest-iso virtualbox-host-dkms linux59-virtualbox-host-modules linux510-virtualbox-host-modules
+sudo pacman -S --noconfirm --needed linux512-headers
+sudo pacman -S --noconfirm --needed virtualbox dkms virtualbox-guest-iso virtualbox-host-dkms linux512-virtualbox-host-modules
 yay -S --noconfirm --needed virtualbox-ext-oracle
 sudo bash -c 'echo "vboxdrv" >> /etc/modules-load.d/virtualbox.conf'
 sudo gpasswd -a tgaddis vboxusers
@@ -85,10 +85,9 @@ pause_function
 
 print_title "Install themes"
 sudo pacman -S --noconfirm --needed arc-gtk-theme gtk-engine-murrine elementary-icon-theme arc-themes-maia gtk-engine-murrine arc-maia-icon-theme paper-icon-theme-git
-yay -S --noconfirm --needed papirus-libreoffice-theme plank-theme-arc hardcode-fixer-git vlc-arc-dark-git arc-kde-git
+yay -S --noconfirm --needed papirus-libreoffice-theme plank-theme-arc hardcode-fixer-git arc-kde-git
 sudo hardcode-fixer
 pause_function
-# arc-icon-theme
 
 print_title "Mount hard drives"
 cd /

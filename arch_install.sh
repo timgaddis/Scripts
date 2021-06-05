@@ -29,17 +29,11 @@ print_title "Test internet connection"
 ping -c 3 www.google.com
 pause_function
 
-print_title "Update mirror list"
-curl -O https://raw.githubusercontent.com/Gen2ly/armrr/master/armrr
-chmod +x armrr 
-./armrr US
-pause_function
-
 print_title "Install arch-install-scripts"
 pacman -Syy
-wget https://git.archlinux.org/arch-install-scripts.git/snapshot/arch-install-scripts-23.tar.gz
-tar zxvf arch-install-scripts-23.tar.gz
-cd arch-install-scripts-23
+wget https://git.archlinux.org/arch-install-scripts.git/snapshot/arch-install-scripts-24.tar.gz
+tar zxvf arch-install-scripts-24.tar.gz
+cd arch-install-scripts-24
 pause_function
 
 print_title "Load partitions"
