@@ -66,6 +66,12 @@ then
     sudo systemctl enable ntpd.service
     pause_function
 
+    print_title "Install bluetooth"
+    sudo pacman -S --noconfirm --needed bluez bluez-utils gnome-bluetooth blueman
+    sudo systemctl start bluetooth.service
+    sudo systemctl enable bluetooth.service
+    pause_function
+
     print_title "Install codecs"
     sudo pacman -S --noconfirm --needed a52dec faac faad2 flac jasper lame libdca libdv libmad libmpeg2 libtheora libvorbis libxv wavpack x264 xvidcore gst-plugins-base gst-plugins-base-libs gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-libav lirc libva-vdpau-driver portaudio twolame projectm libgoom2 vcdimager ttf-freefont lua-socket alsa-firmware playerctl
     pause_function
@@ -75,13 +81,12 @@ then
     pause_function
 
     print_title "Install apps"
-    sudo pacman -S --noconfirm --needed firefox wine plank gimp deja-dup vlc steam thunderbird keepassxc hexchat qbittorrent eog eog-plugins pan vocal inkscape borg
+    sudo pacman -S --noconfirm --needed firefox wine plank gimp deja-dup vlc steam thunderbird keepassxc hexchat qbittorrent eog eog-plugins pan vocal inkscape borg piper
     # gimp-plugin-lqr gimp-plugin-gmic gimp-plugin-fblur gimp-refocus gimp-nufraw
     pause_function
 
     print_title "Install AUR apps"
-    yay -S --noconfirm --needed ferdi gimp-paint-studio cinnamon-sound-effects menulibre qdirstat vorta pamac-all google-chrome
-    # megasync nemo-megasync
+    yay -S --noconfirm --needed ferdi gimp-paint-studio cinnamon-sound-effects menulibre qdirstat google-chrome megasync nemo-megasync vorta pamac-all
     # gimp-plugin-pandora
     pause_function
 
@@ -110,7 +115,7 @@ then
     # pause_function
 
     print_title "Install LibreOffice"
-    sudo pacman -S --noconfirm --needed libreoffice
+    sudo pacman -S --noconfirm --needed libreoffice-fresh
     pause_function
 
     print_title "Install Sublime Text"
@@ -145,8 +150,14 @@ then
 else
     print_title "First Run!!"
         
-    print_title "Install nvidia libgl drivers"
-    sudo pacman -S --noconfirm --needed nvidia-libgl lib32-nvidia-libgl
+    # print_title "Install nvidia libgl drivers"
+    # sudo pacman -S --noconfirm --needed nvidia-libgl lib32-nvidia-libgl
+    # pause_function
+
+    print_title "Install Raedon drivers"
+    pacman -S xf86-video-ati radeon-profile-git radeon-profile-daemon-git vulkan-radeon lib32-vulkan-radeon vulkan-tools
+    sudo systemctl enable radeon-profile-daemon.service
+    sudo systemctl start radeon-profile-daemon.service
     pause_function
 
     print_title "Disable dhcpcd service"

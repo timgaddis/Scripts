@@ -30,10 +30,9 @@ ping -c 3 www.google.com
 pause_function
 
 print_title "Install arch-install-scripts"
-pacman -Syy
-wget https://git.archlinux.org/arch-install-scripts.git/snapshot/arch-install-scripts-24.tar.gz
-tar zxvf arch-install-scripts-24.tar.gz
-cd arch-install-scripts-24
+pacman -Syy --noconfirm git
+git clone https://github.com/archlinux/arch-install-scripts.git
+cd arch-install-scripts
 pause_function
 
 print_title "Load partitions"
@@ -110,7 +109,7 @@ pause_function
 
 print_title "Install grub and wget"
 # Install the grub package
-arch_chroot "pacman -S grub os-prober wget efibootmgr nano"
+arch_chroot "pacman -S grub os-prober wget efibootmgr nano ntfs-3g"
 
 print_title "Install bootloader"
 # Install the bootloader
@@ -119,6 +118,7 @@ arch_chroot "mount /dev/$BOOT /boot/EFI"
 arch_chroot "grub-install --target=x86_64-efi --efi-directory=/boot/EFI --bootloader-id=Arch --recheck"
 
 print_title "Generate grub.cfg"
+arch_chroot "echo GRUB_DISABLE_OS_PROBER=false >> /etc/default/grub"
 # Generate grub.cfg
 arch_chroot "grub-mkconfig -o /boot/grub/grub.cfg"
 pause_function

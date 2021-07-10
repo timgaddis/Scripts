@@ -53,9 +53,9 @@ print_title "Install Xorg"
 pacman -S --noconfirm bash-completion mesa xorg-twm xterm xorg xorg-apps xorg-xinit
 pause_function
 
-print_title "Install Nvidia drivers"
-pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
-pause_function
+# print_title "Install Nvidia drivers"
+# pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
+# pause_function
 
 # print_title "Virtualbox drivers"
 # pacman -S virtualbox-guest-utils mesa-libgl
