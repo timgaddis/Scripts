@@ -86,7 +86,7 @@ then
     pause_function
 
     print_title "Install AUR apps"
-    yay -S --noconfirm --needed ferdi gimp-paint-studio cinnamon-sound-effects menulibre qdirstat google-chrome megasync nemo-megasync vorta pamac-all
+    yay -S --noconfirm --needed ferdi gimp-paint-studio cinnamon-sound-effects menulibre qdirstat google-chrome megasync-nopdfium nemo-megasync vorta pamac-all
     # gimp-plugin-pandora
     pause_function
 
@@ -155,7 +155,8 @@ else
     # pause_function
 
     print_title "Install Raedon drivers"
-    pacman -S xf86-video-ati radeon-profile-git radeon-profile-daemon-git vulkan-radeon lib32-vulkan-radeon vulkan-tools
+    sudo pacman -S --noconfirm --needed xf86-video-ati vulkan-radeon lib32-vulkan-radeon vulkan-tools
+    yay -S --noconfirm --needed radeon-profile-git radeon-profile-daemon-git
     sudo systemctl enable radeon-profile-daemon.service
     sudo systemctl start radeon-profile-daemon.service
     pause_function

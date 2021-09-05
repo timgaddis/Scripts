@@ -44,7 +44,7 @@ sudo pacman -S --noconfirm --needed adobe-source-sans-pro-fonts cantarell-fonts 
 pause_function
 
 print_title "Install apps"
-sudo pacman -S --noconfirm --needed plank deja-dup keepassxc wine vlc qbittorrent pan vocal chromium steam inkscape borg thunderbird hexchat gimp
+sudo pacman -S --noconfirm --needed plank deja-dup keepassxc wine vlc qbittorrent pan vocal steam inkscape borg thunderbird hexchat gimp piper
 #sudo pacman -S --noconfirm --needed gimp-plugin-lqr gimp-plugin-gmic gimp-plugin-fblur gimp-refocus gimp-nufraw
 pause_function
 
@@ -59,12 +59,13 @@ sudo pacman -S --noconfirm --needed libreoffice-fresh
 pause_function
 
 print_title "Install AUR apps"
-yay -S --noconfirm --needed ferdi gimp-paint-studio qdirstat vorta megasync nemo-megasync cinnamon-sound-effects menulibre pamac-all
+yay -S --noconfirm --needed ferdi gimp-paint-studio qdirstat vorta megasync nemo-megasync cinnamon-sound-effects menulibre google-chrome
+# pamac-all
 pause_function
 
 print_title "Install programming apps"
 sudo pacman -S --noconfirm --needed jre11-openjdk-headless jre11-openjdk jdk11-openjdk openjdk11-doc openjdk11-src
-sudo pacman -S --noconfirm --needed gitg sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-feedparser python-numpy
+sudo pacman -S --noconfirm --needed gitg sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-feedparser python-numpy kotlin
 yay -S --noconfirm --needed google-cloud-sdk
 pause_function
 

@@ -66,7 +66,7 @@ startx
 pause_function
 
 print_title "Install Cinnamon"
-pacman -S --noconfirm cinnamon nemo-fileroller
+pacman -S --noconfirm cinnamon nemo-fileroller nemo-image-converter nemo-preview nemo-share
 pause_function
 
 #print_title "Install and enable LightDM"
