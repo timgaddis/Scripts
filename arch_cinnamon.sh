@@ -51,10 +51,11 @@ then
     pause_function
     
     print_title "Install printers"
-    sudo pacman -S --noconfirm --needed gsfonts cups ghostscript system-config-printer gutenprint gtk3-print-backends
+    sudo pacman -S --noconfirm --needed gsfonts cups ghostscript system-config-printer gutenprint gtk3-print-backends foomatic-db-gutenprint-ppds cups-pdf foomatic-db foomatic-db-ppds foomatic-db-nonfree-ppds
+    yay -S --noconfirm --needed brother-mfc-j491dw
     sudo gpasswd -a tgaddis sys
-    sudo systemctl enable org.cups.cupsd.service
-    sudo systemctl start org.cups.cupsd.service
+    sudo systemctl enable cups.service
+    sudo systemctl start cups.service
     pause_function
     
     print_title "Configure gnome terminal"
