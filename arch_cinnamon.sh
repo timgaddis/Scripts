@@ -33,21 +33,13 @@ then
     fi
 
     print_title "Install dependencies"
-    sudo pacman -Sy --noconfirm --needed expac yajl bash-completion gnupg git
+    sudo pacman -Sy --noconfirm --needed expac yajl bash-completion gnupg
     gpg --list-keys
     echo "keyring /etc/pacman.d/gnupg/pubring.gpg" >> ~/.gnupg/gpg.conf
     pause_function
 
-    print_title "Install yay"
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
-    makepkg -si
-    cd ..
-    rm -rf yay
-    pause_function
-
     print_title "Install system apps"
-    sudo pacman -S --noconfirm --needed gedit p7zip gparted conky curl jq gnome-font-viewer lynx python-lxml libmtp gvfs-mtp mate-calc gnome-screenshot ntfs-3g gnome-terminal gnome-keyring openvpn networkmanager-openvpn grub-customizer neofetch cmake evince unace arj
+    sudo pacman -S --noconfirm --needed gedit p7zip gparted conky curl jq gnome-font-viewer lynx python-lxml libmtp gvfs-mtp mate-calc gnome-screenshot ntfs-3g gnome-terminal gnome-keyring openvpn networkmanager-openvpn grub-customizer neofetch cmake evince unace arj downgrade amd-ucode
     pause_function
     
     print_title "Install printers"
@@ -87,8 +79,8 @@ then
     pause_function
 
     print_title "Install AUR apps"
-    yay -S --noconfirm --needed ferdi gimp-paint-studio cinnamon-sound-effects menulibre qdirstat google-chrome megasync-nopdfium nemo-megasync vorta pamac-all
-    # gimp-plugin-pandora
+    yay -S --noconfirm --needed franz gimp-paint-studio cinnamon-sound-effects google-chrome megasync nemo-megasync vorta pamac-aur
+    #gimp-plugin-pandora menulibre qdirstat
     pause_function
 
     print_title "Install programming apps"
@@ -154,6 +146,15 @@ else
     # print_title "Install nvidia libgl drivers"
     # sudo pacman -S --noconfirm --needed nvidia-libgl lib32-nvidia-libgl
     # pause_function
+
+    print_title "Install yay"
+    sudo pacman -S --noconfirm git
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si
+    cd ..
+    rm -rf yay
+    pause_function
 
     print_title "Install Raedon drivers"
     sudo pacman -S --noconfirm --needed xf86-video-ati vulkan-radeon lib32-vulkan-radeon vulkan-tools
