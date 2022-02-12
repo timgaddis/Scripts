@@ -31,14 +31,8 @@ sudo pacman -Syy
 
 sudo pacman -R xed 
 
-print_title "Generate grub.cfg"
-sudo pacman -S --noconfirm os-prober
-sudo sed -i 's/GRUB_DISABLE_OS_PROBER=true/GRUB_DISABLE_OS_PROBER=false/' /etc/default/grub
-sudo grub-mkconfig -o /boot/grub/grub.cfg
-pause_function
-
 print_title "Install system apps"
-sudo pacman -S --noconfirm --needed conky jq lynx python-lxml mate-calc grub-customizer cmake eog eog-plugins unace arj expac yajl p7zip gparted gnome-font-viewer grub-customizer downgrade gedit r8125-dkms
+sudo pacman -S --noconfirm --needed conky jq lynx python-lxml mate-calc grub-customizer cmake eog eog-plugins unace arj expac yajl p7zip gparted gnome-font-viewer grub-customizer gedit
 pause_function
 
 print_title "Install codecs"
@@ -55,13 +49,13 @@ sudo pacman -S --noconfirm --needed plank deja-dup keepassxc wine vlc qbittorren
 pause_function
 
 print_title "Install AUR apps"
-yay -S --noconfirm --needed franz gimp-paint-studio vorta megasync nemo-megasync cinnamon-sound-effects google-chrome pamac-aur brother-mfc-j491dw
+yay -S --noconfirm --needed ferdi gimp-paint-studio vorta megasync nemo-megasync cinnamon-sound-effects google-chrome pamac-aur brother-mfc-j491dw
 pause_function
 
 print_title "Install programming apps"
 sudo pacman -S --noconfirm --needed jre11-openjdk-headless jre11-openjdk jdk11-openjdk openjdk11-doc openjdk11-src
 sudo pacman -S --noconfirm --needed gitg sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-feedparser python-numpy kotlin
-yay -S --noconfirm --needed google-cloud-sdk
+yay -S --noconfirm --needed google-cloud-sdk google-cloud-sdk-app-engine-python google-cloud-sdk-app-engine-python-extras google-cloud-sdk-datastore-emulator
 pause_function
 
 print_title "Install and start plex"
