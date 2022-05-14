@@ -32,9 +32,16 @@ sudo pacman -Syy
 sudo pacman -R xed 
 
 print_title "Install system apps"
-sudo pacman -S --noconfirm --needed conky jq lynx python-lxml mate-calc grub-customizer cmake eog eog-plugins unace arj expac yajl p7zip gparted gnome-font-viewer grub-customizer gedit
+sudo pacman -S --noconfirm --needed conky jq lynx python-lxml mate-calc grub-customizer cmake eog eog-plugins unace arj expac yajl p7zip gparted gnome-font-viewer grub-customizer gedit numlockx gnome-keyring
 pause_function
 
+print_title "Install Raedon drivers"
+sudo pacman -S --noconfirm --needed xf86-video-ati vulkan-radeon lib32-vulkan-radeon vulkan-tools
+yay -S --noconfirm --needed radeon-profile-git radeon-profile-daemon-git
+sudo systemctl enable radeon-profile-daemon.service
+sudo systemctl start radeon-profile-daemon.service
+pause_function
+    
 print_title "Install codecs"
 sudo pacman -S --noconfirm --needed a52dec faac faad2 flac jasper lame libdca libdv libmad libmpeg2 libtheora libvorbis libxv wavpack x264 xvidcore gst-plugins-base gst-plugins-base-libs gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-libav lirc libva-vdpau-driver portaudio twolame projectm libgoom2 vcdimager ttf-freefont lua-socket alsa-firmware playerctl
 pause_function
@@ -44,17 +51,18 @@ sudo pacman -S --noconfirm --needed adobe-source-sans-pro-fonts cantarell-fonts 
 pause_function
 
 print_title "Install apps"
-sudo pacman -S --noconfirm --needed plank deja-dup keepassxc wine vlc qbittorrent pan vocal steam inkscape borg thunderbird hexchat gimp piper
-#sudo pacman -S --noconfirm --needed gimp-plugin-lqr gimp-plugin-gmic gimp-plugin-fblur gimp-refocus gimp-nufraw
+sudo pacman -S --noconfirm --needed plank deja-dup keepassxc wine vlc qbittorrent pan vocal steam inkscape borg hexchat gimp piper thunderbird 
+#sudo pacman -S --noconfirm --needed gimp-plugin-lqr gimp-plugin-gmic gimp-plugin-fblur gimp-refocus gimp-nufraw 
 pause_function
 
 print_title "Install AUR apps"
-yay -S --noconfirm --needed ferdi gimp-paint-studio vorta megasync nemo-megasync cinnamon-sound-effects google-chrome pamac-aur brother-mfc-j491dw
+#yay -S --noconfirm --needed ferdi nodejs-lts-gallium
+yay -S --noconfirm --needed ferdium gimp-paint-studio vorta megasync-bin nemo-megasync google-chrome brother-mfc-j491dw mint-artwork pamac-aur
 pause_function
 
 print_title "Install programming apps"
 sudo pacman -S --noconfirm --needed jre11-openjdk-headless jre11-openjdk jdk11-openjdk openjdk11-doc openjdk11-src
-sudo pacman -S --noconfirm --needed gitg sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-feedparser python-numpy kotlin
+sudo pacman -S --noconfirm --needed gitg sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-feedparser python-numpy kotlin tk
 yay -S --noconfirm --needed google-cloud-sdk google-cloud-sdk-app-engine-python google-cloud-sdk-app-engine-python-extras google-cloud-sdk-datastore-emulator
 pause_function
 
@@ -83,8 +91,7 @@ pause_function
 
 print_title "Install themes"
 sudo pacman -S --noconfirm --needed arc-icon-theme gtk-engine-murrine elementary-icon-theme gtk-engine-murrine
-yay -S --noconfirm --needed papirus-libreoffice-theme hardcode-fixer-git papirus-icon-theme-git plank-theme-arc
-sudo hardcode-fixer
+yay -S --noconfirm --needed papirus-libreoffice-theme papirus-icon-theme-git plank-theme-arc
 pause_function
 
 print_title "Mount hard drives"
