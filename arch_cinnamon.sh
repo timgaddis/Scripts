@@ -39,11 +39,15 @@ then
     pause_function
 
     print_title "Install system apps"
-    sudo pacman -S --noconfirm --needed gedit p7zip gparted conky curl jq gnome-font-viewer lynx python-lxml libmtp gvfs-mtp mate-calc gnome-screenshot ntfs-3g gnome-terminal gnome-keyring openvpn networkmanager-openvpn grub-customizer neofetch cmake evince unace arj downgrade amd-ucode
+    sudo pacman -S --noconfirm --needed gedit p7zip gparted conky curl jq gnome-font-viewer lynx python-lxml libmtp gvfs gvfs-mtp gnome-calculator gnome-screenshot gnome-system-monitor ntfs-3g gnome-terminal gnome-keyring openvpn networkmanager-openvpn neofetch cmake evince unace arj downgrade
     pause_function
-    
+
+    print_title "Install Hardware apps"
+    sudo pacman -S --noconfirm --needed amd-ucode dmidecode dmraid hdparm hwdetect intel-ucode lsscsi mtools sg3_utils sof-firmware
+    pause_function
+
     print_title "Install printers"
-    sudo pacman -S --noconfirm --needed gsfonts cups ghostscript system-config-printer gutenprint gtk3-print-backends foomatic-db-gutenprint-ppds cups-pdf foomatic-db foomatic-db-ppds foomatic-db-nonfree-ppds
+    sudo pacman -S --noconfirm --needed gtk3-print-backends cups cups-filters cups-pdf foomatic-db foomatic-db-engine foomatic-db-gutenprint-ppds foomatic-db-nonfree foomatic-db-nonfree-ppds foomatic-db-ppds ghostscript gsfonts gutenprint splix system-config-printer
     yay -S --noconfirm --needed brother-mfc-j491dw
     sudo gpasswd -a tgaddis sys
     sudo systemctl enable cups.service
@@ -70,23 +74,23 @@ then
     pause_function
 
     print_title "Install fonts"
-    sudo pacman -S --noconfirm --needed --needed adobe-source-sans-pro-fonts cantarell-fonts noto-fonts ttf-bitstream-vera ttf-dejavu ttf-droid ttf-hack ttf-inconsolata ttf-liberation ttf-roboto ttf-ubuntu-font-family tamsyn-font
+    sudo pacman -S --noconfirm --needed --needed adobe-source-sans-pro-fonts cantarell-fonts noto-fonts ttf-bitstream-vera ttf-dejavu ttf-droid ttf-hack ttf-inconsolata ttf-liberation ttf-roboto ttf-ubuntu-font-family tamsyn-font freetype2 ttf-opensans
     pause_function
 
     print_title "Install apps"
-    sudo pacman -S --noconfirm --needed firefox wine plank gimp deja-dup vlc steam thunderbird keepassxc hexchat qbittorrent eog eog-plugins pan vocal inkscape borg piper
+    sudo pacman -S --noconfirm --needed gthumb firefox wine plank gimp deja-dup vlc steam keepassxc hexchat qbittorrent eog eog-plugins pan vocal inkscape borg piper
     # gimp-plugin-lqr gimp-plugin-gmic gimp-plugin-fblur gimp-refocus gimp-nufraw
     pause_function
 
     print_title "Install AUR apps"
-    yay -S --noconfirm --needed franz gimp-paint-studio cinnamon-sound-effects google-chrome megasync nemo-megasync vorta pamac-aur
-    #gimp-plugin-pandora menulibre qdirstat
+    yay -S --noconfirm --needed ferdium-bin gimp-paint-studio megasync nemo-megasync vorta google-chrome brother-mfc-j491dw mint-artwork-cinnamon pamac-aur mailspring stash-bin
     pause_function
 
     print_title "Install programming apps"
     sudo pacman -S --noconfirm --needed jre11-openjdk-headless jre11-openjdk jdk11-openjdk openjdk11-doc openjdk11-src
-    sudo pacman -S --noconfirm --needed gitg nodejs sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-pip python-feedparser kotlin
-    yay -S --noconfirm --needed google-cloud-sdk
+    sudo pacman -S --noconfirm --needed gitg sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-feedparser python-numpy kotlin nodejs
+    yay -S --noconfirm --needed google-cloud-sdk google-cloud-sdk-app-engine-python google-cloud-sdk-app-engine-python-extras google-cloud-sdk-datastore-emulator
+    yay -S --noconfirm --needed python-selenium geckodriver chromedriver
     pause_function
     
     print_title "Install and start plex"
@@ -118,9 +122,8 @@ then
     pause_function
 	
     print_title "Install AUR themes"
-    sudo pacman -S --noconfirm --needed arc-icon-theme arc-gtk-theme gtk-engine-murrine elementary-icon-theme gtk-engine-murrine
-    yay -S --noconfirm --needed papirus-libreoffice-theme hardcode-fixer-git paper-icon-theme-git papirus-icon-theme-git plank-theme-arc
-    sudo hardcode-fixer
+    sudo pacman -S --noconfirm --needed arc-icon-theme gtk-engine-murrine elementary-icon-theme gtk-engine-murrine
+    yay -S --noconfirm --needed papirus-libreoffice-theme papirus-icon-theme-git plank-theme-arc
     pause_function
 
     print_title "Mount hard drives"
