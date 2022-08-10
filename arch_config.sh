@@ -25,8 +25,8 @@ pacman -Syu
 pause_function
 
 print_title "Install audio"
-pacman -S --noconfirm alsa-utils alsa-plugins alsa-firmware pulseaudio-alsa pulseaudio-equalizer pulseaudio-jack
-amixer sset Master unmute
+pacman -S --noconfirm --needed alsa-firmware alsa-plugins alsa-utils pavucontrol pipewire-pulse wireplumber pipewire-alsa pipewire-jack rtkit
+#amixer sset Master unmute
 pause_function
 
 print_title "Add user"
@@ -50,7 +50,7 @@ pacman -Syu
 pause_function
 
 print_title "Install Xorg"
-pacman -S --noconfirm bash-completion mesa xorg-twm xterm xorg xorg-apps xorg-xinit
+pacman -S --noconfirm bash-completion mesa xorg-twm xterm xorg xorg-apps libwnck3 mesa-utils xf86-input-libinput xorg-xdpyinfo xorg-server xorg-xinit xorg-xinput xorg-xkill xorg-xrandr
 pause_function
 
 # print_title "Install Nvidia drivers"
@@ -66,7 +66,7 @@ startx
 pause_function
 
 print_title "Install Cinnamon"
-pacman -S --noconfirm cinnamon nemo-fileroller nemo-image-converter nemo-preview nemo-share
+pacman -S --noconfirm cinnamon cinnamon-translations file-roller nemo-fileroller nemo-image-converter nemo-preview nemo-share xdg-user-dirs-gtk
 pause_function
 
 #print_title "Install and enable LightDM"
@@ -78,4 +78,3 @@ print_title "Install and start GDM"
 pacman -S --noconfirm gdm
 systemctl enable gdm
 systemctl start gdm
-
