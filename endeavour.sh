@@ -32,7 +32,7 @@ sudo pacman -Syy
 sudo pacman -R xed 
 
 print_title "Install system apps"
-sudo pacman -S --noconfirm --needed conky jq lynx python-lxml mate-calc grub-customizer cmake eog eog-plugins unace arj expac yajl p7zip gparted gnome-font-viewer grub-customizer gedit numlockx gnome-keyring
+sudo pacman -S --noconfirm --needed conky jq lynx python-lxml mate-calc cmake eog eog-plugins unace arj expac yajl p7zip gparted gnome-font-viewer gedit numlockx gnome-keyring
 pause_function
 
 print_title "Install Raedon drivers"
@@ -51,19 +51,19 @@ sudo pacman -S --noconfirm --needed adobe-source-sans-pro-fonts cantarell-fonts 
 pause_function
 
 print_title "Install apps"
-sudo pacman -S --noconfirm --needed plank deja-dup keepassxc wine vlc qbittorrent pan vocal steam inkscape borg hexchat gimp piper thunderbird 
+sudo pacman -S --noconfirm --needed plank deja-dup keepassxc wine vlc qbittorrent pan vocal steam inkscape borg hexchat gimp piper 
 #sudo pacman -S --noconfirm --needed gimp-plugin-lqr gimp-plugin-gmic gimp-plugin-fblur gimp-refocus gimp-nufraw 
 pause_function
 
 print_title "Install AUR apps"
-#yay -S --noconfirm --needed ferdi nodejs-lts-gallium
-yay -S --noconfirm --needed ferdium gimp-paint-studio vorta megasync-bin nemo-megasync google-chrome brother-mfc-j491dw mint-artwork pamac-aur
+yay -S --noconfirm --needed ferdium-bin gimp-paint-studio megasync nemo-megasync vorta google-chrome brother-mfc-j491dw mint-artwork-cinnamon pamac-aur mailspring stash-bin
 pause_function
 
 print_title "Install programming apps"
 sudo pacman -S --noconfirm --needed jre11-openjdk-headless jre11-openjdk jdk11-openjdk openjdk11-doc openjdk11-src
-sudo pacman -S --noconfirm --needed gitg sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-feedparser python-numpy kotlin tk
+sudo pacman -S --noconfirm --needed gitg sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-feedparser python-numpy kotlin
 yay -S --noconfirm --needed google-cloud-sdk google-cloud-sdk-app-engine-python google-cloud-sdk-app-engine-python-extras google-cloud-sdk-datastore-emulator
+yay -S --noconfirm --needed python-selenium geckodriver chromedriver
 pause_function
 
 print_title "Install and start plex"
