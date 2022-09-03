@@ -41,7 +41,27 @@ yay -S --noconfirm --needed radeon-profile-git radeon-profile-daemon-git
 sudo systemctl enable radeon-profile-daemon.service
 sudo systemctl start radeon-profile-daemon.service
 pause_function
-    
+
+print_title "Install rEFInd Boot Manager"
+sudo pacman -S --noconfirm --needed refind git
+git clone https://github.com/bobafetthotmail/refind-theme-regular.git
+cd refind-theme-regular
+sed -i '24 s/banner/#banner/' theme.conf
+sed -i '28 s/#banner/banner/' theme.conf
+sed -i '35 s/selection_big/#selection_big/' theme.conf
+sed -i '39 s/#selection_big/selection_big/' theme.conf
+sed -i '44 s/selection_small/#selection_small/' theme.conf
+sed -i '48 s/#selection_small/selection_small/' theme.conf
+rm install.sh
+rm -fr src
+rm -fr .git
+cd ..
+sudo mkdir -p /boot/efi/EFI/refind/themes
+sudo cp -r refind-theme-regular /boot/efi/EFI/refind/themes/
+sudo bash -c 'echo "include themes/refind-theme-regular/theme.conf" >> /boot/efi/EFI/refind/refind.conf'
+sudo pacman -Rcns --noconfirm grub
+pause_function
+
 print_title "Install codecs"
 sudo pacman -S --noconfirm --needed a52dec faac faad2 flac jasper lame libdca libdv libmad libmpeg2 libtheora libvorbis libxv wavpack x264 xvidcore gst-plugins-base gst-plugins-base-libs gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-libav lirc libva-vdpau-driver portaudio twolame projectm libgoom2 vcdimager ttf-freefont lua-socket alsa-firmware playerctl
 pause_function
@@ -56,7 +76,7 @@ sudo pacman -S --noconfirm --needed plank deja-dup keepassxc wine vlc qbittorren
 pause_function
 
 print_title "Install AUR apps"
-yay -S --noconfirm --needed ferdium-bin gimp-paint-studio megasync nemo-megasync vorta google-chrome brother-mfc-j491dw mint-artwork-cinnamon pamac-aur mailspring stash-bin
+yay -S --noconfirm --needed ferdium-bin kalu gimp-paint-studio megasync libpdfium-nojs nemo-megasync vorta google-chrome brother-mfc-j491dw mint-artwork-cinnamon mailspring stash-bin
 pause_function
 
 print_title "Install programming apps"
