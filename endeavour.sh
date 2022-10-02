@@ -44,6 +44,10 @@ pause_function
 
 print_title "Install rEFInd Boot Manager"
 sudo pacman -S --noconfirm --needed refind git
+sudo refind-install
+sudo sed -i '13 s/timeout 20/timeout 5/' /boot/efi/EFI/refind/refind.conf
+sudo sed -i '511 s/#default_selection Microsoft/default_selection vmlinuz/' /boot/efi/EFI/refind/refind.conf
+sudo cp /usr/share/endeavouros/EndeavourOS-icon.png /boot/efi/EFI/refind/icons/os_endeavourOS.png
 git clone https://github.com/bobafetthotmail/refind-theme-regular.git
 cd refind-theme-regular
 sed -i '24 s/banner/#banner/' theme.conf
@@ -82,7 +86,7 @@ pause_function
 print_title "Install programming apps"
 sudo pacman -S --noconfirm --needed jre11-openjdk-headless jre11-openjdk jdk11-openjdk openjdk11-doc openjdk11-src
 sudo pacman -S --noconfirm --needed gitg sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-feedparser python-numpy kotlin
-yay -S --noconfirm --needed google-cloud-sdk google-cloud-sdk-app-engine-python google-cloud-sdk-app-engine-python-extras google-cloud-sdk-datastore-emulator
+#yay -S --noconfirm --needed google-cloud-sdk google-cloud-sdk-app-engine-python google-cloud-sdk-app-engine-python-extras google-cloud-sdk-datastore-emulator
 yay -S --noconfirm --needed python-selenium geckodriver chromedriver
 pause_function
 
