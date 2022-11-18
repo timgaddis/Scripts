@@ -80,11 +80,11 @@ sudo pacman -S --noconfirm --needed plank deja-dup keepassxc wine vlc qbittorren
 pause_function
 
 print_title "Install AUR apps"
-yay -S --noconfirm --needed ferdium-bin kalu gimp-paint-studio megasync libpdfium-nojs nemo-megasync vorta google-chrome brother-mfc-j491dw mint-artwork-cinnamon mailspring stash-bin
+yay -S --noconfirm --needed ferdium-bin kalu gimp-paint-studio megasync libpdfium-nojs nemo-megasync vorta google-chrome brother-mfc-j491dw mint-artwork-cinnamon mailspring stash-bin fstl
 pause_function
 
 print_title "Install programming apps"
-sudo pacman -S --noconfirm --needed jre11-openjdk-headless jre11-openjdk jdk11-openjdk openjdk11-doc openjdk11-src
+sudo pacman -S --noconfirm --needed jre-openjdk-headless jre-openjdk jdk-openjdk openjdk-doc openjdk-src
 sudo pacman -S --noconfirm --needed gitg sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-feedparser python-numpy kotlin
 #yay -S --noconfirm --needed google-cloud-sdk google-cloud-sdk-app-engine-python google-cloud-sdk-app-engine-python-extras google-cloud-sdk-datastore-emulator
 yay -S --noconfirm --needed python-selenium geckodriver chromedriver
@@ -115,7 +115,7 @@ pause_function
 
 print_title "Install themes"
 sudo pacman -S --noconfirm --needed arc-icon-theme gtk-engine-murrine elementary-icon-theme gtk-engine-murrine
-yay -S --noconfirm --needed papirus-libreoffice-theme papirus-icon-theme-git plank-theme-arc
+yay -S --noconfirm --needed papirus-icon-theme-git plank-theme-arc
 pause_function
 
 print_title "Mount hard drives"
