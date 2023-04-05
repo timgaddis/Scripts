@@ -45,8 +45,8 @@ pause_function
 print_title "Install rEFInd Boot Manager"
 sudo pacman -S --noconfirm --needed refind git
 sudo refind-install
-sudo sed -i '13 s/timeout 20/timeout 5/' /boot/efi/EFI/refind/refind.conf
-sudo sed -i '511 s/#default_selection Microsoft/default_selection vmlinuz/' /boot/efi/EFI/refind/refind.conf
+sudo sed -i 's/timeout 20/timeout 5/' /boot/efi/EFI/refind/refind.conf
+sudo sed -i 's/#default_selection Microsoft/default_selection vmlinuz/' /boot/efi/EFI/refind/refind.conf
 sudo cp /usr/share/endeavouros/EndeavourOS-icon.png /boot/efi/EFI/refind/icons/os_endeavourOS.png
 git clone https://github.com/bobafetthotmail/refind-theme-regular.git
 cd refind-theme-regular
@@ -71,11 +71,11 @@ sudo pacman -S --noconfirm --needed a52dec faac faad2 flac jasper lame libdca li
 pause_function
 
 print_title "Install fonts"
-sudo pacman -S --noconfirm --needed adobe-source-sans-pro-fonts cantarell-fonts noto-fonts ttf-bitstream-vera ttf-dejavu ttf-droid ttf-hack ttf-inconsolata ttf-liberation ttf-roboto ttf-ubuntu-font-family tamsyn-font
+sudo pacman -S --noconfirm --needed adobe-source-sans-pro-fonts cantarell-fonts noto-fonts ttf-bitstream-vera ttf-dejavu ttf-droid ttf-hack ttf-inconsolata ttf-liberation ttf-roboto ttf-ubuntu-font-family
 pause_function
 
 print_title "Install apps"
-sudo pacman -S --noconfirm --needed plank deja-dup keepassxc wine vlc qbittorrent pan vocal steam inkscape borg hexchat gimp piper 
+sudo pacman -S --noconfirm --needed plank deja-dup keepassxc wine vlc qbittorrent pan vocal steam inkscape borg hexchat gimp
 #sudo pacman -S --noconfirm --needed gimp-plugin-lqr gimp-plugin-gmic gimp-plugin-fblur gimp-refocus gimp-nufraw 
 pause_function
 
@@ -94,6 +94,12 @@ print_title "Install and start plex"
 yay -S --noconfirm --needed plex-media-server
 sudo systemctl enable plexmediaserver.service
 sudo systemctl start plexmediaserver.service
+pause_function
+
+print_title "Install and start Corsair driver"
+yay -S --noconfirm --needed ckb-next
+sudo systemctl enable ckb-next-daemon.service
+sudo systemctl start ckb-next-daemon.service
 pause_function
 
 print_title "Install LibreOffice"
@@ -116,6 +122,9 @@ pause_function
 print_title "Install themes"
 sudo pacman -S --noconfirm --needed arc-icon-theme gtk-engine-murrine elementary-icon-theme gtk-engine-murrine
 yay -S --noconfirm --needed papirus-icon-theme-git plank-theme-arc
+yay -S --noconfirm --needed hardcode-fixer-git hardcode-tray-git
+sudo hardcode-fixer
+sudo hardcode-tray --apply
 pause_function
 
 print_title "Mount hard drives"
