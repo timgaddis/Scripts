@@ -80,7 +80,7 @@ sudo pacman -S --noconfirm --needed plank deja-dup keepassxc wine vlc qbittorren
 pause_function
 
 print_title "Install AUR apps"
-yay -S --noconfirm --needed ferdium-bin kalu gimp-paint-studio megasync libpdfium-nojs nemo-megasync vorta google-chrome brother-mfc-j491dw mint-artwork-cinnamon mailspring stash-bin fstl
+yay -S --noconfirm --needed ferdium-bin kalu gimp-paint-studio megasync-bin nemo-megasync vorta google-chrome brother-mfc-j491dw mailspring stash-bin fstl
 pause_function
 
 print_title "Install programming apps"
@@ -122,9 +122,6 @@ pause_function
 print_title "Install themes"
 sudo pacman -S --noconfirm --needed arc-icon-theme gtk-engine-murrine elementary-icon-theme gtk-engine-murrine
 yay -S --noconfirm --needed papirus-icon-theme-git plank-theme-arc
-yay -S --noconfirm --needed hardcode-fixer-git hardcode-tray-git
-sudo hardcode-fixer
-sudo hardcode-tray --apply
 pause_function
 
 print_title "Mount hard drives"
