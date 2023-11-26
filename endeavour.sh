@@ -32,7 +32,7 @@ sudo pacman -Syy
 sudo pacman -R xed 
 
 print_title "Install system apps"
-sudo pacman -S --noconfirm --needed conky jq lynx python-lxml mate-calc cmake eog eog-plugins unace arj expac yajl p7zip gparted gnome-font-viewer gedit numlockx gnome-keyring
+sudo pacman -S --noconfirm --needed conky jq lynx python-lxml mate-calc cmake eog eog-plugins unace arj expac yajl p7zip gparted gnome-font-viewer gedit numlockx gnome-keyring xdg-desktop-portal-gtk
 pause_function
 
 print_title "Install Raedon drivers"
@@ -46,6 +46,7 @@ print_title "Install rEFInd Boot Manager"
 sudo pacman -S --noconfirm --needed refind git
 sudo refind-install
 sudo sed -i 's/timeout 20/timeout 5/' /boot/efi/EFI/refind/refind.conf
+sudo sed -i 's/#resolution 1024 768/resolution 1024 768/' /boot/efi/EFI/refind/refind.conf
 sudo sed -i 's/#default_selection Microsoft/default_selection vmlinuz/' /boot/efi/EFI/refind/refind.conf
 sudo cp /usr/share/endeavouros/EndeavourOS-icon.png /boot/efi/EFI/refind/icons/os_endeavourOS.png
 git clone https://github.com/bobafetthotmail/refind-theme-regular.git
@@ -87,7 +88,7 @@ print_title "Install programming apps"
 sudo pacman -S --noconfirm --needed jdk-openjdk openjdk-doc openjdk-src
 sudo pacman -S --noconfirm --needed gitg sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-feedparser python-numpy python-regex kotlin
 #yay -S --noconfirm --needed google-cloud-sdk google-cloud-sdk-app-engine-python google-cloud-sdk-app-engine-python-extras google-cloud-sdk-datastore-emulator
-yay -S --noconfirm --needed python-selenium geckodriver chromedriver
+yay -S --noconfirm --needed python-selenium selenium-manager geckodriver chromedriver
 pause_function
 
 print_title "Install and start plex"
