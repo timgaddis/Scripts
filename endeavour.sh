@@ -29,10 +29,10 @@ fi
 
 sudo pacman -Syy
 
-sudo pacman -R xed 
+sudo pacman -Rs xed
 
 print_title "Install system apps"
-sudo pacman -S --noconfirm --needed conky jq lynx python-lxml mate-calc cmake eog eog-plugins unace arj expac yajl p7zip gparted gnome-font-viewer gedit numlockx gnome-keyring xdg-desktop-portal-gtk
+sudo pacman -S --noconfirm --needed conky jq lynx python-lxml mate-calc cmake eog eog-plugins unace arj expac yajl p7zip gparted gnome-font-viewer gedit numlockx gnome-keyring xdg-desktop-portal-gtk evince
 pause_function
 
 print_title "Install Raedon drivers"
@@ -81,14 +81,13 @@ sudo pacman -S --noconfirm --needed plank deja-dup keepassxc wine vlc qbittorren
 pause_function
 
 print_title "Install AUR apps"
-yay -S --noconfirm --needed ferdium-bin kalu gimp-paint-studio megasync nemo-megasync vorta google-chrome brother-mfc-j491dw mailspring stash-bin fstl
+yay -S --noconfirm --needed ferdium kalu gimp-paint-studio megasync nemo-megasync vorta google-chrome brother-mfc-j491dw mailspring stash-bin fstl
 pause_function
 
 print_title "Install programming apps"
 sudo pacman -S --noconfirm --needed jdk-openjdk openjdk-doc openjdk-src
 sudo pacman -S --noconfirm --needed gitg sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-feedparser python-numpy python-regex kotlin
-#yay -S --noconfirm --needed google-cloud-sdk google-cloud-sdk-app-engine-python google-cloud-sdk-app-engine-python-extras google-cloud-sdk-datastore-emulator
-yay -S --noconfirm --needed python-selenium selenium-manager geckodriver chromedriver
+yay -S --noconfirm --needed python-selenium selenium-manager geckodriver chromedriver gitkraken
 pause_function
 
 print_title "Install and start plex"
