@@ -31,6 +31,9 @@ sudo pacman -Syy
 
 sudo pacman -Rs xed
 
+# pacman 6.1 change
+sudo sed -i '100 s/debug/!debug/' /etc/makepkg.conf
+
 print_title "Install system apps"
 sudo pacman -S --noconfirm --needed conky jq lynx python-lxml mate-calc cmake eog eog-plugins unace arj expac yajl p7zip gparted gnome-font-viewer gedit numlockx gnome-keyring xdg-desktop-portal-gtk evince
 pause_function
@@ -76,12 +79,12 @@ sudo pacman -S --noconfirm --needed adobe-source-sans-pro-fonts cantarell-fonts 
 pause_function
 
 print_title "Install apps"
-sudo pacman -S --noconfirm --needed plank deja-dup keepassxc wine vlc qbittorrent pan vocal steam inkscape borg hexchat gimp
+sudo pacman -S --noconfirm --needed plank deja-dup keepassxc wine vlc qbittorrent steam inkscape borg hexchat gimp
 #sudo pacman -S --noconfirm --needed gimp-plugin-lqr gimp-plugin-gmic gimp-plugin-fblur gimp-refocus gimp-nufraw 
 pause_function
 
 print_title "Install AUR apps"
-yay -S --noconfirm --needed ferdium kalu gimp-paint-studio megasync nemo-megasync vorta google-chrome brother-mfc-j491dw mailspring stash-bin fstl
+yay -S --noconfirm --needed ferdium kalu gimp-paint-studio megasync nemo-megasync vorta google-chrome brother-mfc-j491dw mailspring stash-bin fstl pan
 pause_function
 
 print_title "Install programming apps"
