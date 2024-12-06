@@ -43,7 +43,7 @@ sudo systemctl start radeon-profile-daemon.service
 pause_function
 
 print_title "Install codecs"
-sudo pacman -S --noconfirm --needed a52dec faac faad2 flac jasper lame libdca libdv libmad libmpeg2 libtheora libvorbis libxv wavpack x264 xvidcore gst-plugins-base gst-plugins-base-libs gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-libav lirc libva-vdpau-driver portaudio twolame projectm libgoom2 vcdimager ttf-freefont lua-socket alsa-firmware playerctl
+sudo pacman -S --noconfirm --needed a52dec faac faad2 flac jasper lame libdca libdv libmad libmpeg2 libtheora libvorbis libxv wavpack x264 xvidcore gst-plugins-base gst-plugins-base-libs gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-libav lirc portaudio twolame projectm libgoom2 vcdimager ttf-freefont lua-socket alsa-firmware playerctl
 pause_function
 
 print_title "Install fonts"
@@ -51,12 +51,17 @@ sudo pacman -S --noconfirm --needed adobe-source-sans-pro-fonts cantarell-fonts 
 pause_function
 
 print_title "Install apps"
-sudo pacman -S --noconfirm --needed plank deja-dup keepassxc wine vlc qbittorrent steam inkscape borg hexchat gimp solaar
+sudo pacman -S --noconfirm --needed plank deja-dup keepassxc wine vlc qbittorrent steam inkscape borg hexchat gimp solaar telegram-desktop
 pause_function
 
 print_title "Install AUR apps"
-yay -S --noconfirm --needed ferdium kalu gimp-paint-studio megasync-bin vorta google-chrome stash-bin fstl pan lightdm-settings mailspring
+yay -S --noconfirm --needed ferdium kalu gimp-paint-studio megasync-bin vorta google-chrome stash-bin fstl pan lightdm-settings mailspring-bin
 wget https://mega.nz/linux/repo/Arch_Extra/x86_64/nemo-megasync-x86_64.pkg.tar.zst && sudo pacman -U --noconfirm nemo-megasync-x86_64.pkg.tar.zst
+pause_function
+
+print_title "Install Flatpak"
+sudo pacman -S --noconfirm --needed flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 pause_function
 
 print_title "Install programming apps"
