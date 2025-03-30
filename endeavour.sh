@@ -95,7 +95,7 @@ pause_function
 
 print_title "Install themes and sounds"
 sudo pacman -S --noconfirm --needed arc-icon-theme gtk-engine-murrine elementary-icon-theme gtk-engine-murrine
-yay -S --noconfirm --needed papirus-icon-theme-git 
+yay -S --noconfirm --needed papirus-icon-theme-git flat-remix flat-remix-gtk
 mkdir sound
 cd sound
 wget -O PKGBUILD https://bit.ly/3YffPWX
