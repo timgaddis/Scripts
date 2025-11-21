@@ -32,7 +32,7 @@ sudo pacman -Syy
 sudo pacman -Rs --noconfirm xed
 
 print_title "Install system apps"
-sudo pacman -S --noconfirm --needed conky jq lynx python-lxml mate-calc cmake eog eog-plugins unace arj expac yajl p7zip gparted gnome-font-viewer gedit numlockx gnome-keyring xdg-desktop-portal-gtk evince
+sudo pacman -S --noconfirm --needed conky jq lynx python-lxml mate-calc cmake eog eog-plugins unace arj expac yajl p7zip gparted gnome-font-viewer gedit numlockx gnome-keyring xdg-desktop-portal-gtk evince yt-dlp
 pause_function
 
 print_title "Install Raedon drivers"
@@ -51,13 +51,14 @@ sudo pacman -S --noconfirm --needed adobe-source-sans-pro-fonts cantarell-fonts 
 pause_function
 
 print_title "Install apps"
-sudo pacman -S --noconfirm --needed plank deja-dup keepassxc wine vlc qbittorrent steam inkscape borg hexchat gimp solaar telegram-desktop
+sudo pacman -S --noconfirm --needed plank deja-dup keepassxc wine vlc vlc-plugins-all qbittorrent steam inkscape borg hexchat gimp telegram-desktop vorta pan
 pause_function
 
 print_title "Install AUR apps"
-yay -S --noconfirm --needed ferdium kalu gimp-paint-studio megasync-bin vorta google-chrome stash-bin fstl pan lightdm-settings mailspring-bin
+yay -S --noconfirm --needed ferdium-bin kalu megasync google-chrome stash-bin fstl lightdm-settings electron33-bin mailspring-bin
 wget https://mega.nz/linux/repo/Arch_Extra/x86_64/nemo-megasync-x86_64.pkg.tar.zst && sudo pacman -U --noconfirm nemo-megasync-x86_64.pkg.tar.zst
 pause_function
+# gimp-paint-studio
 
 print_title "Install Flatpak"
 sudo pacman -S --noconfirm --needed flatpak
@@ -74,6 +75,14 @@ print_title "Install and start plex"
 yay -S --noconfirm --needed plex-media-server
 sudo systemctl enable plexmediaserver.service
 sudo systemctl start plexmediaserver.service
+pause_function
+
+print_title "Install and start Razer drivers"
+yay -S razergenie
+# The daemon requires you add the user to the `plugdev` group:
+sudo gpasswd -a tgaddis plugdev
+# Enable the OpenRazer daemon systemd service:
+systemctl --user enable openrazer-daemon.service
 pause_function
 
 print_title "Install LibreOffice"
@@ -94,8 +103,8 @@ sudo pacman -Syy --noconfirm sublime-text
 pause_function
 
 print_title "Install themes and sounds"
-sudo pacman -S --noconfirm --needed arc-icon-theme gtk-engine-murrine elementary-icon-theme gtk-engine-murrine
-yay -S --noconfirm --needed papirus-icon-theme-git flat-remix flat-remix-gtk
+sudo pacman -S --noconfirm --needed gtk-engine-murrine elementary-icon-theme gtk-engine-murrine
+yay -S --noconfirm --needed papirus-icon-theme-git flat-remix flat-remix-gtk xcursor-simp1e-adw
 mkdir sound
 cd sound
 wget -O PKGBUILD https://bit.ly/3YffPWX
@@ -103,6 +112,7 @@ wget -O cinnamon-sound-effects.gschema.override https://bit.ly/4eQB3kt
 wget -O cinnamon-sound-effects.install https://bit.ly/4gUCQXn
 makepkg --install
 pause_function
+# arc-icon-theme
 
 print_title "Mount hard drives"
 cd /
