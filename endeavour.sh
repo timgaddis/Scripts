@@ -61,8 +61,7 @@ sudo pacman -S --noconfirm --needed plank keepassxc wine vlc vlc-plugins-all qbi
 pause_function
 
 print_title "Install AUR apps"
-yay -S --noconfirm --needed ferdium-bin megasync google-chrome stash-bin fstl lightdm-settings mailspring-bin octopi qdirstat chatterino2-bin
-wget https://mega.nz/linux/repo/Arch_Extra/x86_64/nemo-megasync-x86_64.pkg.tar.zst && sudo pacman -U --noconfirm nemo-megasync-x86_64.pkg.tar.zst
+yay -S --noconfirm --needed ferdium-bin megasync nemo-megasync google-chrome stash-bin fstl lightdm-settings mailspring-bin octopi qdirstat chatterino2-bin
 pause_function
 
 print_title "Install Flatpak"
@@ -72,7 +71,7 @@ pause_function
 
 print_title "Install programming apps"
 sudo pacman -S --noconfirm --needed jdk-openjdk openjdk-doc openjdk-src
-sudo pacman -S --noconfirm --needed gitg sqlitebrowser npm libvirt android-tools python-beautifulsoup4 python-feedparser python-numpy python-regex kotlin python-pycryptodome python-pip
+sudo pacman -S --noconfirm --needed gitg sqlitebrowser npm libvirt android-tools tk python-beautifulsoup4 python-feedparser python-numpy python-regex kotlin python-pycryptodome python-pip python-dateparser
 yay -S --noconfirm --needed gitkraken python-selenium selenium-manager geckodriver chromedriver
 pause_function
 
@@ -143,6 +142,6 @@ sudo cp /etc/default/grub /etc/default/grub.bak
 sudo sed -i 's/GRUB_GFXMODE=auto/GRUB_GFXMODE=1024x768x32/g' /etc/default/grub
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
-sudo sed -i 's/#IgnorePkg   =/IgnorePkg   = cinnamon-sound-effects nemo-megasync/g' /etc/pacman.conf
+sudo sed -i 's/#IgnorePkg   =/IgnorePkg   = cinnamon-sound-effects/g' /etc/pacman.conf
 
 echo "Done!!!"
